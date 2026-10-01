@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Do You Need PWM at All? Pumps, Fans, and Why It's Worth the Trouble — Reaper Controls</title>
+<meta name="description" content="What PWM actually is, and the concrete reasons it's worth using on a fuel pump (fuel heating, aeration, pump longevity) and a fan (startup inrush current, noise, efficiency) — plus when a simple relay is the better call.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Do You Need PWM at All? Pumps, Fans, and Why It's Worth the Trouble",
+      "description": "What PWM actually is, and the concrete reasons it helps a fuel pump (fuel heating, aeration, pump longevity) and a fan (startup inrush current, noise, efficiency) — plus when a simple relay is the better call.",
+      "datePublished": "2026-09-28",
+      "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "about": ["PWM control", "fuel pump control", "fan control", "relay vs PWM", "automotive motor control", "fuel heating and aeration", "fan inrush current"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why use PWM on a fuel pump instead of running it at full speed?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A pump sized for wide-open-throttle flow is significantly oversized for idle and cruise. Run it flat out all the time and it pushes far more fuel than the engine needs, which means more fuel churning, more heat added to it, and more return-line reheating in a return-style system. PWM lets the pump back off when full flow isn't needed, which reduces fuel heating and aeration and cuts down on wear over the pump's life." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why use PWM on a fan instead of a simple relay?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Two reasons. First, a relay-switched fan slams to full speed every time it kicks on, and that full-speed startup draws a large inrush current every cycle, which is hard on the motor and the wiring over time. Second, a relay only gives you one speed, so the fan runs at full noise and full draw any time it's on at all, even when the engine only needs a little airflow. PWM lets the fan ramp instead of slam, and run at only the speed actually needed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need PWM to control a fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Only if you want the pump to vary with demand. If the pump just needs to be on or off, a relay is simpler and has one less failure mode. But most of the benefit of PWM for a pump, reduced fuel heating, less aeration, longer pump life, only shows up when it actually varies flow with demand, which a relay can't do." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is low-frequency PWM bad for a fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Even the upper end of what a Holley ECU can output directly is well short of the switching frequency a brushed DC pump motor actually wants, which creates current ripple and mechanical shock loading that stresses the motor. PWM still delivers its benefits, reduced fuel heating and longer pump life, but only when it's implemented at a much higher switching frequency reaching the motor, typically well up into the tens of kilohertz." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../articles.html" aria-current="page">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="doc-id mono">FIG. REF: PWM-GEN-01 &nbsp;·&nbsp; SUBJECT: PUMP &amp; FAN CONTROL &nbsp;·&nbsp; READ: 7 MIN</p>
+
+  <h1>Do You Need PWM at All?<br>Pumps, Fans, and Why It's Worth the Trouble</h1>
+
+  <div class="scope">
+    <svg viewBox="0 0 640 180" role="img" aria-label="Comparison over a drive: a fixed-speed pump or fan running flat out the whole time, next to PWM output that drops when demand is low and rises only when it's actually needed">
+      <g stroke="#38393b" stroke-width="1">
+        <line x1="0" y1="30" x2="640" y2="30"/>
+        <line x1="0" y1="90" x2="640" y2="90"/>
+        <line x1="0" y1="150" x2="640" y2="150"/>
+        <line x1="106" y1="0" x2="106" y2="180"/>
+        <line x1="212" y1="0" x2="212" y2="180"/>
+        <line x1="318" y1="0" x2="318" y2="180"/>
+        <line x1="424" y1="0" x2="424" y2="180"/>
+        <line x1="530" y1="0" x2="530" y2="180"/>
+      </g>
+      <line x1="0" y1="32" x2="640" y2="32" stroke="#c1531b" stroke-width="2"/>
+      <polyline fill="none" stroke="#6fada3" stroke-width="2"
+        points="0,120 60,118 106,122 150,80 212,60 260,90 318,130 360,140 424,135 470,100 530,70 580,110 640,125"/>
+    </svg>
+    <div class="scope-caption mono">
+      <span><span style="color:#c1531b">■</span> fixed speed — flat out the whole drive</span>
+      <span><span style="color:#6fada3">■</span> PWM — tracks actual demand</span>
+    </div>
+  </div>
+
+  <p class="lede">If you're new to this — and plenty of people wiring up their first EFI swap or aftermarket fan setup are — "PWM" gets thrown around constantly with no explanation of what problem it's actually solving. Before deciding whether you need it, it's worth understanding what it does and why anyone bothers.</p>
+
+  <h2>What PWM actually is</h2>
+
+  <p>PWM (pulse-width modulation) is a way of controlling how much average power a motor gets without wasting the extra as heat. Instead of feeding a pump or fan a lower steady voltage, PWM switches full voltage on and off very quickly and controls the <strong>ratio</strong> of on-time to off-time, called the duty cycle. A pump held at 40% duty cycle is being switched on and off many times a second, spending 40% of that time fully on and 60% fully off. Averaged out, it behaves like it's running at a lower speed, but the electronics doing the switching barely get warm, unlike a resistor or linear regulator trying to "waste" the extra voltage as heat.</p>
+
+  <p>That's the whole trick: full power, controlled duty cycle, average speed you actually want. The question is whether your pump or fan needs that variable speed in the first place.</p>
+
+  <h2>Why it's worth it on a fuel pump</h2>
+
+  <p>A fuel pump has to be sized for the worst case: wide-open throttle, maximum fuel demand. That means at idle or steady cruise, a fixed-speed pump is drastically oversized for what the engine actually needs right then, but it doesn't know that. It runs flat out regardless.</p>
+
+  <p>Two real costs come from that:</p>
+
+  <ul>
+    <li><strong>Fuel heating and aeration.</strong> A pump pushing far more fuel than the engine can use is churning fuel it doesn't need to move, and that churning adds heat. In a return-style fuel system, the excess fuel goes back to the tank hotter and more turbulent than it left, which compounds over a drive. This is the same heat buildup behind classic vapor lock complaints — fuel hot enough to start vaporizing in the line, causing hesitation or a stall that seems to come from nowhere on a hot day after sitting in traffic. A pump that isn't working harder than it needs to adds less heat to the fuel in the first place.</li>
+    <li><strong>Wear on the hard parts.</strong> A pump running at full output constantly puts more cumulative wear on the impeller, bearings, and brushes than one that's allowed to back off when full flow isn't needed. Less unnecessary work over the pump's life means it lasts longer.</li>
+  </ul>
+
+  <p>PWM fuel pump control addresses both by letting the pump's actual output track what the engine needs moment to moment, instead of running at one speed regardless of demand.</p>
+
+  <h2>Why it's worth it on a fan</h2>
+
+  <p>Fans have a different pair of problems, and PWM solves both:</p>
+
+  <ul>
+    <li><strong>Startup inrush current.</strong> A fan switched on with a relay jumps straight to full speed, and spinning a stationary motor up to full speed draws a hard current spike every single time it cycles on. A thermostatically-switched fan can cycle on and off repeatedly on a warm day, and each cycle is another full inrush event on the motor and the wiring.</li>
+    <li><strong>Noise and wasted airflow.</strong> A relay only gives you one speed: full. That means every time the fan runs, whether the engine barely needs airflow or desperately does, it runs at full noise and full current draw. If people at a cruise-in can hear your fans kick on over your own cam, that's usually this problem — a fan with no setting between off and everything it's got. Most of the time, full speed is more airflow than the engine actually needs.</li>
+  </ul>
+
+  <p>PWM fan control lets the fan ramp up smoothly instead of slamming on, which softens the inrush event, and lets it run at only the speed the engine's actual temperature calls for — quieter, more efficient, and less wear on the motor over time.</p>
+
+  <h2>The catch: not all PWM is equal</h2>
+
+  <p>Everything above assumes the PWM is implemented well. It often isn't. A brushed DC motor — the kind in most aftermarket fuel pumps — wants smooth, continuous current, not a slow on/off square wave. It's tempting to assume a higher number automatically solves that, but even the top end of what a Holley ECU's PWM output can put out directly — 1 kHz, per Holley's own EFI Software User Manual — still isn't fast enough to give the motor what it actually wants. Higher than the 20–50 Hz range tuners typically dial in, yes, but not in the range that matters for the motor. We cover that failure mode in detail separately: <a href="pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
+
+  <p>So what frequency does count as "good"? There isn't one universal number — it depends on the specific motor's winding inductance and how it responds to switching. But a common practical target for brushed DC motor control is well up into the tens of kilohertz, partly for the smoothness that gives the current, and partly because roughly 20 kHz sits at the upper edge of human hearing. Push the switching frequency above what people can hear and the "PWM whine" problem disappears along with the motor stress — quiet stops being a side effect and becomes something you can design toward. The short version: PWM done right, at a high enough switching frequency, delivers everything above. PWM done at a frequency that's merely higher than the old tuner recommendation, but still well short of that, can end up trading one problem (an oversized pump running flat out) for another (a pump motor being hammered by switching stress). "Under PWM control" and "controlled well" aren't automatically the same thing.</p>
+
+  <h2>When you genuinely don't need it</h2>
+
+  <p>None of this means PWM is always the answer. If a pump or fan only ever needs to be fully on or fully off — no partial speed, no demand tracking — a relay switching a fixed voltage is simpler, cheaper, and has one less thing to fail. The fuel-heating and inrush-current problems above only exist because the load spends most of its time running harder than it needs to. If that's not true for your setup, PWM is solving a problem you don't have.</p>
+
+  <div class="callout">
+    Pump or fan only ever needs on/off → skip PWM, use a relay.<br>
+    Pump runs at one speed most of the time it doesn't need to → PWM reduces fuel heating, aeration, and wear — but only at a proper high switching frequency.<br>
+    Fan cycles on/off repeatedly or runs louder than it needs to → PWM softens inrush current and cuts noise — again, only done at the right frequency for the fan.
+  </div>
+
+  <p class="waitlist-note" style="margin-top: 40px;">For pump-specific power delivery, see <a href="../products/golem.html">Golem</a>; for closed-loop pressure control, see <a href="../products/wraith.html">Wraith</a>; for fan control, see <a href="../products/wendigo.html">Wendigo</a>.</p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

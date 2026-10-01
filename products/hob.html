@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Hob — RPM Signal Conditioner — Reaper Controls</title>
+<meta name="description" content="Hob is an active RPM signal conditioner built to be the strong answer to LS swap tach problems — weak signals, wrong pulse counts, and noisy readings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Hob",
+  "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
+  "description": "Active RPM signal conditioner built to fix weak, noisy, and mis-scaled tach signals on LS-swapped vehicles.",
+  "category": "Automotive RPM Signal Conditioner",
+  "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html" aria-current="page">Products</a>
+      <a href="../articles.html">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2c-1 3-4 4-4 8a4 4 0 0 0 8 0c0-1.5-.8-2.3-1.5-3 .3 1.2-.2 2-1 2.3.4-2-1-3.5-1.5-7.3Z" stroke-linejoin="round"/></svg></span>
+  <span class="badge">Schematic Complete</span>
+  <h1>Hob</h1>
+  <p class="lede">An active RPM signal conditioner. The strong answer to LS swap tach problems.</p>
+
+  <div class="origin">
+    A <strong>hob</strong> — short for hobgoblin — is a household spirit from British and Irish folklore that quietly tends to the hearth and keeps a home running right, so long as it's treated with respect. Get on its bad side and it turns mischievous. It's a fitting name for a device whose entire job is to take a signal that's misbehaving and quietly put it right.
+  </div>
+
+  <div class="concept-teaser">
+    <div class="concept-teaser-frame">
+      <img src="../images/hob-concept.png" alt="Early concept render of the Hob enclosure, intentionally blurred — design not finalized">
+    </div>
+    <div class="concept-teaser-caption mono">
+      <span>EARLY CONCEPT — NOT FINAL</span>
+      <span>Enclosure &amp; branding subject to change</span>
+    </div>
+  </div>
+
+  <p>LS swaps break tach signals in predictable ways: the pulse count doesn't match what a V8 gauge expects, the signal is too weak to register, or it's noisy enough to make the needle jump around. The usual advice is a pull-up resistor — it moves the needle, but it leaves the underlying signal problems in place and puts the PCM's output pin directly on the harness with no protection in between.</p>
+
+  <p>Hob is built to be the real answer instead: an active signal conditioner that takes a weak or wrong RPM signal in and puts out a clean, correctly-scaled signal your tach, shift light, or other RPM-dependent device can actually trust.</p>
+
+  <p>If you want the full technical case for why a pull-up resistor falls short, we wrote it up: <a href="../articles/tach-pullup-resistor-gaps.html">Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?</a></p>
+
+  <p>Running something other than an LS, or a signal source Hob isn't built around? <a href="puca.html">Puca</a> is our universal translator — any engine's tach signal, to any tach.</p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when Hob is available</h3>
+    <p>One email when it ships. No spam, no drip campaign.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/maenkkwa" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-platform">Engine platform</label>
+          <select id="wl-platform" name="platform">
+            <option value="">Select one</option>
+            <option value="ls-swap">LS swap</option>
+            <option value="other-v8">Other V8</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-tach">Current tach problem (optional)</label>
+          <input type="text" id="wl-tach" name="tach_problem" placeholder="e.g. reads half RPM">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Hob">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>

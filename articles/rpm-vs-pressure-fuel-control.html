@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>RPM-Threshold vs. Pressure-Based Fuel Pump Control — Reaper Controls</title>
+<meta name="description" content="Most 'smart' fuel pump controllers set duty cycle from RPM thresholds, which is a guess at demand, not a measurement of pressure. What closed-loop pressure control actually does differently, and when a simpler RPM-based controller is good enough.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "RPM-Threshold vs. Pressure-Based Fuel Pump Control",
+      "description": "Most 'smart' fuel pump controllers set duty cycle from RPM thresholds, which is a guess at demand, not a measurement of pressure. What closed-loop pressure control actually does differently.",
+      "datePublished": "2026-09-30",
+      "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "about": ["fuel pump control", "closed-loop fuel pressure control", "RPM-based PWM", "PID fuel pump controller"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is RPM-based fuel pump control?",
+          "acceptedAnswer": { "@type": "Answer", "text": "RPM-based control sets the fuel pump's PWM duty cycle from a lookup table or threshold tied to engine RPM, for example low duty cycle below 3,000 RPM and full duty cycle above it. It doesn't measure fuel pressure directly; it assumes a given RPM corresponds to a given fuel demand and runs the pump accordingly." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why isn't RPM a reliable way to control fuel pressure?",
+          "acceptedAnswer": { "@type": "Answer", "text": "RPM reflects engine speed, not actual fuel demand or actual pressure delivered. A downshift or coasting downhill can spin the engine fast while the throttle is closed and fuel demand is low, which can run the pump at full speed for no reason. Meanwhile, supply voltage sag, pump wear, and line restriction all change how much pressure a given duty cycle actually produces, and an RPM table has no way to detect or correct for any of it." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does closed-loop pressure control mean for a fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Closed-loop control means a pressure sensor measures the actual fuel pressure in real time, and the controller continuously adjusts pump duty cycle to correct any difference between that measurement and the target pressure. If pressure drops below target for any reason, voltage sag, wear, demand spike, the controller sees it directly and corrects it, rather than relying on an RPM number that never changed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need PID control for a carbureted fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You don't strictly need the word PID, but you do need something that reacts to the actual pressure error rather than a fixed table. A proportional response alone can leave a small steady error; adding an integral term removes that lingering offset; a derivative term helps react faster to sudden changes like hard acceleration. Together those three pieces are what 'PID' means, and they're what let a controller hold a steady carburetor fuel pressure under changing load instead of approximating it." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../articles.html" aria-current="page">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="doc-id mono">FIG. REF: PUMP-CTRL-01 &nbsp;·&nbsp; SUBJECT: PUMP CONTROL &nbsp;·&nbsp; READ: 8 MIN</p>
+
+  <h1>RPM-Threshold vs. Pressure-Based Fuel Pump Control</h1>
+
+  <div class="scope">
+    <svg viewBox="0 0 640 180" role="img" aria-label="Comparison of two fuel pump duty cycle traces: an RPM-based controller stepping between fixed levels, and a pressure-based controller holding a steady corrected line through a load change">
+      <g stroke="#38393b" stroke-width="1">
+        <line x1="0" y1="30" x2="640" y2="30"/>
+        <line x1="0" y1="90" x2="640" y2="90"/>
+        <line x1="0" y1="150" x2="640" y2="150"/>
+        <line x1="106" y1="0" x2="106" y2="180"/>
+        <line x1="212" y1="0" x2="212" y2="180"/>
+        <line x1="318" y1="0" x2="318" y2="180"/>
+        <line x1="424" y1="0" x2="424" y2="180"/>
+        <line x1="530" y1="0" x2="530" y2="180"/>
+      </g>
+      <polyline fill="none" stroke="#c1531b" stroke-width="2"
+        points="0,110 160,110 160,60 320,60 320,20 480,20 480,100 640,100"/>
+      <path fill="none" stroke="#6fada3" stroke-width="2"
+        d="M0,74 L140,74 C170,74 180,96 200,88 C220,80 230,72 260,74 L640,74"/>
+    </svg>
+    <div class="scope-caption mono">
+      <span><span style="color:#c1531b">■</span> RPM-threshold — fixed steps, blind to actual pressure</span>
+      <span><span style="color:#6fada3">■</span> pressure-based — small correction, holds target through load change</span>
+    </div>
+  </div>
+
+  <p class="lede">A lot of fuel pump controllers get marketed as "smart" because they vary duty cycle with RPM instead of running the pump flat-out all the time. That's genuinely better than nothing. But watching RPM and watching pressure are not the same job, and a controller that only does the first one is still, fundamentally, guessing.</p>
+
+  <p>The difference matters more than it sounds like it should, because <strong>the entire point of fuel pressure control is to hold a number you can't see from the RPM gauge.</strong></p>
+
+  <h2>What RPM-based control actually does</h2>
+
+  <p>Strip away the marketing and most RPM-based fuel pump controllers do one thing: look up a duty cycle from a table or a threshold keyed to engine RPM. Below some RPM, run a lower duty cycle; above it, run higher, sometimes with a few steps in between. It's a lookup, not a measurement.</p>
+
+  <p>That's a real improvement over a pump wired straight to battery voltage with no control at all, which has its own well-documented downsides for pump heat and motor life. But a lookup table only ever answers one question: <strong>"what duty cycle has usually worked at this RPM before?"</strong> It cannot answer "what is the fuel pressure right now," because it was never measuring that in the first place.</p>
+
+  <h2>RPM is a proxy for demand, not a measurement of pressure</h2>
+
+  <p>The assumption baked into an RPM table is that engine speed tracks fuel demand closely enough to control a pump by. Most of the time, loosely, it does. But the cases where it doesn't are exactly the cases a fuel system needs to get right.</p>
+
+  <p>Aeromotive makes this point directly in their own documentation on pump speed control, noting that <strong>"ignition spark/RPM signals are also not reflective of what the exact engine fuel needs are, since downshifting/downhills can make the pump run very fast, but little fuel is needed."</strong> High RPM with a closed throttle, coasting downhill or during a downshift, is the textbook case: the engine is spinning fast, an RPM table reads that as high demand and runs the pump hard, and the actual fuel need in that moment is small.</p>
+
+  <p>That's the demand side. The supply side has its own blind spots that an RPM table can't see either:</p>
+
+  <ul>
+    <li><strong>Supply voltage sag.</strong> A given PWM duty cycle produces less actual pump speed, and less pressure, at 11V during cranking or heavy electrical load than it does at a healthy 14V. The table doesn't know the voltage dropped.</li>
+    <li><strong>Pump wear.</strong> A pump that's a year and 15,000 miles further into its life doesn't move the same volume at the same duty cycle it did when new. The table was calibrated once, against a pump that no longer exists in that exact state.</li>
+    <li><strong>Line restriction and temperature.</strong> A partially clogged filter, a kinked line, or hot fuel aerating in the line all change the relationship between duty cycle and delivered pressure. None of it shows up as an RPM change.</li>
+  </ul>
+
+  <p>In every one of these cases, actual fuel pressure can drift away from target while the RPM table keeps outputting the exact same duty cycle it always has, because as far as the table is concerned, nothing changed.</p>
+
+  <h2>What closed-loop control means in plain terms</h2>
+
+  <p>Closed-loop control flips the whole approach: instead of looking up what duty cycle <em>should</em> produce the right pressure, you <strong>measure the actual pressure and correct toward the target in real time.</strong> A sensor reads line pressure continuously, the controller compares it to the setpoint, and the difference, the error, is what actually drives the duty cycle.</p>
+
+  <p>You'll see this called "PID control," which sounds more intimidating than it is. It's three simple ideas stacked together:</p>
+
+  <ul>
+    <li><strong>Proportional (P):</strong> the bigger the error, the bigger the correction. Pressure is 2 PSI low, push duty cycle up more than if it were 0.2 PSI low.</li>
+    <li><strong>Integral (I):</strong> if a small error keeps hanging around even after the proportional response, slowly add more correction until it's actually gone. This is what cleans up the "close but not quite" steady-state offset that proportional-only control tends to leave behind.</li>
+    <li><strong>Derivative (D):</strong> if pressure is changing fast, react faster, rather than waiting for the error to build up first. This is what helps the loop respond quickly to a sudden hit of throttle instead of lagging behind it.</li>
+  </ul>
+
+  <p>None of that requires knowing RPM at all; a true pressure loop would work even with no RPM signal present. In practice, RPM is still useful as a <strong>feedforward</strong> term, a head start, so the pump ramps toward the right ballpark immediately on throttle input instead of waiting for pressure to actually sag before reacting. RPM sets the starting guess; pressure feedback is what actually gets it right and keeps it there.</p>
+
+  <div class="callout">RPM feedforward (fast starting guess) + pressure feedback (continuous correction) → duty cycle that tracks actual delivered pressure, not just engine speed</div>
+
+  <h2>Why this specifically matters for a carburetor</h2>
+
+  <p>Carburetors make this worse to get wrong in either direction, because the acceptable pressure window is narrow and specific. Holley's own carburetor documentation specifies <strong>5 to 7 PSI, with 7 PSI at idle and a floor of 4 PSI at redline</strong> — not a wide band, and not "more is better." Pressure above spec pushes against the float needle and seat harder than it's designed to seal against, and owners chasing a flooding, rich-idle, or fuel-weeping carburetor after "just turning the pressure up a little" is a recurring theme in carburetor troubleshooting threads. Pressure below spec, meanwhile, lets the float bowl run low under load and leans the engine out exactly when it can least afford it.</p>
+
+  <p>An RPM table has no mechanism to hold inside that window if any of the drift sources above are present. A pressure loop, by definition, is built to hold inside it, because holding a target pressure is the entire thing it's measuring and correcting against.</p>
+
+  <h2>When RPM-based control is good enough</h2>
+
+  <p>To be fair to the simpler approach: a well-tuned RPM table on a healthy pump, stable charging system, and a street-driven car that isn't chasing a tight pressure window can run fine for a long time. The drift sources above are real, but they're gradual, and a generous margin in the table can absorb a fair amount of them before anyone notices a problem.</p>
+
+  <p>Where it stops being good enough is exactly where the stakes go up: a build that's being tuned at the edge of what the carburetor wants, a car that sees real voltage sag under load, a pump that's going to spend years in service before anyone looks at it again, or anyone who's tired of troubleshooting a flooding or lean-feeling carb that "should" be fine on paper.</p>
+
+  <h2>What Wraith does</h2>
+
+  <p>Wraith is built around a real closed loop: fuel pressure is measured continuously, RPM feeds in as a feedforward head start, and the duty cycle sent out to <a href="../products/golem.html">Golem</a> for power switching is whatever the pressure error actually calls for, not a lookup from a table that doesn't know the pump is twelve months older than the day it was calibrated.</p>
+
+  <p>Wraith is in production now. If you're running a pump controller that's really just a dressed-up RPM switch, or no controller at all, get on the list below.</p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when Wraith is available</h3>
+    <p>One email when it ships. No spam, no drip campaign.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/xgavqqee" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-platform">Fuel system</label>
+          <select id="wl-platform" name="platform">
+            <option value="">Select one</option>
+            <option value="carbureted">Carbureted</option>
+            <option value="efi">EFI</option>
+            <option value="not-sure">Not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-pump">Pump model (optional)</label>
+          <input type="text" id="wl-pump" name="pump" placeholder="e.g. Walbro 450">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Wraith">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+
+  <div class="refs">
+    <h2>References</h2>
+    <ul>
+      <li>Aeromotive, <a href="https://aeromotiveinc.com/pages/how-pwm-fuel-pump-control-works">"How PWM Fuel Pump Control Works"</a> — on RPM/ignition signals not reflecting actual fuel demand, and pressure-feedback-based variable speed control.</li>
+      <li>Holley, <a href="https://documents.holley.com/199r7923-2rev2.pdf">Performance Carburetor Installation and Adjustment Instructions</a> — specified 5-7 PSI operating range, 7 PSI at idle, 4 PSI minimum at redline.</li>
+      <li>CorvetteForum, <a href="https://www.corvetteforum.com/forums/c3-tech-performance/1665035-can-you-have-too-much-fuel-pressure.html">"Can you have too much fuel pressure???"</a> — forum discussion of symptoms from running carburetor fuel pressure above spec.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>

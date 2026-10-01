@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Puca — Universal RPM Signal Translator — Reaper Controls</title>
+<meta name="description" content="Puca is a universal RPM signal translator that takes virtually any engine's tach signal and outputs to virtually any tachometer — built for swaps where the engine and the gauge were never meant to talk to each other.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Puca",
+  "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
+  "description": "Universal RPM signal translator that accepts virtually any engine tach output and drives virtually any tachometer.",
+  "category": "Automotive RPM Signal Translator",
+  "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html" aria-current="page">Products</a>
+      <a href="../articles.html">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c-1.5 0-2.5 1.5-2 3 .3.8 1 1.2 1 2.2 0 .8-.5 1-1.3.8-.7-.2-1-1-1.7-1-1.1 0-1.5 1.3-.7 2.3.6.8 1.7 1 1.7 2.2 0 .9-.8 1.3-1.6 1-1-.4-1.2-1.5-2.2-1.2-1 .3-1 1.7 0 2.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="14" r="6"/><circle cx="10" cy="13" r="0.6" fill="currentColor" stroke="none"/></svg></span>
+  <span class="badge">In PCB Development</span>
+  <h1>Puca</h1>
+  <p class="lede">Any engine, any tach. A universal RPM signal translator for swaps that were never meant to talk to each other.</p>
+
+  <div class="origin">
+    In Irish folklore, the <strong>púca</strong> is a shapeshifter — appearing as a horse, a goat, a hare, whatever form suits the moment. That's the whole idea here: one device that takes the shape of whatever signal an engine puts out and whatever signal a tach expects, and translates cleanly between them.
+  </div>
+
+  <div class="concept-teaser">
+    <div class="concept-teaser-frame">
+      <img src="../images/puca-concept.png" alt="Early concept render of the Puca enclosure, intentionally blurred — design not finalized">
+    </div>
+    <div class="concept-teaser-caption mono">
+      <span>EARLY CONCEPT — NOT FINAL</span>
+      <span>Enclosure &amp; branding subject to change</span>
+    </div>
+  </div>
+
+  <p>Swap an LS into a 67 Mustang, drop a Coyote into a Tri-Five, or run any engine whose factory tach signal doesn't match what's sitting in the dash, and you hit the same wall: the source signal and the gauge were designed for completely different platforms, with different pulse patterns, different voltage behavior, and no shared assumptions.</p>
+
+  <p>Puca is built to sit in the middle of that mismatch. It accepts a wide range of inputs — coil negative, coil positive, a clean square wave, Holley EFI output, ACES, or an MSD box — and translates to whatever the tach or downstream device actually needs. One input connects at a time; multiple outputs can run simultaneously, so the same translated signal can feed a tach, a shift light, and <a href="wraith.html">Wraith</a> all at once.</p>
+
+  <p>Where <a href="hob.html">Hob</a> is a focused, lower-cost fix for the specific LS-to-V8-tach mismatch, Puca is the universal case: any source, any destination, for the swaps that don't fit a narrower solution.</p>
+
+  <p>We wrote up why these inputs can't be treated as one signal: <a href="../articles/tach-signal-types.html">Why Coil Negative, Coil Positive, and Square Wave Aren't Interchangeable</a></p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when Puca is available</h3>
+    <p>One email when it ships. No spam, no drip campaign.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/xeaoddjy" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-source">Signal source</label>
+          <select id="wl-source" name="source">
+            <option value="">Select one</option>
+            <option value="coil-negative">Coil negative</option>
+            <option value="coil-positive">Coil positive</option>
+            <option value="holley-efi">Holley EFI</option>
+            <option value="aces">ACES</option>
+            <option value="msd">MSD box</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-combo">Engine / vehicle combo (optional)</label>
+          <input type="text" id="wl-combo" name="combo" placeholder="e.g. LS swap in a 1967 Mustang">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Puca">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>

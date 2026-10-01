@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>What Frequency Should You Run for Holley PWM Fuel Pump Control? — Reaper Controls</title>
+<meta name="description" content="Why 20–50 Hz PWM fuel pump control damages motor windings, and what actually fixes it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "What Frequency Should You Run for Holley PWM Fuel Pump Control? (And Why It's Killing Your Pump)",
+      "description": "Why 20-50 Hz PWM fuel pump control, the standard tuning recommendation, causes current ripple, mechanical shock loading, and winding insulation breakdown in brushed DC pump motors.",
+      "datePublished": "2026-09-18",
+      "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "about": ["PWM fuel pump control", "Holley Terminator", "Holley Dominator", "fuel pump PWM frequency", "brushed DC motor control"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What PWM frequency should I run for a Holley-controlled fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most tuners land on 20-50 Hz because that's what Holley's software and typical automotive SSRs can handle reliably. It's not an ideal frequency for the pump motor itself, which is better served by much higher switching frequencies (20 kHz or more) delivered through a hardware translator between the ECU and pump." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does low-frequency PWM damage a fuel pump?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, over time. Low-frequency PWM (20-50 Hz) creates current ripple, mechanical shock loading on the impeller and bearings, and repeated thermal cycling that breaks down winding insulation faster than the pump's rated duty cycle would suggest." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my PWM-controlled fuel pump make a buzzing or whining noise?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Low PWM switching frequencies (20-50 Hz) often fall within the range the motor winding can physically resonate at, and that range overlaps with what the human ear can hear, producing an audible buzz or whine." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../articles.html" aria-current="page">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="doc-id mono">FIG. REF: PWM-FREQ-01 &nbsp;·&nbsp; SUBJECT: FUEL PUMP CONTROL &nbsp;·&nbsp; READ: 6 MIN</p>
+
+  <h1>What Frequency Should You Run for Holley PWM Fuel Pump Control?<br>(And Why It's Killing Your Pump)</h1>
+
+  <div class="scope" aria-hidden="false">
+    <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: choppy 20 Hz current draw with high peaks versus a smooth, flat current line at 20 kHz">
+      <g stroke="#38393b" stroke-width="1">
+        <line x1="0" y1="30" x2="640" y2="30"/>
+        <line x1="0" y1="90" x2="640" y2="90"/>
+        <line x1="0" y1="150" x2="640" y2="150"/>
+        <line x1="106" y1="0" x2="106" y2="180"/>
+        <line x1="212" y1="0" x2="212" y2="180"/>
+        <line x1="318" y1="0" x2="318" y2="180"/>
+        <line x1="424" y1="0" x2="424" y2="180"/>
+        <line x1="530" y1="0" x2="530" y2="180"/>
+      </g>
+      <polyline fill="none" stroke="#c1531b" stroke-width="2"
+        points="0,80 20,80 28,20 40,20 48,80 90,80 98,20 110,20 118,80 170,80 178,20 190,20 198,80 250,80 258,20 270,20 278,80 300,80"/>
+      <polyline fill="none" stroke="#6fada3" stroke-width="2"
+        points="320,55 340,52 360,56 380,53 400,55 420,54 440,56 460,53 480,55 500,54 520,56 540,53 560,55 580,54 600,56 620,54 640,55"/>
+    </svg>
+    <div class="scope-caption mono">
+      <span><span style="color:#c1531b">■</span> 20 Hz — raw ECU output</span>
+      <span><span style="color:#6fada3">■</span> 20 kHz+ — upscaled</span>
+    </div>
+  </div>
+
+  <p class="lede">If you've tuned a PWM-controlled fuel pump on a Holley Terminator or Dominator, you've probably settled on somewhere between 20–50 Hz. It's the number everyone in the forums recommends, and it's the number that works — mostly.</p>
+
+  <p>Here's the problem nobody talks about: <strong>20–50 Hz isn't a good frequency for driving a pump motor. It's the frequency your ECU and your relay can survive.</strong></p>
+
+  <h2>Why tuners land on 20–50 Hz</h2>
+
+  <p>Two hard limits push everyone toward the low end:</p>
+
+  <ul>
+    <li><strong>Holley's software caps PWM output around 1,000 Hz</strong> — already low for motor control, but usable.</li>
+    <li><strong>Cheap automotive SSRs can't switch fast enough</strong> to stay efficient much above 50–100 Hz without overheating from switching losses.</li>
+  </ul>
+
+  <p>So the tuning community converged on "low and safe" — a number that won't melt a relay, even though it does something worse to the pump.</p>
+
+  <h2>What's actually happening inside the pump at 20 Hz</h2>
+
+  <p>A brushed DC pump motor doesn't want a slow on/off square wave — it wants smooth, continuous current. At 20 Hz, every cycle is a hard inrush event: the motor winding sees a spike of current, then nothing, then another spike. Thirty times a second (or fewer), forever.</p>
+
+  <p>That produces three real failure modes:</p>
+
+  <ul>
+    <li><strong>Current ripple</strong> — instead of steady current, you get a sawtooth of high peaks and dead zones, which is far harder on the windings than the pump's rated average draw suggests.</li>
+    <li><strong>Mechanical shock loading</strong> — the impeller and bearings take a torque hit on every pulse instead of spinning against smooth resistance.</li>
+    <li><strong>Thermal breakdown of winding insulation</strong> — repeated inrush heating cycles slowly cook the lacquer coating on the copper windings, which is the actual mechanism behind pumps that mysteriously die early despite "only" running at 60% duty.</li>
+  </ul>
+
+  <p>It's also almost certainly the source of the low-frequency buzz/whine some PWM'd pumps develop — that's the winding physically resonating at your switching frequency, sitting right in the range human ears pick up.</p>
+
+  <h2>The real fix isn't a different number — it's a translation layer</h2>
+
+  <p>You can't just tell Holley to output 20 kHz; the software won't do it, and even if it could, a standard automotive SSR can't switch that fast without cooking itself.</p>
+
+  <p>What actually solves this is a <strong>hardware translator</strong>: something that takes the ECU's low-frequency PWM command (whatever Holley is comfortable outputting — 20, 50, wherever you've tuned it) and regenerates it as a clean, high-frequency signal — 20 kHz or higher — before it ever reaches the pump. The ECU sees the same simple duty-cycle interface it's always used. The pump sees smooth, ripple-free, near-analog power delivery instead of a square-wave hammer.</p>
+
+  <div class="callout">ECU → simple low-frequency command → translator module → clean 20 kHz+ delivery → pump</div>
+
+  <p>That's the gap Golem is built to close — a 40A high-side switching device that sits between your ECU and pump specifically to solve this. It's not shipping yet, but if this is a problem you've run into, get on the list below and we'll let you know the moment it's available — along with the scope data showing exactly what this looks like on a real Walbro 450.</p>
+
+  <p>If you're also wondering whether PWM is even the right tool for your particular pump or fan setup, we cover that separately: <a href="do-you-need-pwm.html">Do You Need PWM at All?</a></p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when it's available</h3>
+    <p>No spam, no drip campaign — one email when the module ships, with the full scope comparison.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/xljdvvrv" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-platform">ECU platform</label>
+          <select id="wl-platform" name="platform">
+            <option value="">Select one</option>
+            <option value="holley-terminator">Holley Terminator</option>
+            <option value="holley-dominator">Holley Dominator</option>
+            <option value="haltech">Haltech</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-pump">Pump model (optional)</label>
+          <input type="text" id="wl-pump" name="pump" placeholder="e.g. Walbro 450">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Golem">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>

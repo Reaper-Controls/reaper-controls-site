@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Golem — 40A High-Side Power Switching — Reaper Controls</title>
+<meta name="description" content="Golem is a 40A high-side power switching module that regenerates clean, high-frequency PWM for pumps and fans — built for Holley and Haltech ECUs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Golem",
+  "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
+  "description": "40A high-side power switching module that regenerates clean, high-frequency PWM for fuel pumps and fans.",
+  "category": "Automotive Power Switching Module",
+  "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html" aria-current="page">Products</a>
+      <a href="../articles.html">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M13 8l-4 5h3l-1 4 4-5h-3l1-4Z" stroke-linejoin="round"/></svg></span>
+  <span class="badge">Prototype Hardware</span>
+  <h1>Golem</h1>
+  <p class="lede">Power without a leash. 40A high-side power switching, built for pumps and fans that deserve better than a raw ECU output.</p>
+
+  <div class="origin">
+    In Jewish folklore, a <strong>golem</strong> is a being formed from raw material and given a purpose — an obedient servant built to carry out exactly what it's directed to do, not the mindless brute later pop culture turned it into. That's the job here: take whatever low-frequency command your ECU is comfortable sending, and carry it out properly — as clean, high-frequency power delivery, at up to 40A.
+  </div>
+
+  <div class="concept-teaser">
+    <div class="concept-teaser-frame">
+      <img src="../images/golem-concept.png" alt="Early concept render of the Golem enclosure, intentionally blurred — design not finalized">
+    </div>
+    <div class="concept-teaser-caption mono">
+      <span>EARLY CONCEPT — NOT FINAL</span>
+      <span>Enclosure &amp; branding subject to change</span>
+    </div>
+  </div>
+
+  <p>Most aftermarket ECUs cap their PWM output well below what a pump or fan motor actually wants to see, and cheap automotive relays can't switch fast enough to fix that on their own. The result is a low-frequency square wave doing a job it was never suited for — hard on windings, audible, and inefficient.</p>
+
+  <p>Golem sits between your ECU and the load. It takes the same simple duty-cycle signal your ECU already outputs and regenerates it as clean, high-frequency power at up to 40A — standalone, no ecosystem required. Built with Holley Terminator/Dominator and Haltech users in mind, but useful anywhere an ECU needs to drive a serious load properly.</p>
+
+  <p>We wrote up the underlying problem in detail: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
+
+  <p>First prototype boards are in transit now, headed to the bench for validation as soon as they land.</p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when Golem is available</h3>
+    <p>One email when it ships, with the full scope comparison. No spam.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/xljdvvrv" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-platform">ECU platform</label>
+          <select id="wl-platform" name="platform">
+            <option value="">Select one</option>
+            <option value="holley-terminator">Holley Terminator</option>
+            <option value="holley-dominator">Holley Dominator</option>
+            <option value="haltech">Haltech</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-load">What you're switching (optional)</label>
+          <input type="text" id="wl-load" name="load" placeholder="e.g. Walbro 450, radiator fan">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Golem">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Reaper Controls LLC — reapercontrols.com
+# We publish our tech articles specifically so AI systems and search
+# engines can access accurate technical information. All crawlers,
+# including AI assistants and research agents, are welcome.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://reapercontrols.com/sitemap.xml

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Is a Pull-Up Resistor Enough for an LS Swap Tach Signal? — Reaper Controls</title>
+<meta name="description" content="A tach pull-up resistor makes an LS swap tach work, but it wires your PCM's tach output directly to the dash harness, invites noise, and leaves a V8 tach reading half RPM. What it gets wrong and what a proper fix looks like.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Is a Pull-Up Resistor Enough for an LS Swap Tach Signal? (Why It Can Put Your PCM at Risk)",
+      "description": "A tach pull-up resistor makes an LS swap tach work, but it wires the PCM's tach output directly to the dash harness, invites noise, and leaves a V8 tach reading half RPM.",
+      "datePublished": "2026-09-20",
+      "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "about": ["LS swap tachometer", "tach pull-up resistor", "tachometer signal conditioning", "PCM tach output"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why does my tach read half RPM after an LS swap?",
+          "acceptedAnswer": { "@type": "Answer", "text": "LS engine controllers commonly output a 4-cylinder tach pattern of 2 pulses per revolution. A tachometer set for 8 cylinders expects 4 pulses per revolution, so it reads half. The fix is to set the gauge to 4-cylinder mode, change the tach output in the PCM tune, or use a signal adapter that doubles the pulse rate." }
+        },
+        {
+          "@type": "Question",
+          "name": "What size pull-up resistor do I need for an LS tach signal?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Common recommendations range from 1k to 10k ohms between the tach wire and switched 12V. Lower values give a stronger signal but make the PCM's tach output sink more current: a 1k resistor at 14V asks it to sink about 14 mA every time it pulls low. A resistor also connects the PCM output directly to the dash wiring, with no fault isolation." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a tach pull-up resistor damage the PCM?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It can expose it. With a bare resistor, the PCM's tach output and the tach wire running to the dash are the same electrical node. If that wire chafes against a 12V source while the output is switching, the only current limit is the short itself. A signal conditioner with a separate output driver keeps harness faults away from the PCM pin." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my tach drop to zero or jump under hard throttle?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A resistor-pulled tach wire is a high-impedance line that picks up electrical noise, and the gauge has no hysteresis to reject it. Noise near the switching threshold causes false or missed pulses, which show up as jumps, dropouts, or zero readings when ignition energy and current are highest." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
+    <nav class="primary-nav">
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../articles.html" aria-current="page">Tech Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="doc-id mono">FIG. REF: TACH-SIG-01 &nbsp;·&nbsp; SUBJECT: TACH SIGNAL &nbsp;·&nbsp; READ: 7 MIN</p>
+
+  <h1>Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?<br>(Why It Can Put Your PCM at Risk)</h1>
+
+  <div class="scope">
+    <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: a resistor-pulled tach signal with noise spikes and a missing pulse, next to a clean conditioned square wave">
+      <g stroke="#38393b" stroke-width="1">
+        <line x1="0" y1="30" x2="640" y2="30"/>
+        <line x1="0" y1="90" x2="640" y2="90"/>
+        <line x1="0" y1="150" x2="640" y2="150"/>
+        <line x1="106" y1="0" x2="106" y2="180"/>
+        <line x1="212" y1="0" x2="212" y2="180"/>
+        <line x1="318" y1="0" x2="318" y2="180"/>
+        <line x1="424" y1="0" x2="424" y2="180"/>
+        <line x1="530" y1="0" x2="530" y2="180"/>
+      </g>
+      <path fill="none" stroke="#c1531b" stroke-width="2"
+        d="M0,40 L40,40 L44,120 L70,120 C74,70 78,46 92,42 L118,40 L122,68 L126,38 L150,40 L154,120 L180,120 C184,72 188,46 202,42 L230,40 L234,86 L238,40 L262,40 L266,64 L270,40 L300,40"/>
+      <polyline fill="none" stroke="#6fada3" stroke-width="2"
+        points="320,40 360,40 360,120 386,120 386,40 470,40 470,120 496,120 496,40 580,40 580,120 606,120 606,40 640,40"/>
+    </svg>
+    <div class="scope-caption mono">
+      <span><span style="color:#c1531b">■</span> resistor pull-up — noise, missed pulse</span>
+      <span><span style="color:#6fada3">■</span> conditioned — hysteresis, hard edges</span>
+    </div>
+  </div>
+
+  <p class="lede">Swap an LS into anything with an aftermarket or factory tach and you'll hit the same wall: the tach reads nothing, reads half, or bounces. The standard forum answer is a pull-up resistor between the tach wire and switched 12V. Somewhere between 1k and 10k, depending on who you ask.</p>
+
+  <p>It usually works. That's why everyone recommends it. But <strong>"the needle moves" isn't the same as "the signal is right,"</strong> and a bare resistor leaves four gaps that nobody in those threads talks about. One of them puts your PCM's output driver directly on the end of fifteen feet of harness.</p>
+
+  <h2>What the resistor actually does</h2>
+
+  <p>The LS PCM's tach output doesn't drive a voltage out on its own. It's a switch to ground: it pulls the wire low for each pulse and lets go in between. Something has to pull the wire back <em>up</em> when the switch lets go, or there's no signal to read. Some tachs have that pull-up built in. Many don't. So you add one.</p>
+
+  <p>That's the whole job. The resistor turns an open switch into a voltage. Everything else about the signal, including how strong it is, how clean it is, and what happens when something goes wrong, is left to chance.</p>
+
+  <h2>Gap 1: Your PCM's tach pin is wired straight to the dash</h2>
+
+  <p>With a bare resistor, the PCM's tach output, the resistor, and the wire running through the firewall to the gauge are all the <strong>same electrical point</strong>. Whatever happens anywhere on that wire happens at the PCM pin.</p>
+
+  <ul>
+    <li><strong>A chafe to 12V is the dangerous one.</strong> If the tach wire rubs through against a switched 12V circuit, then every time the PCM pulls low it's trying to short battery voltage to ground through its own output. The only thing limiting that current is the short itself.</li>
+    <li><strong>Transients ride straight in.</strong> Load dump, jump starts, and ignition noise on the harness all reach the PCM output with nothing in between.</li>
+  </ul>
+
+  <p>The PCM is the most expensive part in the swap, and its tach output is now its least protected pin.</p>
+
+  <h2>Gap 2: The resistor debate is really a PCM load debate</h2>
+
+  <p>Why do recommendations range from 1k to 10k? Because with a bare resistor, <strong>the resistor itself has to drive the gauge, the harness, and fight the noise.</strong> When the signal is weak or flaky, the instinct is to go stiffer. A lower value pulls up harder.</p>
+
+  <p>The cost lands on the PCM. Every time the output pulls low, it has to sink whatever current the resistor supplies:</p>
+
+  <ul>
+    <li><strong>10k at 14V:</strong> about 1.4 mA</li>
+    <li><strong>1k at 14V:</strong> about 14 mA, ten times more, on every pulse, for the life of the car</li>
+  </ul>
+
+  <p>That's far more than the signal needs, asked of an output whose ratings you can't look up. The stiffer you go to fix a flaky tach, the harder you lean on the PCM.</p>
+
+  <h2>Gap 3: A high-impedance wire is an antenna</h2>
+
+  <p>A tach wire held up by a resistor is a high-impedance line running past coil packs, injector drivers, and the alternator. It picks up noise easily, and most gauge inputs have <strong>no hysteresis</strong>, meaning no dead band to ignore small wiggles. A noise spike near the switching threshold becomes an extra pulse. A sagging edge becomes a missing one.</p>
+
+  <p>The symptoms are familiar: a needle that jumps, a reading that sticks, or a tach that <strong>drops to zero under hard throttle</strong> and recovers when you lift. That last one is documented in forum threads from people whose pull-up was installed correctly. Hard throttle is when ignition energy and current are highest, which is exactly when the noise is worst.</p>
+
+  <h2>Gap 4: Your V8 tach reads half</h2>
+
+  <p>LS controllers commonly output a <strong>4-cylinder tach pattern: 2 pulses per revolution</strong>. A tach set for a V8 expects 4. So even with a perfect pull-up, it reads 3,000 when the engine's at 6,000.</p>
+
+  <p>A resistor does nothing about pulse rate. Your options are to set the gauge to 4-cylinder mode (if it has that setting), change the tach output in the PCM tune, or double the signal in hardware. Flashing the PCM for a swap can also weaken or eliminate the tach signal entirely, which is part of why so many swaps end up here in the first place.</p>
+
+  <h2>Why this matters beyond the gauge</h2>
+
+  <p>If the only thing on that wire is a tach, a dropout is an annoyance. But the RPM signal rarely stays that lonely. Shift lights, rev limiters, nitrous window switches, progressive controllers, data loggers, and fuel pump controllers with RPM-loss shutoff all make decisions from it.</p>
+
+  <p><strong>Every one of those devices inherits the signal's flaws.</strong> A tach that drops to zero at wide-open throttle is a nuisance. A fuel pump controller that sees the same dropout and decides the engine has stalled is a lean condition at wide-open throttle. A noise spike that reads as 9,000 RPM can trip a limiter mid-pull. The more your build relies on RPM, the less "it mostly works" is good enough.</p>
+
+  <h2>When a resistor is fine</h2>
+
+  <p>To be fair to the forum advice: plenty of swaps run a pull-up resistor for years without a problem. If the run to the gauge is short and well routed, the tach can be set to 4-cylinder mode, nothing else depends on the signal, and the needle is steady at wide-open throttle, a resistor is a reasonable, cheap fix. Use a moderate value, around 10k, rather than going as stiff as possible.</p>
+
+  <p>The gaps show up when one of those conditions isn't true.</p>
+
+  <h2>What a proper fix looks like</h2>
+
+  <p>The fix isn't a better resistor value. It's putting something between the PCM and the harness that does the jobs a resistor can't:</p>
+
+  <ul>
+    <li><strong>A gentle pull-up.</strong> When the pull-up only has to drive one high-impedance input instead of a whole harness, it can run under a milliamp. Less load on the PCM than any resistor recommendation, with a stronger signal out.</li>
+    <li><strong>Hysteresis.</strong> A Schmitt-trigger input with a wide dead band ignores noise instead of counting it.</li>
+    <li><strong>A separate output driver.</strong> The gauge gets a hard 12V square wave from its own transistor. A short on the dash wire hits that transistor, not your PCM.</li>
+    <li><strong>Input protection.</strong> Series resistance and clamping on the PCM side, so transients and miswiring stop at the module.</li>
+    <li><strong>Pulse doubling.</strong> A 2-pulse source becomes a 4-pulse signal, so a V8 tach reads correctly without retuning or reconfiguring anything.</li>
+    <li><strong>Mounting near the source.</strong> The fragile, high-impedance part of the signal should travel inches, not feet. Once it's conditioned, the strong output can run to the dash without caring.</li>
+    <li><strong>A signal-present indicator.</strong> A light that tells you the signal is there turns an hour with a multimeter into a glance with the hood up.</li>
+  </ul>
+
+  <div class="callout">PCM tach output → short lead → conditioner (protection, hysteresis, doubling) → strong 12V square wave → tach, shift light, fuel pump controller</div>
+
+  <p>That's the module we're building: a small, potted signal conditioner that does all of the above with no software and no setup. It's not shipping yet. If you're fighting an LS swap tach right now, get on the list below and we'll let you know when it's available, along with scope captures of a resistor-pulled signal next to a conditioned one on a running engine.</p>
+
+  <div class="waitlist">
+    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+    <h3>Get notified when it's available</h3>
+    <p>No spam, no drip campaign. One email when the module ships, with the full scope comparison.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/maenkkwa" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="wl-source">Engine / signal source</label>
+          <select id="wl-source" name="source">
+            <option value="">Select one</option>
+            <option value="ls-gen3">LS Gen III (24x)</option>
+            <option value="ls-gen4">LS Gen IV (58x)</option>
+            <option value="aftermarket-efi">Aftermarket EFI</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-tach">Tach / gauge (optional)</label>
+          <input type="text" id="wl-tach" name="tach" placeholder="e.g. AutoMeter, Classic Instruments">
+        </div>
+      </div>
+      <input type="hidden" name="product" value="Hob">
+      <button type="submit" class="submit">Join the waitlist</button>
+    </form>
+  </div>
+
+  <div class="refs">
+    <h2>References</h2>
+    <ul>
+      <li>AutoMeter, <a href="https://www.autometer.com/blog/faq-post/tachometer-does-not-work-with-my-ls-engine-swap-application-why/">"Tachometer does not work with my LS Engine Swap Application. Why?"</a> — LS 4-cylinder (2-pulse) tach pattern; PCM reprogramming weakening or eliminating the signal.</li>
+      <li>Dirty South Race Engineering, <a href="https://dirtysouthraceengineering.com.au/blogs/tech-help/how-to-get-your-tachometer-working-with-your-ls-swap">"How to get your Tachometer working with your LS Swap"</a> — common pull-up values and tune-based tach output changes.</li>
+      <li>Pro-Touring.com, <a href="https://www.pro-touring.com/threads/139028-Getting-Tach-to-work-with-LS-RPM-Feed">"Getting Tach to work with LS RPM Feed"</a> — tach dropping to zero under hard throttle with a pull-up installed.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Reaper Controls LLC — Missouri</span>
+    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  </div>
+</footer>
+
+<script src="../js/waitlist.js" defer></script>
+</body>
+</html>
