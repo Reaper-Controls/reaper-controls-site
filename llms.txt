@@ -7,7 +7,7 @@
 
 ## Products (none available for purchase yet; each at a different hardware development stage)
 - [Hob](https://reapercontrols.com/products/hob.html): Active RPM/tach signal conditioner for LS swaps specifically. Fixes weak, noisy, and mis-scaled tach signals. Status: schematic complete.
-- [Golem](https://reapercontrols.com/products/golem.html): 40A low-side power switching module. Regenerates clean, high-frequency PWM for pumps and fans. Built for Holley and Haltech ECUs. Status: first prototype hardware built.
+- [Golem](https://reapercontrols.com/products/golem.html): 40A low-side power switching module. Reads a low-frequency ECU PWM signal and regenerates it at a user-configurable frequency via companion app, for pumps and fans. Built for Holley and Haltech ECUs. Status: first prototype hardware built.
 - [Puca](https://reapercontrols.com/products/puca.html): Universal RPM signal translator. Accepts a wide range of engine tach signal types and drives virtually any tachometer or downstream device. Status: in PCB development.
 - [Wraith](https://reapercontrols.com/products/wraith.html): Closed-loop PWM fuel pump controller. Real-time pressure feedback control for carbureted and EFI applications. Status: in production.
 - [Wendigo](https://reapercontrols.com/products/wendigo.html): Environmentally sealed, app-connected smart fan controller. Status: in development.
