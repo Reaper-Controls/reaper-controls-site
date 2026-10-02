@@ -382,8 +382,15 @@ li strong{ color: var(--ink); }
   bottom: 0;
   padding: 22px 28px 24px;
 }
-.hero-banner-content .badge{ margin-bottom: 12px; }
-.hero-banner-content h1{ margin-bottom: 8px; }
+.hero-banner-content .hero-title-row{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.hero-banner-content .hero-title-row h1{ margin-bottom: 0; }
+.hero-banner-content .hero-title-row .badge{ margin-bottom: 0; }
 .hero-banner-content p.lede{ margin-bottom: 0; max-width: 46ch; }
 @media (max-width: 560px){
   .hero-banner{ aspect-ratio: auto; }
