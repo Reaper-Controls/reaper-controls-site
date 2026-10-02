@@ -318,20 +318,34 @@ li strong{ color: var(--ink); }
 }
 .product-icon svg{ width: 100%; height: 100%; display: block; }
 
+.product-hero{
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.product-hero-text{
+  flex: 1 1 auto;
+  min-width: 0;
+}
 .product-teaser{
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  margin: 0 0 24px;
+  flex: 0 0 180px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 .product-teaser img{
   display: block;
   width: 100%;
-  height: 220px;
+  height: 180px;
   object-fit: cover;
-  filter: blur(3px) saturate(0.92);
-  transform: scale(1.03);
+  filter: blur(8px) saturate(0.92);
+  transform: scale(1.08); /* hide soft blur edges */
+}
+@media (max-width: 560px){
+  .product-hero{ flex-direction: column; }
+  .product-teaser{ flex-basis: auto; width: 100%; }
 }
 
 /* ---------- concept art teaser (blurred, not final) ---------- */
