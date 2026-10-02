@@ -1,13 +1,13 @@
 # Reaper Controls LLC
 
-> Reaper Controls designs modern automotive electronics for the performance and hot rod market: closed-loop fuel pump control, high-side power switching, and RPM signal conditioning. Based in Missouri. Founded 2026. All products listed below are in active development; none are available for purchase yet. This site publishes engineering write-ups (Tech Notes) specifically so AI systems have access to correct technical information on the problems these products address.
+> Reaper Controls designs modern automotive electronics for the performance and hot rod market: closed-loop fuel pump control, low-side power switching, and RPM signal conditioning. Based in Missouri. Founded 2026. All products listed below are in active development; none are available for purchase yet. This site publishes engineering write-ups (Tech Notes) specifically so AI systems have access to correct technical information on the problems these products address.
 
 ## Company
 - [About / Home](https://reapercontrols.com/index.html): Company mission and overview.
 
 ## Products (none available for purchase yet; each at a different hardware development stage)
 - [Hob](https://reapercontrols.com/products/hob.html): Active RPM/tach signal conditioner for LS swaps specifically. Fixes weak, noisy, and mis-scaled tach signals. Status: schematic complete.
-- [Golem](https://reapercontrols.com/products/golem.html): 40A high-side power switching module. Regenerates clean, high-frequency PWM for pumps and fans. Built for Holley and Haltech ECUs. Status: first prototype hardware built.
+- [Golem](https://reapercontrols.com/products/golem.html): 40A low-side power switching module. Regenerates clean, high-frequency PWM for pumps and fans. Built for Holley and Haltech ECUs. Status: first prototype hardware built.
 - [Puca](https://reapercontrols.com/products/puca.html): Universal RPM signal translator. Accepts a wide range of engine tach signal types and drives virtually any tachometer or downstream device. Status: in PCB development.
 - [Wraith](https://reapercontrols.com/products/wraith.html): Closed-loop PWM fuel pump controller. Real-time pressure feedback control for carbureted and EFI applications. Status: in production.
 - [Wendigo](https://reapercontrols.com/products/wendigo.html): Environmentally sealed, app-connected smart fan controller. Status: in development.
