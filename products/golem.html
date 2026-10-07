@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<title>Golem — 40A Low-Side Power Switching — Reaper Controls</title>
-<meta name="description" content="Golem is a 40A low-side power switching module that reads your ECU's low-frequency PWM and regenerates it at a frequency you set via app — built for Holley and Haltech ECUs.">
+<title>Golem — 40A Solid-State Relay with Adjustable PWM — Reaper Controls</title>
+<meta name="description" content="Golem is a 40A low-side solid-state relay that regenerates your ECU's slow PWM at the frequency you choose, with built-in current sensing and Bluetooth setup. Works with Holley, Haltech and most ECUs.">
 <link rel="canonical" href="https://reapercontrols.com/products/golem.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reaper Controls">
 <meta property="og:url" content="https://reapercontrols.com/products/golem.html">
-<meta property="og:title" content="Golem — 40A Low-Side Power Switching — Reaper Controls">
-<meta property="og:description" content="Golem is a 40A low-side power switching module that reads your ECU's low-frequency PWM and regenerates it at a frequency you set via app — built for Holley and Haltech ECUs.">
+<meta property="og:title" content="Golem — 40A Solid-State Relay with Adjustable PWM — Reaper Controls">
+<meta property="og:description" content="Golem is a 40A low-side solid-state relay that regenerates your ECU's slow PWM at the frequency you choose, with built-in current sensing and Bluetooth setup. Works with Holley, Haltech and most ECUs.">
 <meta property="og:image" content="https://reapercontrols.com/images/photos/golem-og.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Golem — 40A Low-Side Power Switching — Reaper Controls">
-<meta name="twitter:description" content="Golem is a 40A low-side power switching module that reads your ECU's low-frequency PWM and regenerates it at a frequency you set via app — built for Holley and Haltech ECUs.">
+<meta name="twitter:title" content="Golem — 40A Solid-State Relay with Adjustable PWM — Reaper Controls">
+<meta name="twitter:description" content="Golem is a 40A low-side solid-state relay that regenerates your ECU's slow PWM at the frequency you choose, with built-in current sensing and Bluetooth setup. Works with Holley, Haltech and most ECUs.">
 <meta name="twitter:image" content="https://reapercontrols.com/images/photos/golem-og.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
   "@type": "Product",
   "name": "Golem",
   "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
-  "description": "40A low-side power switching module that reads a low-frequency ECU PWM signal and regenerates it at a user-configurable frequency, for fuel pumps and fans.",
+  "description": "40A low-side solid-state relay and PWM power module. Reads a slow ECU PWM signal and regenerates it at a user-selected frequency, with built-in current sensing, Bluetooth configuration through the Veil app, and a weatherproof enclosure. Accepts 12V or ground-switched triggers.",
   "category": "Automotive Power Switching Module",
   "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
 }
@@ -55,7 +55,7 @@
         <h1>Golem</h1>
         <span class="badge">Prototype Hardware</span>
       </div>
-      <p class="lede">Power without a leash. Reads a low-frequency ECU signal and regenerates it at a frequency you set, at up to 40A.</p>
+      <p class="lede">Power without a leash. A 40A solid-state relay that turns your ECU's slow PWM into the frequency you choose, set from your phone.</p>
     </div>
   </div>
 
@@ -65,11 +65,25 @@
 
   <p>Most aftermarket ECUs cap their PWM output well below what a pump or fan motor actually wants to see, and cheap automotive relays can't switch fast enough to fix that on their own. The result is a low-frequency square wave doing a job it was never suited for — hard on windings, audible, and inefficient.</p>
 
-  <p>Golem sits between your ECU and the load. It reads the same simple duty-cycle signal your ECU already outputs, then regenerates it at a high frequency you set through the companion app — clean, efficient power delivery at up to 40A, standalone, no ecosystem required. Built with Holley Terminator/Dominator and Haltech users in mind, but useful anywhere an ECU needs to drive a serious load properly.</p>
+  <p>Golem is a 40A solid-state relay and PWM power module, built for people who run serious loads on aftermarket EFI. It sits between your ECU and the load and works completely on its own, no ecosystem required.</p>
+
+  <p><strong>PWM that you control.</strong> Golem reads the slow PWM signal from your ECU and regenerates it at the frequency you choose. Fans, pumps and other loads run smoother and quieter, and you set the frequency from your phone.</p>
+
+  <p><strong>Two modes in one module.</strong> Run it as a straight 1:1 relay, or switch to Enhance PWM. It accepts a 12V trigger or a ground-switched ECU output, so it fits Holley, Haltech and most other setups.</p>
+
+  <p><strong>Current sensing built in.</strong> Golem measures the current each load draws and reports it live in the Veil app. See what a fan or pump pulls without a clamp meter, and spot trouble before it costs you a part.</p>
+
+  <p><strong>Set up from your phone.</strong> Configure everything over Bluetooth with the Veil app, no laptop or cables. Settings stay on the module, so it works the same whether or not your phone is nearby.</p>
+
+  <p><strong>Safe by design.</strong> It powers up with the output off. Reverse polarity protection, transient suppression and an isolated signal input are built in for the realities of a car's electrical system.</p>
+
+  <p><strong>Low-loss, high-current switching.</strong> A low-resistance power stage handles up to 40A with very little heat, in a compact weatherproof package.</p>
+
+  <p><strong>Standalone, but part of a family.</strong> Golem works on its own, and it shares the Veil app with other Reaper Controls products, so one app can manage your whole setup.</p>
 
   <p>We wrote up the underlying problem in detail: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
 
-  <p>First prototype boards are in transit now, headed to the bench for validation as soon as they land.</p>
+  <p>First prototype units are built and on the bench, and testing has gone better than we hoped.</p>
 
   <div class="waitlist">
     <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
