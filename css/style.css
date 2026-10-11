@@ -212,6 +212,13 @@ li strong{ color: var(--ink); }
   margin: 0 auto;
 }
 .hero h1{ max-width: 16ch; }
+.hero-logo{
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  margin: 0 0 34px;
+}
 .hero-actions{
   display: flex;
   gap: 16px;
@@ -560,6 +567,12 @@ footer.site-footer{
   flex-wrap: wrap;
   gap: 12px;
 }
+.footer-logo{
+  flex: 0 0 100%;
+  line-height: 0;
+  margin-bottom: 6px;
+}
+.footer-logo img{ display: block; width: 150px; height: auto; opacity: 0.9; }
 .footer-inner a{ color: var(--ink-dim); }
 .footer-inner a:hover{ color: var(--ink); }
 
