@@ -32,8 +32,10 @@
       "headline": "Is a Pull-Up Resistor Enough for an LS Swap Tach Signal? (Why It Can Put Your PCM at Risk)",
       "description": "A tach pull-up resistor makes an LS swap tach work, but it wires the PCM's tach output directly to the dash harness, invites noise, and leaves a V8 tach reading half RPM.",
       "datePublished": "2026-09-20",
+      "dateModified": "2026-10-13",
       "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
+      "mentions": { "@type": "Product", "name": "Hob", "brand": { "@type": "Organization", "name": "Reaper Controls LLC" }, "url": "https://reapercontrols.com/products/hob.html" },
       "about": ["LS swap tachometer", "tach pull-up resistor", "tachometer signal conditioning", "PCM tach output"]
     },
     {
@@ -52,12 +54,12 @@
         {
           "@type": "Question",
           "name": "Can a tach pull-up resistor damage the PCM?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It can expose it. With a bare resistor, the PCM's tach output and the tach wire running to the dash are the same electrical node. If that wire chafes against a 12V source while the output is switching, the only current limit is the short itself. A signal conditioner with a separate output driver keeps harness faults away from the PCM pin." }
+          "acceptedAnswer": { "@type": "Answer", "text": "It can expose it. With a bare resistor, the PCM's tach output and the tach wire running to the dash are the same electrical node. If that wire chafes against a 12V source while the output is switching, nothing outside the PCM limits the current. A signal conditioner with a separate output driver keeps harness faults away from the PCM pin." }
         },
         {
           "@type": "Question",
           "name": "Why does my tach drop to zero or jump under hard throttle?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A resistor-pulled tach wire is a high-impedance line that picks up electrical noise, and the gauge has no hysteresis to reject it. Noise near the switching threshold causes false or missed pulses, which show up as jumps, dropouts, or zero readings when ignition energy and current are highest." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A resistor-pulled tach wire is a high-impedance line that picks up electrical noise, and many gauges have little or no hysteresis to reject it. Noise near the switching threshold causes false or missed pulses, which show up as jumps, dropouts, or zero readings when ignition energy and current are highest." }
         }
       ]
     }
@@ -110,6 +112,8 @@
 
   <p>It usually works. That's why everyone recommends it. But <strong>"the needle moves" isn't the same as "the signal is right,"</strong> and a bare resistor leaves four gaps that nobody in those threads talks about. One of them puts your PCM's output driver directly on the end of fifteen feet of harness.</p>
 
+  <div class="short-answer"><strong>Short answer:</strong> A pull-up resistor gets the needle moving, but it doesn't fix the most common LS swap tach problems. The PCM puts out 2 pulses per revolution, so a V8 tach still reads half. The resistor-pulled wire picks up enough noise to make the needle jump or drop to zero at wide-open throttle. And it connects the PCM's tach pin directly to the dash wiring with nothing in between. With a short run, a tach set to 4-cylinder mode, and nothing else reading the signal, a resistor is fine. Otherwise, use a signal conditioner.</div>
+
   <h2>What the resistor actually does</h2>
 
   <p>The LS PCM's tach output doesn't drive a voltage out on its own. It's a switch to ground: it pulls the wire low for each pulse and lets go in between. Something has to pull the wire back <em>up</em> when the switch lets go, or there's no signal to read. Some tachs have that pull-up built in. Many don't. So you add one.</p>
@@ -121,11 +125,11 @@
   <p>With a bare resistor, the PCM's tach output, the resistor, and the wire running through the firewall to the gauge are all the <strong>same electrical point</strong>. Whatever happens anywhere on that wire happens at the PCM pin.</p>
 
   <ul>
-    <li><strong>A chafe to 12V is the dangerous one.</strong> If the tach wire rubs through against a switched 12V circuit, then every time the PCM pulls low it's trying to short battery voltage to ground through its own output. The only thing limiting that current is the short itself.</li>
+    <li><strong>A chafe to 12V is the dangerous one.</strong> If the tach wire rubs through against a switched 12V circuit, then every time the PCM pulls low it's trying to short battery voltage to ground through its own output. Nothing outside the PCM limits that current.</li>
     <li><strong>Transients ride straight in.</strong> Load dump, jump starts, and ignition noise on the harness all reach the PCM output with nothing in between.</li>
   </ul>
 
-  <p>The PCM is the most expensive part in the swap, and its tach output is now its least protected pin.</p>
+  <p>The PCM is the most expensive part in the swap, and nothing outside it protects its tach output from the harness.</p>
 
   <h2>Gap 2: The resistor debate is really a PCM load debate</h2>
 
@@ -142,13 +146,22 @@
 
   <h2>Gap 3: A high-impedance wire is an antenna</h2>
 
-  <p>A tach wire held up by a resistor is a high-impedance line running past coil packs, injector drivers, and the alternator. It picks up noise easily, and most gauge inputs have <strong>no hysteresis</strong>, meaning no dead band to ignore small wiggles. A noise spike near the switching threshold becomes an extra pulse. A sagging edge becomes a missing one.</p>
+  <p>A tach wire held up by a resistor is a high-impedance line running past coil packs, injector drivers, and the alternator. It picks up noise easily, and many gauge inputs have <strong>little or no hysteresis</strong>, meaning no dead band to ignore small wiggles. A noise spike near the switching threshold becomes an extra pulse. A sagging edge becomes a missing one.</p>
 
   <p>The symptoms are familiar: a needle that jumps, a reading that sticks, or a tach that <strong>drops to zero under hard throttle</strong> and recovers when you lift. That last one is documented in forum threads from people whose pull-up was installed correctly. Hard throttle is when ignition energy and current are highest, which is exactly when the noise is worst.</p>
 
   <h2>Gap 4: Your V8 tach reads half</h2>
 
   <p>LS controllers commonly output a <strong>4-cylinder tach pattern: 2 pulses per revolution</strong>. A tach set for a V8 expects 4. So even with a perfect pull-up, it reads 3,000 when the engine's at 6,000.</p>
+
+  <table class="spec-table">
+    <thead><tr><th>Engine RPM</th><th>LS output (2/rev)</th><th>V8 tach expects (4/rev)</th><th>V8 tach shows</th></tr></thead>
+    <tbody>
+      <tr><td>1,000</td><td>33 Hz</td><td>67 Hz</td><td>500</td></tr>
+      <tr><td>3,000</td><td>100 Hz</td><td>200 Hz</td><td>1,500</td></tr>
+      <tr><td>6,000</td><td>200 Hz</td><td>400 Hz</td><td>3,000</td></tr>
+    </tbody>
+  </table>
 
   <p>A resistor does nothing about pulse rate. Your options are to set the gauge to 4-cylinder mode (if it has that setting), change the tach output in the PCM tune, or double the signal in hardware. Flashing the PCM for a swap can also weaken or eliminate the tach signal entirely, which is part of why so many swaps end up here in the first place.</p>
 
@@ -166,21 +179,22 @@
 
   <h2>What a proper fix looks like</h2>
 
-  <p>The fix isn't a better resistor value. It's putting something between the PCM and the harness that does the jobs a resistor can't:</p>
+  <p>The fix isn't a better resistor value. It's putting something between the PCM and the harness that does the jobs a resistor can't. Here's how we designed <a href="../products/hob.html">Hob</a> to do it:</p>
 
   <ul>
-    <li><strong>A gentle pull-up.</strong> When the pull-up only has to drive one high-impedance input instead of a whole harness, it can run under a milliamp. Less load on the PCM than any resistor recommendation, with a stronger signal out.</li>
-    <li><strong>Hysteresis.</strong> A Schmitt-trigger input with a wide dead band ignores noise instead of counting it.</li>
-    <li><strong>A separate output driver.</strong> The gauge gets a hard 12V square wave from its own transistor. A short on the dash wire hits that transistor, not your PCM.</li>
-    <li><strong>Input protection.</strong> Series resistance and clamping on the PCM side, so transients and miswiring stop at the module.</li>
-    <li><strong>Pulse doubling.</strong> A 2-pulse source becomes a 4-pulse signal, so a V8 tach reads correctly without retuning or reconfiguring anything.</li>
-    <li><strong>Mounting near the source.</strong> The fragile, high-impedance part of the signal should travel inches, not feet. Once it's conditioned, the strong output can run to the dash without caring.</li>
-    <li><strong>A signal-present indicator.</strong> A light that tells you the signal is there turns an hour with a multimeter into a glance with the hood up.</li>
+    <li><strong>A gentle pull-up.</strong> The pull-up only has to drive one input, not a whole harness, so it can be light: 18k&Omega; to a regulated rail, with 2k&Omega; in series. The PCM sinks about 0.6 mA per pulse, less than half of what even a 10k resistor asks and roughly a twentieth of a 1k.</li>
+    <li><strong>Hysteresis.</strong> A Schmitt-trigger input has a dead band between its on and off thresholds, so small noise spikes don't count as pulses.</li>
+    <li><strong>Separate output drivers.</strong> Each output gets a 12V square wave from its own transistor. The PCM pin isn't electrically connected to either output, so a short on a dash wire hits Hob's output, not your PCM.</li>
+    <li><strong>Input protection.</strong> The 2k&Omega; series resistance and a Schottky clamp on the PCM side are there to stop transients and miswiring at the module.</li>
+    <li><strong>Pulse doubling.</strong> A 2-pulse source becomes a 4-pulse signal, so a V8 tach reads correctly without retuning the PCM or reconfiguring the gauge.</li>
+    <li><strong>Two independent outputs.</strong> Run the tach on one and a shift light or other RPM-based device on the other. Each output has its own driver, so wire one device per output.</li>
+    <li><strong>A signal light.</strong> An LED glows dim when Hob has power and brighter when pulses are arriving. Checking for signal becomes a glance with the hood up instead of an hour with a multimeter.</li>
+    <li><strong>Mounted near the PCM.</strong> We recommend mounting Hob close to the PCM so the fragile, unconditioned part of the signal travels inches, not feet. Once it's conditioned, the 12V outputs can run to the dash.</li>
   </ul>
 
-  <div class="callout">PCM tach output → short lead → conditioner (protection, hysteresis, doubling) → strong 12V square wave → tach, shift light, fuel pump controller</div>
+  <div class="callout">PCM tach output → short lead → Hob (protection, hysteresis, doubling) → two independent 12V outputs → tach and shift light</div>
 
-  <p>That's the module we're building: a small, potted signal conditioner that does all of the above with no software and no setup. It's not shipping yet. If you're fighting an LS swap tach right now, get on the list below and we'll let you know when it's available, along with scope captures of a resistor-pulled signal next to a conditioned one on a running engine.</p>
+  <p>That's <a href="../products/hob.html">Hob</a>: a small potted signal conditioner built from two fixed-function logic chips, with no microcontroller, no software and no setup. The design is complete and headed to PCB layout, so everything above describes what it's designed to do. We'll publish bench measurements once we have hardware in hand. It's not shipping yet. If you're fighting an LS swap tach right now, get on the list below and we'll let you know when it's available, along with scope captures of a resistor-pulled signal next to a conditioned one on a running engine.</p>
 
   <div class="waitlist">
     <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>

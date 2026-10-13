@@ -29,7 +29,7 @@
   "@type": "Product",
   "name": "Hob",
   "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
-  "description": "Active RPM signal conditioner built to fix weak, noisy, and mis-scaled tach signals on LS-swapped vehicles.",
+  "description": "Active RPM signal conditioner for LS swaps. Doubles the 2-pulse LS tach signal for V8 tachs, uses a Schmitt-trigger input to reject noise, protects the PCM tach output, draws about 0.6 mA from the PCM, and provides two independent 12V square-wave outputs with a signal LED. Potted module with no microcontroller or software.",
   "category": "Automotive RPM Signal Conditioner",
   "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
 }
@@ -68,6 +68,22 @@
   </div>
 
   <p>Hob is built to be the real answer instead: an active signal conditioner that takes a weak or wrong RPM signal in and puts out a clean, correctly-scaled signal your tach, shift light, or other RPM-dependent device can actually trust.</p>
+
+  <p><strong>Doubles the pulse count.</strong> LS controllers put out 2 pulses per revolution; a V8 tach expects 4. Hob doubles the signal so the tach reads correctly without retuning the PCM or reconfiguring the gauge.</p>
+
+  <p><strong>Protects your PCM.</strong> Series resistance and a Schottky clamp guard the input, and the outputs have their own drivers. The PCM pin isn't electrically connected to either output, so a short on a dash wire hits Hob, not your PCM.</p>
+
+  <p><strong>Ignores noise.</strong> A Schmitt-trigger input has a dead band between its on and off thresholds, so ignition noise doesn't turn into false pulses or dropouts.</p>
+
+  <p><strong>Light on the PCM.</strong> The PCM sinks about 0.6 mA per pulse, compared with about 14 mA for the common 1k pull-up resistor.</p>
+
+  <p><strong>Two independent outputs.</strong> Two separate 12V square-wave outputs, each with its own driver, so you can run a tach on one and a shift light or other RPM-based device on the other.</p>
+
+  <p><strong>Signal light.</strong> An LED glows dim with power and brighter when pulses arrive, so you can confirm signal with a glance under the hood.</p>
+
+  <p><strong>No software, no setup.</strong> Hob is built from fixed-function logic, with no microcontroller and nothing to program. It's a potted module, and we recommend mounting it close to the PCM.</p>
+
+  <p>The design is complete and headed to PCB layout. These are design specs; we'll post bench measurements once hardware is in hand.</p>
 
   <p>If you want the full technical case for why a pull-up resistor falls short, we wrote it up: <a href="../articles/tach-pullup-resistor-gaps.html">Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?</a></p>
 

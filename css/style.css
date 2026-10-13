@@ -593,3 +593,31 @@ footer.site-footer{
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
+
+/* ---------- short answer + spec tables (tech notes) ---------- */
+.short-answer{
+  border-left: 3px solid var(--rust);
+  background: var(--bg-raised);
+  padding: 16px 20px;
+  margin: 28px 0 36px;
+}
+.spec-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 28px;
+  font-size: 15px;
+}
+.spec-table th, .spec-table td{
+  border-bottom: 1px solid var(--line);
+  padding: 9px 10px;
+  text-align: left;
+}
+.spec-table th{
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+.spec-table td:last-child{ color: var(--rust); }
