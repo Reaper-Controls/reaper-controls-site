@@ -3,7 +3,11 @@
 # engines can access accurate technical information. All crawlers,
 # including AI assistants and research agents, are welcome.
 
+# Content Signals (contentsignals.org): we explicitly allow search indexing,
+# use in AI answers (ai-input), and AI training (ai-train).
+
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 Sitemap: https://reapercontrols.com/sitemap.xml
