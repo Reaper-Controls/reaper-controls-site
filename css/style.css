@@ -299,6 +299,16 @@ li strong{ color: var(--ink); }
   filter: blur(3px) saturate(0.92);
   transform: scale(1.03); /* hide soft blur edges */
 }
+.card-teaser--render{
+  background: radial-gradient(ellipse at 50% 45%, #2c2d30 0%, var(--bg) 72%);
+}
+.card-teaser--render img{
+  object-fit: contain;
+  padding: 8px 0;
+  box-sizing: border-box;
+  filter: none;
+  transform: none;
+}
 .card-teaser-banner{
   position: absolute;
   top: 16px;
