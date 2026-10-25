@@ -631,3 +631,171 @@ footer.site-footer{
   text-transform: uppercase;
 }
 .spec-table td:last-child{ color: var(--rust); }
+
+/* ---------- product detail layout (wide, spec-first) ---------- */
+body.pdp .masthead-inner,
+body.pdp .footer-inner{ max-width: 1180px; }
+main.pdp-main{
+  max-width: 1228px;
+  padding-top: 28px;
+}
+.crumbs{
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin: 0 0 22px;
+}
+.crumbs a{ color: var(--ink-dim); text-decoration: none; }
+.crumbs a:hover{ color: var(--rust); }
+.crumbs span{ margin: 0 8px; opacity: .6; }
+
+.pdp-top{
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.pdp-media{
+  position: relative;
+  border: 1px solid var(--line);
+  background: radial-gradient(ellipse at 50% 42%, #303135 0%, #222325 55%, var(--bg) 100%);
+  aspect-ratio: 1 / 0.86;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.pdp-media img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+.pdp-media-tag{
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--ink-dim);
+}
+.pdp-media--concept img{ filter: blur(12px) saturate(.9); transform: scale(1.04); }
+
+.pdp-info h1{
+  max-width: none;
+  margin: 0 0 10px;
+  font-size: clamp(30px, 3.6vw, 42px);
+}
+.pdp-brand{
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--rust);
+  margin: 0 0 8px;
+}
+.pdp-descriptor{
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+.pdp-status{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin: 0 0 22px;
+}
+.pdp-status .badge{ margin: 0; }
+.pdp-status-note{ font-size: 14px; color: var(--ink-dim); }
+
+.keyspecs{
+  border-top: 1px solid var(--line);
+  margin: 0 0 26px;
+}
+.keyspecs div{
+  display: grid;
+  grid-template-columns: 11em 1fr;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+.keyspecs dt{ color: var(--ink-dim); font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .02em; padding-top: 2px; }
+.keyspecs dd{ margin: 0; color: var(--ink); }
+.pdp-actions{ display: flex; gap: 12px; flex-wrap: wrap; }
+
+.pdp-body{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  margin-top: 64px;
+}
+.pdp-body h2{ margin-top: 0; }
+.pdp-section{ margin-top: 64px; }
+.pdp-section > h2{ margin-top: 0; }
+
+.spec-list{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+.spec-list th, .spec-list td{
+  text-align: left;
+  vertical-align: top;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.spec-list th{
+  width: 42%;
+  padding-right: 16px;
+  font-weight: 600;
+  font-family: 'Spectral', Georgia, serif;
+  color: var(--ink);
+}
+.spec-list td{ color: var(--ink-dim); }
+.spec-list tr.group th{
+  padding-top: 22px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+.feature-list li{ margin-bottom: 14px; }
+.feature-list li strong{ display: block; }
+.feature-list li span{ color: var(--ink-dim); font-size: 16px; }
+
+.chips{ display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; }
+.chips li{
+  padding: 5px 11px;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  font-size: 14px;
+}
+.chips li::before{ content: none; }
+
+.pdp-about{
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+.pdp-about .origin{ margin-top: 0; }
+.pdp-waitlist .waitlist{ margin-top: 0; }
+
+@media (max-width: 880px){
+  .pdp-top, .pdp-body, .pdp-about{ grid-template-columns: 1fr; gap: 32px; }
+  .pdp-body, .pdp-section{ margin-top: 44px; }
+  .pdp-media{ aspect-ratio: auto; height: 300px; padding: 24px; }
+}
+@media (max-width: 520px){
+  .keyspecs div{ grid-template-columns: 1fr; gap: 2px; }
+  .spec-list th{ width: 46%; }
+  .pdp-media{ height: 250px; }
+}

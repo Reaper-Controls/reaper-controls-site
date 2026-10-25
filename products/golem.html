@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261022b">
+<link rel="stylesheet" href="../css/style.css?v=20261024a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,11 +31,12 @@
   "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
   "description": "40A low-side solid-state relay and PWM power module. Reads a slow ECU PWM signal and regenerates it at a user-selected frequency, with built-in current sensing, Bluetooth configuration through the Veil app, and a weatherproof enclosure. Accepts 12V or ground-switched triggers.",
   "category": "Automotive Power Switching Module",
+  "image": "https://reapercontrols.com/images/renders/golem-enclosure-lg.webp",
   "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
 }
 </script>
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -48,50 +49,116 @@
   </div>
 </header>
 
-<main>
-  <div class="hero-banner">
-    <img src="../images/photos/golem-hero.webp" alt="Truck battery and a tangle of relay and fuse-block wiring in an engine bay">
-    <div class="hero-banner-overlay"></div>
-    <div class="hero-banner-content">
-      <div class="hero-title-row">
-        <h1>Golem</h1>
+<main class="pdp-main">
+  <p class="crumbs mono"><a href="../products.html">Products</a><span>/</span>Power Switching<span>/</span>Golem</p>
+
+  <div class="pdp-top">
+    <div class="pdp-media">
+      <img src="../images/renders/golem-enclosure-lg.webp?v=1" alt="3D render of the Golem prototype enclosure, mounted with its terminals pointing down, showing the Reaper Controls and Golem logos" width="688" height="720">
+      <span class="pdp-media-tag mono">3D RENDER · PROTOTYPE ENCLOSURE</span>
+    </div>
+
+    <div class="pdp-info">
+      <p class="pdp-brand mono">REAPER CONTROLS</p>
+      <h1>Golem 40A PWM Solid-State Relay</h1>
+      <p class="pdp-descriptor">Solid-State Relay, Low-Side, 40 Amp, Adjustable PWM Frequency, 12V or Ground Trigger, Current Sensing, Bluetooth Setup, Weatherproof</p>
+      <div class="pdp-status">
         <span class="badge">Prototype Hardware</span>
+        <span class="pdp-status-note">Not yet for sale. Prototypes in bench testing.</span>
       </div>
-      <p class="lede">Power without a leash. A 40A solid-state relay that turns your ECU's slow PWM into the frequency you choose, set from your phone.</p>
+
+      <dl class="keyspecs">
+        <div><dt>Continuous current</dt><dd>40A</dd></div>
+        <div><dt>Switching</dt><dd>Low-side, solid-state</dd></div>
+        <div><dt>Input</dt><dd>12V or ground-switched, on/off or PWM, isolated</dd></div>
+        <div><dt>Modes</dt><dd>1:1 relay, or Enhance PWM at a frequency you set</dd></div>
+        <div><dt>Setup</dt><dd>Veil app over Bluetooth</dd></div>
+        <div><dt>Typical loads</dt><dd>Electric fans, fuel pumps</dd></div>
+      </dl>
+
+      <div class="pdp-actions">
+        <a class="btn btn-primary" href="#waitlist">Get Notified</a>
+        <a class="btn btn-secondary" href="#specs">Full Specifications</a>
+      </div>
     </div>
   </div>
 
-  <div class="origin">
-    In Jewish folklore, a <strong>golem</strong> is a being formed from raw material and given a purpose — an obedient servant built to carry out exactly what it's directed to do, not the mindless brute later pop culture turned it into. That's the job here: take whatever low-frequency command your ECU is comfortable sending, and carry it out properly — regenerated at a clean, high frequency you choose, up to 40A.
+  <div class="pdp-body">
+    <section id="specs">
+      <h2>Specifications</h2>
+      <table class="spec-list">
+        <tbody>
+          <tr><th>Brand</th><td>Reaper Controls</td></tr>
+          <tr><th>Product line</th><td>Golem</td></tr>
+          <tr><th>Part type</th><td>Solid-state relay / PWM power module</td></tr>
+          <tr class="group"><th colspan="2">Output</th></tr>
+          <tr><th>Continuous current rating</th><td>40A</td></tr>
+          <tr><th>Switching type</th><td>Low-side (switches the load's ground)</td></tr>
+          <tr><th>Number of outputs</th><td>1</td></tr>
+          <tr><th>Output modes</th><td>1:1 relay; Enhance PWM</td></tr>
+          <tr><th>PWM output frequency</th><td>User-set in the Veil app</td></tr>
+          <tr><th>Fail-safe output state</th><td>User-selectable (on or off)</td></tr>
+          <tr class="group"><th colspan="2">Input</th></tr>
+          <tr><th>Trigger type</th><td>12V or ground-switched</td></tr>
+          <tr><th>Signal type</th><td>On/off or PWM</td></tr>
+          <tr><th>Input isolation</th><td>Optically isolated</td></tr>
+          <tr class="group"><th colspan="2">Monitoring &amp; setup</th></tr>
+          <tr><th>Current sensing</th><td>Yes, shown live in the app</td></tr>
+          <tr><th>Configuration</th><td>Veil app, Bluetooth</td></tr>
+          <tr><th>Settings storage</th><td>On the module; no phone needed to run</td></tr>
+          <tr class="group"><th colspan="2">Electrical &amp; physical</th></tr>
+          <tr><th>System voltage</th><td>12V automotive</td></tr>
+          <tr><th>Protection</th><td>Reverse polarity, transient suppression</td></tr>
+          <tr><th>Power-up state</th><td>Output off</td></tr>
+          <tr><th>Enclosure</th><td>Potted, weatherproof</td></tr>
+          <tr><th>Designed in</th><td>Missouri, USA</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>PWM at the frequency you choose</strong><span>Reads your ECU's slow PWM and regenerates it at a clean, higher frequency. Pumps and fans run smoother and quieter.</span></li>
+        <li><strong>Two modes in one module</strong><span>Run it as a straight 1:1 relay, or switch to Enhance PWM.</span></li>
+        <li><strong>Live current readout</strong><span>See what your fan or pump draws in the app, without a clamp meter.</span></li>
+        <li><strong>Wiring help at setup</strong><span>The app asks your wire gauge and reminds you of the right fuse.</span></li>
+        <li><strong>Low-loss power stage</strong><span>Handles 40A with very little heat.</span></li>
+        <li><strong>Standalone</strong><span>No other Reaper Controls product needed. Pairs with Wraith if you want closed-loop pump control.</span></li>
+      </ul>
+
+      <h3>Works with</h3>
+      <ul class="chips">
+        <li>Holley Terminator X</li>
+        <li>Holley Dominator</li>
+        <li>Haltech</li>
+        <li>Most ECUs with a PWM output</li>
+        <li>Switches and relays</li>
+      </ul>
+
+      <p class="lede" style="font-size:16px">Why frequency matters: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
+    </section>
   </div>
 
-  <p>Most aftermarket ECUs cap their PWM output well below what a pump or fan motor actually wants to see, and cheap automotive relays can't switch fast enough to fix that on their own. The result is a low-frequency square wave doing a job it was never suited for — hard on windings, audible, and inefficient.</p>
+  <section class="pdp-section">
+    <h2>About Golem</h2>
+    <div class="pdp-about">
+      <div>
+        <p>Most aftermarket ECUs cap their PWM output well below what a pump or fan motor wants to see, and ordinary relays can't switch fast enough to fix it. Golem sits between your ECU and the load and does the job properly: it takes the slow command your ECU is comfortable sending and carries it out at a clean, high frequency, up to 40A.</p>
+        <p>Set it up from your phone, watch the current your load draws, and leave it. Settings live on the module. First prototype units are built and on the bench, and testing has gone better than we hoped.</p>
+      </div>
+      <div class="origin">
+        In Jewish folklore, a <strong>golem</strong> is a being formed from raw material and given a purpose. It is an obedient servant built to carry out exactly what it's told, not the mindless brute pop culture later made it.
+      </div>
+    </div>
+  </section>
 
-  <p>Golem is a 40A solid-state relay and PWM power module, built for people who run serious loads on aftermarket EFI. It sits between your ECU and the load and works completely on its own, no ecosystem required.</p>
-
-  <p><strong>PWM that you control.</strong> Golem reads the slow PWM signal from your ECU and regenerates it at the frequency you choose. Fans, pumps and other loads run smoother and quieter, and you set the frequency from your phone.</p>
-
-  <p><strong>Two modes in one module.</strong> Run it as a straight 1:1 relay, or switch to Enhance PWM. It accepts a 12V trigger or a ground-switched ECU output, so it fits Holley, Haltech and most other setups.</p>
-
-  <p><strong>Current sensing built in.</strong> Golem measures the current each load draws and reports it live in the Veil app. See what a fan or pump pulls without a clamp meter, and spot trouble before it costs you a part.</p>
-
-  <p><strong>Set up from your phone.</strong> Configure everything over Bluetooth with the Veil app, no laptop or cables. Settings stay on the module, so it works the same whether or not your phone is nearby.</p>
-
-  <p><strong>Safe by design.</strong> It powers up with the output off. Reverse polarity protection, transient suppression and an isolated signal input are built in for the realities of a car's electrical system.</p>
-
-  <p><strong>Low-loss, high-current switching.</strong> A low-resistance power stage handles up to 40A with very little heat, in a compact weatherproof package.</p>
-
-  <p><strong>Standalone, but part of a family.</strong> Golem works on its own, and it shares the Veil app with other Reaper Controls products, so one app can manage your whole setup.</p>
-
-  <p>We wrote up the underlying problem in detail: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
-
-  <p>First prototype units are built and on the bench, and testing has gone better than we hoped.</p>
-
-  <div class="waitlist">
-    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
-    <h3>Get notified when Golem is available</h3>
-    <p>One email when it ships, with the full scope comparison. No spam.</p>
-    <form id="waitlist-form" action="https://formspree.io/f/xljdvvrv" method="POST">
+  <section class="pdp-section pdp-waitlist" id="waitlist">
+    <div class="waitlist">
+      <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+      <h3>Get notified when Golem is available</h3>
+      <p>One email when it ships. No spam.</p>
+      <form id="waitlist-form" action="https://formspree.io/f/xljdvvrv" method="POST">
       <div class="field-row">
         <div class="field">
           <label for="wl-email">Email</label>
@@ -115,7 +182,8 @@
       <input type="hidden" name="product" value="Golem">
       <button type="submit" class="submit">Join the waitlist</button>
     </form>
-  </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
