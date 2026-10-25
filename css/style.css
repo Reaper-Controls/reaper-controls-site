@@ -634,9 +634,9 @@ footer.site-footer{
 
 /* ---------- product detail layout (wide, spec-first) ---------- */
 body.pdp .masthead-inner,
-body.pdp .footer-inner{ max-width: 1180px; }
+body.pdp .footer-inner{ max-width: 1400px; }
 main.pdp-main{
-  max-width: 1228px;
+  max-width: 1448px;
   padding-top: 28px;
 }
 .crumbs{
@@ -798,4 +798,16 @@ main.pdp-main{
   .keyspecs div{ grid-template-columns: 1fr; gap: 2px; }
   .spec-list th{ width: 46%; }
   .pdp-media{ height: 250px; }
+}
+
+.pdp-price{ font-family: 'Oswald', sans-serif; font-size: 22px; margin: -6px 0 22px; color: var(--ink); }
+.pdp-price .mono{ display: block; font-size: 11px; letter-spacing: .08em; color: var(--ink-dim); font-weight: 400; }
+.pdp-side{ grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-content: start; }
+.side-box{ border: 1px solid var(--line); background: var(--bg-raised); padding: 22px 22px 6px; }
+.side-box h3{ margin-bottom: 14px; }
+.feature-list.compact li{ font-size: 15.5px; margin-bottom: 10px; }
+@media (min-width: 1280px){
+  .pdp-top{ grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; }
+  .pdp-body{ grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, .8fr); gap: 48px; }
+  .pdp-side{ grid-column: auto; grid-template-columns: 1fr; position: sticky; top: 24px; }
 }

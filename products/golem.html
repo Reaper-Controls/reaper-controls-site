@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261024a">
+<link rel="stylesheet" href="../css/style.css?v=20261024b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,13 +66,16 @@
         <span class="badge">Prototype Hardware</span>
         <span class="pdp-status-note">Not yet for sale. Prototypes in bench testing.</span>
       </div>
+      <p class="pdp-price"><span class="mono">EXPECTED PRICE</span> around $179</p>
+      
 
       <dl class="keyspecs">
         <div><dt>Continuous current</dt><dd>40A</dd></div>
         <div><dt>Switching</dt><dd>Low-side, solid-state</dd></div>
         <div><dt>Input</dt><dd>12V or ground-switched, on/off or PWM, isolated</dd></div>
-        <div><dt>Modes</dt><dd>1:1 relay, or Enhance PWM at a frequency you set</dd></div>
-        <div><dt>Setup</dt><dd>Veil app over Bluetooth</dd></div>
+        <div><dt>Modes</dt><dd>1:1 relay, or Enhance PWM at 20 kHz+</dd></div>
+        <div><dt>Setup</dt><dd>Veil app over Bluetooth (iOS and Android)</dd></div>
+        <div><dt>Wiring</dt><dd>8 AWG leads, butt connectors included</dd></div>
         <div><dt>Typical loads</dt><dd>Electric fans, fuel pumps</dd></div>
       </dl>
 
@@ -96,7 +99,7 @@
           <tr><th>Switching type</th><td>Low-side (switches the load's ground)</td></tr>
           <tr><th>Number of outputs</th><td>1</td></tr>
           <tr><th>Output modes</th><td>1:1 relay; Enhance PWM</td></tr>
-          <tr><th>PWM output frequency</th><td>User-set in the Veil app</td></tr>
+          <tr><th>PWM output frequency</th><td>User-set in the Veil app, 20 kHz+</td></tr>
           <tr><th>Fail-safe output state</th><td>User-selectable (on or off)</td></tr>
           <tr class="group"><th colspan="2">Input</th></tr>
           <tr><th>Trigger type</th><td>12V or ground-switched</td></tr>
@@ -104,12 +107,13 @@
           <tr><th>Input isolation</th><td>Optically isolated</td></tr>
           <tr class="group"><th colspan="2">Monitoring &amp; setup</th></tr>
           <tr><th>Current sensing</th><td>Yes, shown live in the app</td></tr>
-          <tr><th>Configuration</th><td>Veil app, Bluetooth</td></tr>
+          <tr><th>Configuration</th><td>Veil app, Bluetooth (iOS and Android)</td></tr>
           <tr><th>Settings storage</th><td>On the module; no phone needed to run</td></tr>
           <tr class="group"><th colspan="2">Electrical &amp; physical</th></tr>
           <tr><th>System voltage</th><td>12V automotive</td></tr>
           <tr><th>Protection</th><td>Reverse polarity, transient suppression</td></tr>
           <tr><th>Power-up state</th><td>Output off</td></tr>
+          <tr><th>Connections</th><td>8 AWG wire leads</td></tr>
           <tr><th>Enclosure</th><td>Potted, weatherproof</td></tr>
           <tr><th>Designed in</th><td>Missouri, USA</td></tr>
         </tbody>
@@ -127,17 +131,30 @@
         <li><strong>Standalone</strong><span>No other Reaper Controls product needed. Pairs with Wraith if you want closed-loop pump control.</span></li>
       </ul>
 
-      <h3>Works with</h3>
-      <ul class="chips">
-        <li>Holley Terminator X</li>
-        <li>Holley Dominator</li>
-        <li>Haltech</li>
-        <li>Most ECUs with a PWM output</li>
-        <li>Switches and relays</li>
-      </ul>
-
-      <p class="lede" style="font-size:16px">Why frequency matters: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
     </section>
+
+    <aside class="pdp-side">
+      <div class="side-box">
+        <h3>In the box</h3>
+        <ul class="feature-list compact">
+          <li>Golem module</li>
+          <li>Heat-shrink butt connectors: 8 to 8 AWG, 8 to 10 AWG, 8 to 12 AWG</li>
+          <li>Mounting hardware</li>
+        </ul>
+      </div>
+      <div class="side-box">
+      <h3>Works with</h3>
+        <ul class="chips">
+          <li>Holley Terminator X</li>
+          <li>Holley Dominator</li>
+          <li>Haltech</li>
+          <li>Most ECUs with a PWM output</li>
+          <li>Switches and relays</li>
+        </ul>
+
+        <p class="lede" style="font-size:16px">Why frequency matters: <a href="../articles/pwm-frequency-fuel-pump.html">What Frequency Should You Run for Holley PWM Fuel Pump Control?</a></p>
+      </div>
+    </aside>
   </div>
 
   <section class="pdp-section">
