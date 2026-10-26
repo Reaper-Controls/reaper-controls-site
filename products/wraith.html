@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261026a">
+<link rel="stylesheet" href="../css/style.css?v=20261026b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,6 +73,7 @@
         <div><dt>Pump outputs</dt><dd>2, individually enabled</dd></div>
         <div><dt>Power switching</dt><dd>One <a href="golem.html">Golem</a> per pump output</dd></div>
         <div><dt>Fuel systems</dt><dd>Carbureted and EFI</dd></div>
+        <div><dt>Included</dt><dd>Harness, pressure sensor, mounting screws</dd></div>
         <div><dt>Tach input</dt><dd>12V square wave, Holley / Haltech / ACES</dd></div>
         <div><dt>Setup</dt><dd>Veil app over Bluetooth (iOS and Android)</dd></div>
       </dl>
@@ -95,7 +96,7 @@
           <tr class="group"><th colspan="2">Control</th></tr>
           <tr><th>Control method</th><td>Closed-loop PID on measured fuel pressure</td></tr>
           <tr><th>Feedforward</th><td>RPM-based, corrected by pressure feedback</td></tr>
-          <tr><th>Pressure feedback</th><td>Fuel pressure sensor, required for closed-loop control</td></tr>
+          <tr><th>Pressure feedback</th><td>Fuel pressure sensor, included</td></tr>
           <tr><th>Pressure targets</th><td>Carbureted and EFI ranges, set in the app</td></tr>
           <tr><th>Priming</th><td>Timed prime on key-on</td></tr>
           <tr><th>Loss of RPM signal</th><td>Falls back to pressure-only control</td></tr>
@@ -106,7 +107,7 @@
           <tr><th>Dual pump operation</th><td>User-configurable staging; auxiliary pump exercised periodically</td></tr>
           <tr class="group"><th colspan="2">Inputs</th></tr>
           <tr><th>Tach input</th><td>12V square wave; reads Holley, Haltech and ACES tach outputs directly</td></tr>
-          <tr><th>Sensor connector</th><td>Keyed connector for the fuel pressure sensor</td></tr>
+          <tr><th>Sensor connector</th><td>Keyed connector, harness included</td></tr>
           <tr class="group"><th colspan="2">Setup &amp; app</th></tr>
           <tr><th>Configuration</th><td>Veil app, Bluetooth (iOS and Android)</td></tr>
           <tr><th>Setup method</th><td>Guided wizard: fuel system type, then RPM source</td></tr>
@@ -137,12 +138,14 @@
 
     <aside class="pdp-side">
       <div class="side-box">
-        <h3>What you need</h3>
+        <h3>In the box</h3>
         <ul class="feature-list compact">
           <li>Wraith PRO controller</li>
-          <li>One <a href="golem.html">Golem</a> per pump output</li>
+          <li>Wiring harness</li>
           <li>Fuel pressure sensor</li>
+          <li>Mounting screws</li>
         </ul>
+        <p class="side-note">Also required: one <a href="golem.html">Golem</a> power module per pump output.</p>
       </div>
       <div class="side-box">
         <h3>Works with</h3>
