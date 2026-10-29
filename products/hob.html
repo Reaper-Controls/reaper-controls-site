@@ -6,18 +6,18 @@
 <link rel="icon" href="../favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<title>Hob — RPM Signal Conditioner — Reaper Controls</title>
-<meta name="description" content="Hob is an active RPM signal conditioner built to be the strong answer to LS swap tach problems — weak signals, wrong pulse counts, and noisy readings.">
+<title>Hob — LS Swap Tach Signal Conditioner — Reaper Controls</title>
+<meta name="description" content="Hob is an active RPM signal conditioner for LS swaps. It doubles the LS controller's 2-pulse tach signal so a V8 tach reads correctly, rejects noise, protects the PCM's tach pin, and drives two independent 12V square-wave outputs. No software, no setup.">
 <link rel="canonical" href="https://reapercontrols.com/products/hob.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reaper Controls">
 <meta property="og:url" content="https://reapercontrols.com/products/hob.html">
-<meta property="og:title" content="Hob — RPM Signal Conditioner — Reaper Controls">
-<meta property="og:description" content="Hob is an active RPM signal conditioner built to be the strong answer to LS swap tach problems — weak signals, wrong pulse counts, and noisy readings.">
+<meta property="og:title" content="Hob — LS Swap Tach Signal Conditioner — Reaper Controls">
+<meta property="og:description" content="Hob is an active RPM signal conditioner for LS swaps. It doubles the LS controller's 2-pulse tach signal so a V8 tach reads correctly, rejects noise, protects the PCM's tach pin, and drives two independent 12V square-wave outputs. No software, no setup.">
 <meta property="og:image" content="https://reapercontrols.com/images/photos/hob-og.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hob — RPM Signal Conditioner — Reaper Controls">
-<meta name="twitter:description" content="Hob is an active RPM signal conditioner built to be the strong answer to LS swap tach problems — weak signals, wrong pulse counts, and noisy readings.">
+<meta name="twitter:title" content="Hob — LS Swap Tach Signal Conditioner — Reaper Controls">
+<meta name="twitter:description" content="Hob is an active RPM signal conditioner for LS swaps. It doubles the LS controller's 2-pulse tach signal so a V8 tach reads correctly, rejects noise, protects the PCM's tach pin, and drives two independent 12V square-wave outputs. No software, no setup.">
 <meta name="twitter:image" content="https://reapercontrols.com/images/photos/hob-og.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +29,14 @@
   "@type": "Product",
   "name": "Hob",
   "brand": { "@type": "Organization", "name": "Reaper Controls LLC" },
-  "description": "Active RPM signal conditioner for LS swaps. Doubles the 2-pulse LS tach signal for V8 tachs, uses a Schmitt-trigger input to reject noise, protects the PCM tach output, draws about 0.6 mA from the PCM, and provides two independent 12V square-wave outputs with a signal LED. Potted module with no microcontroller or software.",
-  "category": "Automotive RPM Signal Conditioner",
+  "image": "https://reapercontrols.com/images/renders/hob-enclosure-lg.webp",
+  "description": "Hob is an active RPM signal conditioner for LS swaps. It doubles the LS controller's 2-pulse tach signal so a V8 tach reads correctly, rejects noise, protects the PCM's tach pin, and drives two independent 12V square-wave outputs. No software, no setup.",
+  "category": "Automotive Tachometer Signal Conditioner",
   "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "", "priceCurrency": "USD" }
 }
 </script>
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -48,52 +49,127 @@
   </div>
 </header>
 
-<main>
-  <div class="hero-banner">
-    <img src="../images/photos/hob-hero.webp" alt="Vintage Autogage 8,000 RPM tachometer mounted on a classic muscle car dashboard">
-    <div class="hero-banner-overlay"></div>
-    <div class="hero-banner-content">
-      <div class="hero-title-row">
-        <h1>Hob</h1>
+<main class="pdp-main">
+  <p class="crumbs mono"><a href="../products.html">Products</a><span>/</span>Tach Signal<span>/</span>Hob</p>
+
+  <div class="pdp-top">
+    <div class="pdp-media">
+      <img src="../images/renders/hob-enclosure-lg.webp?v=1" alt="3D render of the Hob prototype enclosure with its red signal LED lit, the HOB and Reaper Controls logos, and a mounting tab" width="620" height="720">
+      <span class="pdp-media-tag mono">3D RENDER · PROTOTYPE ENCLOSURE</span>
+    </div>
+
+    <div class="pdp-info">
+      <p class="pdp-brand mono">REAPER CONTROLS</p>
+      <h1>Hob LS Swap Tach Signal Conditioner</h1>
+      <p class="pdp-descriptor">Tach Signal Conditioner, LS Gen III/IV, Doubles Pulse Count, Noise Rejection, PCM Protection, Dual 12V Square-Wave Outputs, Potted</p>
+      <div class="pdp-status">
         <span class="badge">Prototype Hardware</span>
+        <span class="pdp-status-note">Not yet for sale. Specs are design values until bench-tested.</span>
       </div>
-      <p class="lede">The strong answer to LS swap tach problems.</p>
+
+      <dl class="keyspecs">
+        <div><dt>Input</dt><dd>LS PCM tach output, 2 pulses per revolution</dd></div>
+        <div><dt>Output</dt><dd>4 pulses per revolution, for V8 tachs</dd></div>
+        <div><dt>Outputs</dt><dd>2 independent 12V square-wave</dd></div>
+        <div><dt>PCM load</dt><dd>About 0.6 mA, vs. 14 mA for a 1k pull-up</dd></div>
+        <div><dt>Setup</dt><dd>None. No software, nothing to program</dd></div>
+        <div><dt>Status light</dt><dd>Dim with power, brighter with signal</dd></div>
+      </dl>
+
+      <div class="pdp-actions">
+        <a class="btn btn-primary" href="#waitlist">Get Notified</a>
+        <a class="btn btn-secondary" href="#specs">Full Specifications</a>
+      </div>
     </div>
   </div>
 
-  <p>LS swaps break tach signals in predictable ways: the pulse count doesn't match what a V8 gauge expects, the signal is too weak to register, or it's noisy enough to make the needle jump around. The usual advice is a pull-up resistor — it moves the needle, but it leaves the underlying signal problems in place and puts the PCM's output pin directly on the harness with no protection in between.</p>
+  <div class="pdp-body">
+    <section id="specs">
+      <h2>Specifications</h2>
+      <table class="spec-list">
+        <tbody>
+          <tr><th>Brand</th><td>Reaper Controls</td></tr>
+          <tr><th>Product line</th><td>Hob</td></tr>
+          <tr><th>Part type</th><td>Active tach signal conditioner</td></tr>
+          <tr class="group"><th colspan="2">Input</th></tr>
+          <tr><th>Signal source</th><td>GM LS Gen III/IV PCM tach output</td></tr>
+          <tr><th>Input pulses</th><td>2 per engine revolution</td></tr>
+          <tr><th>Input type</th><td>Schmitt trigger, with a dead band between on and off thresholds</td></tr>
+          <tr><th>Input protection</th><td>Series resistance and Schottky clamp</td></tr>
+          <tr><th>Load on PCM</th><td>About 0.6 mA per pulse</td></tr>
+          <tr class="group"><th colspan="2">Outputs</th></tr>
+          <tr><th>Number of outputs</th><td>2, each with its own driver</td></tr>
+          <tr><th>Output signal</th><td>12V square wave</td></tr>
+          <tr><th>Output pulses</th><td>4 per engine revolution (doubled)</td></tr>
+          <tr><th>PCM isolation</th><td>PCM pin not electrically connected to either output</td></tr>
+          <tr class="group"><th colspan="2">Electrical &amp; physical</th></tr>
+          <tr><th>System voltage</th><td>12V automotive</td></tr>
+          <tr><th>Microcontroller</th><td>None; fixed-function logic</td></tr>
+          <tr><th>Indicator</th><td>Signal LED</td></tr>
+          <tr><th>Enclosure</th><td>Potted, mounting tab</td></tr>
+          <tr><th>Recommended mounting</th><td>Close to the PCM</td></tr>
+          <tr><th>Designed in</th><td>Missouri, USA</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-  <div class="origin">
-    A <strong>hob</strong> — short for hobgoblin — is a household spirit from British and Irish folklore that quietly tends to the hearth and keeps a home running right, so long as it's treated with respect. Get on its bad side and it turns mischievous. It's a fitting name for a device whose entire job is to take a signal that's misbehaving and quietly put it right.
+    <section>
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li><strong>Makes a V8 tach read right</strong><span>LS controllers put out 2 pulses per revolution; a V8 tach expects 4. Hob doubles the signal so the tach reads correctly without retuning the PCM or reconfiguring the gauge.</span></li>
+        <li><strong>Protects your PCM</strong><span>Series resistance and a Schottky clamp guard the input, and each output has its own driver. A short on a dash wire hits Hob, not your PCM.</span></li>
+        <li><strong>Ignores noise</strong><span>The Schmitt-trigger input has a dead band between its thresholds, so ignition noise doesn't turn into false pulses or dropouts. No more jumping needle.</span></li>
+        <li><strong>Easy on the PCM</strong><span>Hob asks about 0.6 mA of the PCM's tach pin per pulse. The common 1k pull-up resistor asks about 14 mA, from an output whose ratings you can't look up.</span></li>
+        <li><strong>Two outputs</strong><span>Run your tach on one and a shift light or other RPM-based device on the other, each with its own driver.</span></li>
+        <li><strong>Check it at a glance</strong><span>The LED glows dim with power and brighter when pulses arrive, so you can confirm signal under the hood without a meter.</span></li>
+      </ul>
+    </section>
+
+    <aside class="pdp-side">
+      <div class="side-box">
+        <h3>Hob or Púca?</h3>
+        <ul class="feature-list compact">
+          <li><strong>Hob:</strong> built for LS swaps. Fixes the LS tach signal and doubles it for a V8 tach.</li>
+          <li><strong><a href="puca.html">Púca</a>:</strong> the universal translator. Any engine's tach signal, to any tach.</li>
+        </ul>
+      </div>
+      <div class="side-box">
+        <h3>Works with</h3>
+        <ul class="chips">
+          <li>LS Gen III</li>
+          <li>LS Gen IV</li>
+          <li>V8 tachometers</li>
+          <li>Shift lights</li>
+          <li>12V RPM inputs</li>
+        </ul>
+        <p class="lede" style="font-size:16px">Why a resistor isn't enough: <a href="../articles/tach-pullup-resistor-gaps.html">Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?</a></p>
+      </div>
+    </aside>
+
+    <figure class="pdp-photo">
+      <img src="../images/photos/hob-hero.webp" alt="Vintage Autogage 8,000 RPM tachometer mounted on a classic muscle car dashboard" loading="lazy">
+    </figure>
   </div>
 
-  <p>Hob is built to be the real answer instead: an active signal conditioner that takes a weak or wrong RPM signal in and puts out a clean, correctly-scaled signal your tach, shift light, or other RPM-dependent device can actually trust.</p>
+  <section class="pdp-section">
+    <h2>About Hob</h2>
+    <div class="pdp-about">
+      <div>
+        <p>LS swaps break tach signals in predictable ways: the pulse count doesn't match what a V8 gauge expects, the signal is too weak to register, or it's noisy enough to make the needle jump around. The usual fix is a pull-up resistor. It moves the needle, but it leaves the signal problems in place and puts the PCM's output pin straight onto the harness with nothing in between.</p>
+        <p>Hob is the real fix: an active conditioner that takes the weak LS signal in and puts out a clean, correctly scaled one your tach can trust. First prototype boards are arriving now; we'll post bench measurements once testing is done.</p>
+      </div>
+      <div class="origin">
+        A <strong>hob</strong>, short for hobgoblin, is a household spirit from British folklore that quietly tends the hearth and keeps a home running right, so long as it's treated with respect. Get on its bad side and it turns mischievous. Fitting, for a device whose whole job is to take a misbehaving signal and quietly put it right.
+      </div>
+    </div>
+  </section>
 
-  <p><strong>Doubles the pulse count.</strong> LS controllers put out 2 pulses per revolution; a V8 tach expects 4. Hob doubles the signal so the tach reads correctly without retuning the PCM or reconfiguring the gauge.</p>
-
-  <p><strong>Protects your PCM.</strong> Series resistance and a Schottky clamp guard the input, and the outputs have their own drivers. The PCM pin isn't electrically connected to either output, so a short on a dash wire hits Hob, not your PCM.</p>
-
-  <p><strong>Ignores noise.</strong> A Schmitt-trigger input has a dead band between its on and off thresholds, so ignition noise doesn't turn into false pulses or dropouts.</p>
-
-  <p><strong>Light on the PCM.</strong> The PCM sinks about 0.6 mA per pulse, compared with about 14 mA for the common 1k pull-up resistor.</p>
-
-  <p><strong>Two independent outputs.</strong> Two separate 12V square-wave outputs, each with its own driver, so you can run a tach on one and a shift light or other RPM-based device on the other.</p>
-
-  <p><strong>Signal light.</strong> An LED glows dim with power and brighter when pulses arrive, so you can confirm signal with a glance under the hood.</p>
-
-  <p><strong>No software, no setup.</strong> Hob is built from fixed-function logic, with no microcontroller and nothing to program. It's a potted module, and we recommend mounting it close to the PCM.</p>
-
-  <p>First prototype boards are arriving now. Until they've been tested, these are design specs; we'll post bench measurements once they're on the bench.</p>
-
-  <p>If you want the full technical case for why a pull-up resistor falls short, we wrote it up: <a href="../articles/tach-pullup-resistor-gaps.html">Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?</a></p>
-
-  <p>Running something other than an LS, or a signal source Hob isn't built around? <a href="puca.html">Puca</a> is our universal translator — any engine's tach signal, to any tach.</p>
-
-  <div class="waitlist">
-    <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
-    <h3>Get notified when Hob is available</h3>
-    <p>One email when it ships. No spam, no drip campaign.</p>
-    <form id="waitlist-form" action="https://formspree.io/f/maenkkwa" method="POST">
+  <section class="pdp-section pdp-waitlist" id="waitlist">
+    <div class="waitlist">
+      <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
+      <h3>Get notified when Hob is available</h3>
+      <p>One email when it ships. No spam, no drip campaign.</p>
+      <form id="waitlist-form" action="https://formspree.io/f/maenkkwa" method="POST">
       <div class="field-row">
         <div class="field">
           <label for="wl-email">Email</label>
@@ -116,7 +192,8 @@
       <input type="hidden" name="product" value="Hob">
       <button type="submit" class="submit">Join the waitlist</button>
     </form>
-  </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
