@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261028b">
+<link rel="stylesheet" href="css/style.css?v=20261111a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +36,7 @@
 }
 </script>
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -49,30 +49,135 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <img class="hero-logo" src="images/logo/reaper-controls-logo.webp" alt="Reaper Controls" width="380" height="231">
-    <p class="doc-id mono">REAPER CONTROLS LLC &nbsp;·&nbsp; MISSOURI</p>
-    <h1>Smart. Connected. Built to last.</h1>
-    <p class="lede">Most of what's sold to hot rodders and LS swappers hasn't meaningfully changed since the 90s — a resistor here, a relay there, a sensor that drifts after a season of heat cycles, all of it priced like it's still cutting-edge. We don't think "it mostly works" is good enough anymore.</p>
-    <p>Reaper Controls builds closed-loop logic controllers, smart solid-state relays, and tachometer signal conditioning the way they'd be built if someone actually sat down and engineered them in the last ten years — real feedback loops instead of guesswork, app connectivity instead of a dial you set once and hope, and parts chosen because they're right for the job, not because they shaved a nickel off the bill of materials.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="products.html">See What We're Building</a>
-      <a class="btn btn-secondary" href="articles.html">Read the Tech Notes</a>
+<section class="hero home-hero">
+  <div class="home-hero-inner">
+    <div class="home-hero-text">
+      <img class="hero-logo" src="images/logo/reaper-controls-logo.webp" alt="Reaper Controls" width="380" height="231">
+      <p class="doc-id mono">REAPER CONTROLS LLC &nbsp;·&nbsp; MISSOURI</p>
+      <h1>Smart. Connected. Built to last.</h1>
+      <p class="lede">Most of what's sold to hot rodders and LS swappers hasn't meaningfully changed since the 90s: a resistor here, a relay there, a sensor that drifts after a season of heat cycles. We build the closed-loop controllers, smart relays and tach signal conditioning that should have replaced them.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="products.html">See What We're Building</a>
+        <a class="btn btn-secondary" href="articles.html">Read the Tech Notes</a>
+      </div>
     </div>
+
+    <figure class="home-scope" aria-label="Animated illustration: engine RPM swings up and down while closed-loop control holds fuel pressure steady at its target">
+      <div class="home-scope-head mono">
+        <span><i class="dot"></i>LIVE · CLOSED-LOOP FUEL PRESSURE</span>
+        <span>ILLUSTRATION</span>
+      </div>
+      <canvas id="scope" width="640" height="300"></canvas>
+      <div class="home-scope-readout mono">
+        <div><span>RPM</span><b id="r-rpm">0</b></div>
+        <div><span>PUMP DUTY</span><b id="r-duty">0%</b></div>
+        <div class="hot"><span>FUEL PRESSURE</span><b id="r-psi">0.0</b></div>
+      </div>
+      <figcaption class="mono"><i class="sw sw-rpm"></i>RPM swings &nbsp; <i class="sw sw-psi"></i>pressure holds &nbsp; <i class="sw sw-set"></i>target</figcaption>
+    </figure>
   </div>
 </section>
 
-<main class="wide">
-  <h2>Why we're called Reaper Controls</h2>
-  <p>Every product we build starts from one question: what would it take to keep the reaper away from your ride? Fewer parts failures, and parts that actually do their job well instead of approximating it. That adds up to more than one component surviving longer — a pump holding real pressure instead of guessing at it, a relay built for PWM switching instead of melting under it, a signal the rest of your electronics can trust, and an engine that runs the way it was tuned to instead of fighting bad data. Want to know why we made those calls instead of the usual ones? That's exactly what our <a href="articles.html">Tech Notes</a> walk through.</p>
+<section class="home-lineup">
+  <div class="home-lineup-inner">
+    <div class="home-section-head">
+      <p class="doc-id mono">ON THE BENCH</p>
+      <h2>The lineup</h2>
+    </div>
+    <div class="home-shelf">
+      <a class="home-shelf-item" href="products/grim-max.html">
+        <img src="images/renders/grim-pro-enclosure.webp?v=1" alt="Grim Max prototype enclosure" loading="lazy">
+        <b>Grim Max</b><span>Closed-loop fuel pump control</span>
+      </a>
+      <a class="home-shelf-item" href="products/golem.html">
+        <img src="images/renders/golem-enclosure.webp?v=4" alt="Golem prototype enclosure" loading="lazy">
+        <b>Golem</b><span>40A PWM solid-state relay</span>
+      </a>
+      <a class="home-shelf-item" href="products/hob.html">
+        <img src="images/renders/hob-enclosure.webp?v=1" alt="Hob prototype enclosure with its signal LED lit" loading="lazy">
+        <b>Hob</b><span>LS swap tach fix</span>
+      </a>
+      <a class="home-shelf-item" href="products/puca.html">
+        <img src="images/renders/puca-enclosure.webp?v=1" alt="Púca prototype enclosure" loading="lazy">
+        <b>Púca</b><span>Universal tach translator</span>
+      </a>
+    </div>
+    <p class="home-shelf-more"><a href="products.html">See all six products, including Grim and Tengu &rarr;</a></p>
+  </div>
+</section>
 
+<section class="home-band">
+  <img src="images/photos/grim-pro-hero.webp" alt="" loading="lazy">
+  <div class="home-band-text"><div class="home-band-copy">
+    <h2>Why we're called Reaper Controls</h2>
+    <p>Every product we build starts from one question: what would it take to keep the reaper away from your ride? A pump holding real pressure instead of guessing at it, a relay built for PWM instead of melting under it, a signal the rest of your electronics can trust.</p>
+  </div></div>
+</section>
+
+<main class="wide home-main">
   <h2>Where things stand</h2>
-  <p>Reaper Controls is a new company, and nothing below is available to buy yet — everything's in active development, at a different stage for each product. Every product page has a waitlist if you want more detail or just want to know the moment it ships.</p>
+  <p>Reaper Controls is a new company, and nothing is available to buy yet. Everything's in active development, at a different stage for each product. Every product page has a waitlist if you want to know the moment it ships, and our <a href="articles.html">Tech Notes</a> walk through why we made the calls we did.</p>
   <div class="hero-actions">
     <a class="btn btn-secondary" href="products.html">View the Product Lineup</a>
   </div>
 </main>
+
+<script>
+(function(){
+  var c=document.getElementById('scope'); if(!c||!c.getContext) return;
+  var x=c.getContext('2d'), W=c.width, H=c.height, N=320;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rpm=[],psi=[],t=0,duty=30,p=43.5,SET=43.5;
+  var eR=document.getElementById('r-rpm'),eD=document.getElementById('r-duty'),eP=document.getElementById('r-psi');
+  function rpmAt(t){ // idle, blips, a pull, cruise
+    var c=t%1600, r;
+    if(c<300) r=850+40*Math.sin(t/7);
+    else if(c<420) r=850+2600*Math.sin((c-300)/120*Math.PI);
+    else if(c<600) r=850+30*Math.sin(t/6);
+    else if(c<980) r=850+5200*Math.min(1,(c-600)/380);
+    else if(c<1060) r=6050-3600*((c-980)/80);
+    else r=2450+300*Math.sin(t/40);
+    return Math.max(700,r+20*Math.sin(t*1.7));
+  }
+  function step(){
+    var r=rpmAt(t); var demand=18+r/6050*62;
+    duty+= (demand-duty)*0.15; // feedforward + PI pulls it along
+    var err=(demand-duty)*0.06;
+    p=SET+err+0.12*Math.sin(t*0.11)+0.06*Math.sin(t*0.29);
+    rpm.push(r); psi.push(p); if(rpm.length>N){rpm.shift();psi.shift();}
+    t++;
+  }
+  function yp(v){return H*0.28-(v-SET)/6*H*0.22;}
+  function yr(v){return H-16-(v/6500)*(H*0.52);}
+  function lbl(txt,yy,col){x.fillStyle=col;x.font='11px IBM Plex Mono, monospace';x.fillText(txt,8,yy);}
+  function draw(){
+    x.clearRect(0,0,W,H);
+    x.strokeStyle='rgba(111,173,163,0.12)'; x.lineWidth=1;
+    for(var i=1;i<10;i++){x.beginPath();x.moveTo(i*W/10,0);x.lineTo(i*W/10,H);x.stroke();}
+    for(var j=1;j<6;j++){x.beginPath();x.moveTo(0,j*H/6);x.lineTo(W,j*H/6);x.stroke();}
+    var dx=W/(N-1);
+    // target line
+    x.setLineDash([6,6]); x.strokeStyle='rgba(233,229,220,0.35)'; x.beginPath();
+    var ys=yp(SET); x.moveTo(0,ys); x.lineTo(W,ys); x.stroke(); x.setLineDash([]);
+    // rpm
+    x.strokeStyle='#6fada3'; x.lineWidth=2; x.beginPath();
+    rpm.forEach(function(v,i){var yy=yr(v); i?x.lineTo(i*dx,yy):x.moveTo(0,yy);}); x.stroke();
+    // pressure
+    x.strokeStyle='#d6642c'; x.lineWidth=2.6; x.shadowColor='rgba(214,100,44,0.6)'; x.shadowBlur=8; x.beginPath();
+    psi.forEach(function(v,i){var yy=yp(v); i?x.lineTo(i*dx,yy):x.moveTo(0,yy);}); x.stroke(); x.shadowBlur=0;
+    lbl('FUEL PRESSURE',16,'rgba(214,100,44,.8)'); lbl('RPM',H*0.44,'rgba(111,173,163,.8)');
+    x.strokeStyle='rgba(111,173,163,0.25)'; x.beginPath(); x.moveTo(0,H*0.4); x.lineTo(W,H*0.4); x.stroke();
+    var r=rpm[rpm.length-1]||0;
+    eR.textContent=Math.round(r/10)*10; eD.textContent=Math.round(duty)+'%'; eP.textContent=(psi[psi.length-1]||SET).toFixed(1);
+  }
+  for(var k=0;k<N;k++) step();
+  draw();
+  if(reduce) return;
+  var last=0;
+  function loop(ts){ if(ts-last>40){ step(); draw(); last=ts; } requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+})();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
