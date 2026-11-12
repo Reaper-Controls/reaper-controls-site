@@ -124,19 +124,25 @@
 
   <p><strong>The return line was never really about the engine. It was about the pump.</strong></p>
 
-  <h2>Three layouts that get lumped together</h2>
+  <h2>Two regulators, two places to put them</h2>
 
-  <p>Half the confusion in these threads is people arguing about different setups. Every one of them has a regulator. What differs is what the regulator does with the surplus.</p>
+  <p>Half the confusion in these threads comes from mixing up regulator <em>types</em> with system <em>layouts</em>. There are really only two kinds of mechanical regulator:</p>
 
   <ul>
-    <li><strong>Return.</strong> A bypass regulator near the engine holds pressure and sends surplus fuel back to the tank through a second line. This is the classic engine-bay regulator with a return line.</li>
-    <li><strong>Returnless.</strong> A bypass regulator at or near the tank dumps the surplus straight back into the tank. One line runs to the engine.</li>
-    <li><strong>Dead-head.</strong> A regulator with no bypass at all, usually near the carburetor. It simply closes off when pressure is reached, and the pump pushes against it. This is common on carbureted cars and rare on EFI.</li>
+    <li><strong>Bypass (return style).</strong> When pressure reaches the setpoint, it opens a path and sends the surplus back to the tank. The pump keeps flowing.</li>
+    <li><strong>Dead-head.</strong> When pressure reaches the setpoint, it closes off. There's no return port, and the pump pushes against it. Common on carbureted cars, rare on EFI.</li>
   </ul>
 
-  <p>"Returnless" and "dead-head" are not the same thing. A returnless system still bypasses, so the pump keeps flowing. A dead-head does not. Much of the "returnless kills pumps" folklore is really about dead-heading a pump that was too big for it.</p>
+  <p>"Return" and "returnless" describe where a <strong>bypass</strong> regulator is mounted:</p>
 
-  <p>On top of any of these, the pump's <strong>speed</strong> can be controlled so it makes only what the engine needs. We'll come back to that, because it changes the math for all three.</p>
+  <ul>
+    <li><strong>Return system:</strong> the bypass regulator sits at the engine, and the surplus travels back to the tank through a second line the length of the car. This is the classic engine-bay regulator with a return line.</li>
+    <li><strong>Returnless system:</strong> the bypass regulator sits at the tank, inside the pump module on many factory systems or as an inline filter-regulator mounted near the tank. The surplus still returns, but only a few inches, straight back into the tank. One line runs to the engine.</li>
+  </ul>
+
+  <p>From the engine bay, a returnless system looks just like a dead-head: one line in, nothing coming back. That's why the two get confused, and why so much of the "returnless kills pumps" folklore is really about dead-heading a pump that was too big for it. A returnless system still bypasses; the pump keeps flowing.</p>
+
+  <p>The exception is <strong>electronic returnless</strong>, covered below, where the factory drops the mechanical regulator and holds pressure by controlling pump speed instead. On top of any layout, the pump's speed can be controlled so it makes only what the engine needs, and that changes the math for all of them.</p>
 
   <h2>Why OEMs ran return systems for decades</h2>
 
@@ -221,7 +227,7 @@
 
   <p>This is the newest version of the argument, and the one we have the most skin in, so here's the honest version.</p>
 
-  <p><strong>It attacks heat source 1 in every layout.</strong> A pump that makes only what the engine needs has little surplus to bypass or push against. Less current, less heat into the fuel, less noise, longer pump life. That's true with a return, returnless, or dead-head regulator.</p>
+  <p><strong>It attacks heat source 1 in every layout.</strong> A pump that makes only what the engine needs has little surplus to bypass or push against. Less current, less heat into the fuel, less noise, longer pump life. That's true whether the regulator is a bypass at the engine, a bypass at the tank, or a dead-head.</p>
 
   <p><strong>It does not fix heat source 2.</strong> Fuel sitting still in a hot engine bay is a layout problem, and slowing the pump doesn't make it move.</p>
 
