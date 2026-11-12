@@ -42,27 +42,32 @@
         {
           "@type": "Question",
           "name": "Is a returnless fuel system OK for an engine swap?",
-          "acceptedAnswer": { "@type": "Answer", "text": "For a naturally aspirated EFI swap with a stock-style pump, usually yes. Most modern engines left the factory returnless at a fixed rail pressure, and a bypass regulator set to that pressure does the same job in a swap. The regulator bypasses excess fuel instead of dead-heading the pump." }
+          "acceptedAnswer": { "@type": "Answer", "text": "For a naturally aspirated EFI swap with a stock-style pump, usually yes. Most modern engines left the factory returnless at a fixed rail pressure, and a bypass regulator set to that pressure does the same job in a swap. A returnless system still bypasses surplus fuel, so the pump is not dead-headed." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between returnless and dead-head fuel systems?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both use a single line to the engine, but a returnless system has a bypass regulator, usually at the tank, that returns surplus fuel into the tank so the pump keeps flowing. A dead-head regulator has no bypass; it closes off at its setpoint and the pump pushes against it. Dead-head regulators are common on carbureted cars and run into trouble when paired with high-volume pumps." }
         },
         {
           "@type": "Question",
           "name": "Why did automakers switch from return to returnless fuel systems?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Mainly evaporative emissions. In a return system, unused fuel loops through the hot engine bay and back to the tank, warming the tank and increasing fuel vapor. Moving the regulator to the tank keeps the fuel cooler. Smarter ECUs also made the vacuum-referenced regulator unnecessary, because the ECU can correct injector pulse width for manifold pressure itself." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Mainly evaporative emissions. In a return system, unused fuel loops through the hot engine bay and back to the tank, warming the tank and increasing fuel vapor. Moving the regulator to the tank keeps the fuel cooler. Smarter ECUs also made the vacuum-referenced regulator unnecessary." }
         },
         {
           "@type": "Question",
-          "name": "When do I need a return-style fuel system?",
-          "acceptedAnswer": { "@type": "Answer", "text": "When you run boost and need fuel pressure to rise with boost, when you run a large pump or E85 where the excess flow adds heat, when your ECU cannot compensate for a fixed rail pressure, and on most carbureted engines fed by a high-volume or EFI-rated pump." }
+          "name": "Where should a fuel pressure regulator be mounted?",
+          "acceptedAnswer": { "@type": "Answer", "text": "At the engine if you run boost or a carburetor: it holds pressure where it is used, ignores feed-line losses, and can be boost referenced. A dead-head regulator must be near the carb because it only controls pressure downstream of itself; mount it on a cool surface away from the intake and exhaust. A naturally aspirated EFI engine on a fixed-pressure calibration works with the regulator at the tank or the engine." }
         },
         {
           "@type": "Question",
-          "name": "Should a carburetor use a bypass or dead-head regulator?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A dead-head regulator is fine with a low-volume carburetor pump. With a high-volume or EFI-rated pump, a bypass (return) regulator holds a steadier 5 to 7 psi, reduces pressure creep that can overpower the needle and seat, and runs the fuel cooler." }
+          "name": "Why does my dead-head carb setup get hot?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Two reasons. A pump pushing against a closed dead-head regulator works hard while flowing little, which heats the fuel, and this gets worse with an oversized pump. And with no return, fuel in the engine bay only moves as fast as the carb uses it, so at idle and after shutdown it heat-soaks. Better regulator placement, line routing and pump sizing help; a bypass regulator and return line is the real cure if it still heat-soaks." }
         },
         {
           "@type": "Question",
           "name": "Can fuel pump speed control replace the pressure regulator?",
-          "acceptedAnswer": { "@type": "Answer", "text": "At EFI pressures it can, and modern electronic returnless OEM systems do exactly that. At carburetor pressures it is harder: an EFI-sized pump can make too much pressure even at its lowest stable speed, which would force it to cycle on and off. For carburetors, keep a bypass regulator as the backstop and use pump control to cut heat and current underneath it." }
+          "acceptedAnswer": { "@type": "Answer", "text": "At EFI pressures it can, and modern electronic returnless OEM systems do exactly that. At carburetor pressures it is harder: an EFI-sized pump can make too much pressure even at its lowest stable speed, which would force it to cycle on and off. For carburetors, keep a regulator as the backstop and use pump control to cut heat and current underneath it." }
         }
       ]
     }
@@ -88,7 +93,7 @@
     <nav class="art-toc" aria-label="On this page"><p class="mono">ON THIS PAGE</p><ol id="toc"></ol></nav>
     <article class="art-body">
 
-  <p class="doc-id mono">FIG. REF: FUEL-SYS-01 &nbsp;·&nbsp; SUBJECT: FUEL SYSTEM LAYOUT &nbsp;·&nbsp; READ: 10 MIN</p>
+  <p class="doc-id mono">FIG. REF: FUEL-SYS-01 &nbsp;·&nbsp; SUBJECT: FUEL SYSTEM LAYOUT &nbsp;·&nbsp; READ: 11 MIN</p>
 
   <h1>Return vs. Returnless Fuel Systems: What Your Swap Actually Needs</h1>
   <p class="art-dates mono">PUBLISHED NOV 12, 2026</p>
@@ -115,114 +120,132 @@
     </div>
   </div>
 
-  <p class="lede">Ask whether an EFI swap needs a return line and you'll get two camps. One says returnless is how the factory built it, so it's fine. The other says returnless dead-heads the pump, cooks the fuel, and you'll regret it. Both camps are partly right, and the reason comes down to one thing most of the argument skips.</p>
+  <p class="lede">Ask whether a swap needs a return line and you'll get two camps. One says returnless is how the factory built it, so it's fine. The other says returnless dead-heads the pump, cooks the fuel, and you'll regret it. Both camps are partly right, and the reason comes down to two things most of the argument skips: what the pump does with the fuel the engine doesn't use, and where that fuel sits while it waits.</p>
 
   <p><strong>The return line was never really about the engine. It was about the pump.</strong></p>
 
-  <h2>Three different setups that get lumped together</h2>
+  <h2>Three layouts that get lumped together</h2>
 
-  <p>Half the confusion in these threads is people arguing about different things. There are three layouts worth separating:</p>
+  <p>Half the confusion in these threads is people arguing about different setups. Every one of them has a regulator. What differs is what the regulator does with the surplus.</p>
 
   <ul>
-    <li><strong>Return.</strong> A regulator near the engine holds pressure and sends the extra fuel back to the tank through a second line.</li>
-    <li><strong>Returnless.</strong> There is still a regulator, but it sits at or near the tank. Extra fuel is dumped back into the tank right there, and only one line runs to the engine.</li>
-    <li><strong>Pump speed control.</strong> The pump is slowed down so it makes only the fuel the engine needs, with a sensor and a controller doing the regulating. This can be paired with either of the first two, or, in some cases, replace the regulator.</li>
+    <li><strong>Return.</strong> A bypass regulator near the engine holds pressure and sends surplus fuel back to the tank through a second line. This is the classic engine-bay regulator with a return line.</li>
+    <li><strong>Returnless.</strong> A bypass regulator at or near the tank dumps the surplus straight back into the tank. One line runs to the engine.</li>
+    <li><strong>Dead-head.</strong> A regulator with no bypass at all, usually near the carburetor. It simply closes off when pressure is reached, and the pump pushes against it. This is common on carbureted cars and rare on EFI.</li>
   </ul>
 
-  <p>"Returnless" does not mean "no regulator." A returnless system with a properly working bypass regulator is not dead-heading the pump. The pump still flows, and the excess still goes somewhere. It just doesn't take the long way round.</p>
+  <p>"Returnless" and "dead-head" are not the same thing. A returnless system still bypasses, so the pump keeps flowing. A dead-head does not. Much of the "returnless kills pumps" folklore is really about dead-heading a pump that was too big for it.</p>
+
+  <p>On top of any of these, the pump's <strong>speed</strong> can be controlled so it makes only what the engine needs. We'll come back to that, because it changes the math for all three.</p>
 
   <h2>Why OEMs ran return systems for decades</h2>
 
-  <p>Return systems made complete sense for early EFI, for three reasons:</p>
-
   <ul>
-    <li><strong>The pump had one speed: full.</strong> Early electric pumps ran flat out whenever the key was on. A pump that always makes more fuel than the engine needs has to send the surplus somewhere, and a regulator dumping it back to the tank was the simplest, cheapest way to hold pressure.</li>
+    <li><strong>The pump had one speed: full.</strong> Early electric pumps ran flat out whenever the key was on. A pump that always makes more than the engine needs has to send the surplus somewhere, and a regulator dumping it back to the tank was the simplest, cheapest way to hold pressure.</li>
     <li><strong>The regulator did the math.</strong> A vacuum-referenced regulator on the rail raises and lowers fuel pressure with manifold pressure, so the pressure <em>across</em> the injector stays constant. Early ECUs had very little computing power, so letting a diaphragm handle that correction was attractive.</li>
     <li><strong>Fuel kept moving.</strong> Constant flow through the rail carried heat and vapor bubbles away from the injectors, which helped hot restarts.</li>
   </ul>
 
   <h2>Why they moved to returnless</h2>
 
-  <p>The short answer is emissions. In a return system, fuel that isn't used loops through a hot engine bay and comes back warm, and over a drive it heats the whole tank. A warmer tank makes more fuel vapor, and evaporative emissions rules made that vapor expensive. Moving the regulator to the tank means hot fuel never comes back.</p>
+  <p>The short answer is emissions. In a return system, fuel the engine doesn't use loops through a hot engine bay and comes back warm, and over a drive it heats the whole tank. A warmer tank makes more fuel vapor, and evaporative emissions rules made that vapor expensive. Moving the regulator to the tank means hot fuel never comes back.</p>
 
-  <p>Chrysler had returnless systems on some trucks by 1993. GM and Ford started switching around 1999, and by the mid-2000s returnless was the norm across most of the industry. Many of the fixed-pressure filter-regulators swappers buy today are based on factory parts from that era.</p>
-
-  <p>Two other changes made it practical:</p>
+  <p>Chrysler had returnless systems on some trucks by 1993. GM and Ford started switching around 1999, and by the mid-2000s returnless was the norm across most of the industry. Two other changes made it practical:</p>
 
   <ul>
-    <li><strong>ECUs got smart enough.</strong> Once the ECU could correct injector pulse width for manifold pressure in software, the vacuum-referenced regulator on the rail was no longer needed. Rail pressure could be fixed, and the computer accounts for the difference.</li>
-    <li><strong>Electronic returnless came next.</strong> Instead of a fixed regulator, a pressure sensor and a pump controller vary pump speed with PWM so the pump makes only what the engine is using. Less current, less heat in the fuel, less noise, longer pump life. That approach, or a close cousin, is on most modern vehicles, including the low-pressure side of direct injection systems.</li>
+    <li><strong>ECUs got smart enough.</strong> Once the ECU could correct injector pulse width for manifold pressure in software, the referenced regulator on the rail was no longer needed.</li>
+    <li><strong>Electronic returnless came next.</strong> A pressure sensor and a pump controller vary pump speed with PWM so the pump makes only what the engine is using. Less current, less heat, less noise, longer pump life. That approach, or a close cousin, is on most modern vehicles, including the low-pressure side of direct injection systems.</li>
   </ul>
 
-  <div class="callout">The industry didn't abandon the return line because returnless flows better. It abandoned it because returning hot fuel to the tank costs emissions, and because the jobs the return line did (bleeding off a full-speed pump and compensating for manifold pressure) moved to the tank and the ECU.</div>
+  <h2>Where the heat actually comes from</h2>
 
-  <h2>So what does an EFI swap actually need?</h2>
+  <p>"Cooks the fuel" is the heart of the argument, so it's worth being precise. There are two separate sources, and each layout handles them differently.</p>
 
-  <p><strong>Naturally aspirated, stock-style pump: returnless is fine.</strong> Most modern engines left the factory that way. Run a bypass regulator set to your engine's factory rail pressure and a feed line to the rail. The factory calibration already expects that fixed pressure.</p>
+  <p><strong>1. Pump work that isn't needed.</strong> Every bit of fuel the pump moves and the engine doesn't use is energy turned into heat. A pump running against a bypass regulator flows its surplus around in a loop. A pump running against a dead-head regulator flows almost nothing but sits at high pressure and full current. Either way, the bigger the pump compared to what the engine is using, the more heat goes into the fuel. At cruise and idle, even a modest pump is mostly making surplus.</p>
 
-  <p>One catch: some later engines shipped with <em>electronic</em> returnless, where the factory pump controller sets rail pressure and there is no mechanical regulator at all. Out of the donor car, that controller is gone, so the swap needs either a regulator set to the pressure the calibration expects or a pump controller that does the same job.</p>
-
-  <p><strong>Go return-style when one of these is true:</strong></p>
-
+  <p><strong>2. Where the fuel sits and whether it moves.</strong></p>
   <ul>
-    <li><strong>You run boost.</strong> With a fixed rail, say 58 psi, every psi of boost is a psi less pressure across the injector. At 15 psi of boost, the injector sees about 43 psi of push instead of 58. A boost-referenced regulator on a return system raises rail pressure one-for-one with boost, so the injector keeps its full flow. An ECU with fuel-pressure compensation can correct for this in a returnless setup, but only if the injectors and pump have the headroom.</li>
-    <li><strong>You run a big pump or E85.</strong> A large pump that's sized for peak power moves a lot more fuel than the engine uses at cruise. In a returnless system, all that surplus gets churned in the tank. In a return system, it loops through the engine bay. Either way it's energy turned into heat, and the bigger the pump, the more it matters. This is where pump speed control earns its keep.</li>
-    <li><strong>Your ECU can't compensate.</strong> Some older or simpler standalone ECUs expect a vacuum-referenced rail. If yours can't correct for manifold pressure, a referenced regulator on a return line keeps the fueling math honest.</li>
+    <li><strong>Return:</strong> fuel keeps moving through the engine bay, so it never sits long enough to boil, but it carries engine-bay heat back to the tank.</li>
+    <li><strong>Returnless:</strong> the surplus never leaves the tank, so the tank stays coolest. Fuel in the feed line moves only as fast as the engine uses it.</li>
+    <li><strong>Dead-head:</strong> fuel moves only as fast as the carb uses it. At idle, in traffic, and especially after shutdown, the line and regulator are a still pool soaking in engine-bay heat with nothing carrying it away. This is why dead-head setups are the ones known for hot-soak and vapor lock.</li>
   </ul>
 
-  <p>On the "returnless kills pumps" claim: a pump running against a bypass regulator in the tank is doing the same work as a pump running against a bypass regulator on the rail. The problem people run into is a <em>true</em> dead-head, a regulator with no bypass at all paired with a high-volume pump, and that is a different setup from what the factories built.</p>
+  <div class="callout">Source 1 is a pump-sizing and pump-control problem. Source 2 is a layout problem. Fixing one doesn't fix the other, which is why the argument never ends: each camp is pointing at a different source.</div>
 
   <h2>Where should the regulator go?</h2>
 
-  <p>Plenty of hot rodders put a bypass regulator in the engine bay with a return line back to the tank, and that's a perfectly good setup. It's simply the "return" layout from the top of this article. Tank-side and engine-side each do something the other can't:</p>
+  <p>There's a real trade-off here between pressure and heat.</p>
 
   <ul>
-    <li><strong>At the engine</strong> the regulator holds pressure where it's actually used. Any pressure lost through the feed line, the filter, and fittings at high flow happens <em>before</em> the regulator, so the rail or carb still sees the setpoint. It's easy to reach, easy to gauge, and it's the only place a regulator can be vacuum or boost referenced. The cost is a second line the full length of the car and warm fuel going back to the tank.</li>
-    <li><strong>At the tank</strong> the surplus never leaves the tank, so the fuel stays cooler and there's only one line to run. The cost is that the engine sees the setpoint minus whatever the feed line and filter lose at full flow, and the regulator can't follow manifold pressure.</li>
+    <li><strong>At the engine</strong>, the regulator holds pressure where it's used. Pressure lost through the feed line, filter, and fittings at high flow happens <em>before</em> the regulator, so the rail or carb still sees the setpoint. It's easy to gauge and adjust, and it's the only place a regulator can be vacuum or boost referenced.</li>
+    <li><strong>At the tank</strong>, the surplus never travels, so the fuel stays cooler and there's one line to run. The engine sees the setpoint minus whatever the feed line loses at full flow, and the regulator can't follow manifold pressure.</li>
   </ul>
 
-  <p>Rule of thumb: <strong>boosted engines and carburetors want the regulator at the engine</strong>, boost for the referencing and carbs because pressure at the bowl is what matters. Holley's own advice for carbureted street and strip cars is to run the feed line straight to the carb and put the bypass regulator on the return side. A naturally aspirated EFI engine on a fixed-pressure calibration works either way; tank-side runs cooler and simpler, engine-side gives you a gauge and adjustment right where you're tuning. With the feed line sized properly, the pressure difference between the two is small.</p>
+  <p>A dead-head regulator has to be near the engine, because it only controls pressure downstream of itself. Moving it toward the tank doesn't cure the heat; it just lets the carb see line losses. The answer for a dead-head is to place it well, not far away:</p>
+
+  <ul>
+    <li>Mount it close to the carb, but on a cool surface such as the inner fender or firewall, not on the intake or near the headers.</li>
+    <li>Route the feed line away from exhaust, and sleeve it where it passes through the engine bay.</li>
+    <li>Match the pump to the carb. An oversized pump against a dead-head is heat source 1 at its worst.</li>
+  </ul>
+
+  <p>Rule of thumb: <strong>boosted engines and carburetors want the regulator at the engine</strong>, boost for the referencing and carbs because pressure at the bowl is what matters. A naturally aspirated EFI engine on a fixed-pressure calibration works either way. With the feed line sized properly, the pressure difference is small.</p>
+
+  <h2>What an EFI swap actually needs</h2>
+
+  <p><strong>Naturally aspirated, stock-style pump: returnless is fine.</strong> Most modern engines left the factory that way. Run a bypass regulator set to your engine's factory rail pressure; the factory calibration already expects that fixed pressure. An engine-bay bypass regulator with a return line works just as well if you prefer a gauge at the rail.</p>
+
+  <p>One catch: some later engines shipped with <em>electronic</em> returnless, where a factory pump controller sets rail pressure and there's no mechanical regulator. The donor car's controller doesn't come along, so the swap needs either a regulator set to the pressure the calibration expects, or a pump controller that does the same job.</p>
+
+  <p><strong>Go return-style with the regulator at the engine when:</strong></p>
+
+  <ul>
+    <li><strong>You run boost.</strong> With a fixed rail, say 58 psi, every psi of boost is a psi less pressure across the injector. At 15 psi of boost the injector sees about 43 psi of push instead of 58. A boost-referenced regulator raises rail pressure one-for-one with boost, so the injector keeps its full flow. An ECU with fuel-pressure compensation can correct for this in a returnless setup, but only if the injectors and pump have the headroom.</li>
+    <li><strong>You run a big pump or E85.</strong> A pump sized for peak power is mostly making surplus at cruise, so heat source 1 grows with it. This is where pump speed control earns its keep.</li>
+    <li><strong>Your ECU can't compensate.</strong> Some older or simpler standalone ECUs expect a vacuum-referenced rail. A referenced regulator keeps the fueling math honest.</li>
+  </ul>
 
   <h2>Carburetors play by different rules</h2>
 
-  <p>Everything above is about EFI at 40 to 60 psi. A carburetor wants far less. Holley specifies 5 to 7 psi for its performance carburetors, with about 7 at idle and no less than 4 at redline. Too much pressure overpowers the needle and seat and floods the bowl; too little lets the bowl run low under load.</p>
-
-  <p>That low target changes the picture:</p>
+  <p>EFI runs at 40 to 60 psi. A carburetor wants far less. Holley specifies 5 to 7 psi for its performance carburetors, with about 7 at idle and no less than 4 at redline. Too much pressure overpowers the needle and seat and floods the bowl; too little lets the bowl run low under load.</p>
 
   <ul>
-    <li><strong>Mechanical pump: usually nothing extra.</strong> Most engine-driven mechanical pumps are built to deliver carburetor pressure on their own, and many street engines run one with no regulator at all. If yours runs above spec, a simple dead-head regulator is enough.</li>
-    <li><strong>Low-volume electric carb pump (Holley Red or Blue, Carter): a dead-head regulator is fine.</strong> A pump built for carburetors doesn't make enough surplus to cause trouble, and a simple regulator with no return line does the job. This is how most carbureted street cars have run for decades.</li>
-    <li><strong>High-volume or EFI-rated pump on a carb (Walbro 255 or 450, Aeromotive Stealth 340, and similar): use a bypass regulator.</strong> Holley's own guidance is that dead-head regulators can show fluctuating pressure, pressure creep, and needle-and-seat overrun under high demand, and that a bypass regulator gives a steadier pressure curve, cooler fuel, and lower pump amperage. It's also one of the best defenses against vapor lock.</li>
+    <li><strong>Mechanical pump: usually nothing extra.</strong> Most engine-driven mechanical pumps are built to deliver carburetor pressure on their own. If yours runs above spec, a dead-head regulator is enough.</li>
+    <li><strong>Low-volume electric carb pump (Holley Red or Blue, Carter): a dead-head regulator is fine</strong>, placed as described above. These pumps don't make enough surplus for heat source 1 to dominate.</li>
+    <li><strong>High-volume or EFI-rated pump (Walbro 255 or 450, Aeromotive Stealth 340, and similar): use a bypass regulator and a return line.</strong> Holley's guidance is that dead-head regulators can show fluctuating pressure, pressure creep, and needle-and-seat overrun under high demand, and that a bypass regulator gives a steadier pressure curve, cooler fuel, and lower pump amperage. Holley recommends running the feed line straight to the carb and putting the bypass regulator on the return side.</li>
   </ul>
 
-  <p>This is the case most often missed in swaps: someone sets up an EFI-capable pump "for later," feeds a carb through a dead-head regulator, and then chases a rich idle or a flooding bowl. The pump is fine. The regulator is the wrong type for that much flow.</p>
+  <p>The most common swap mistake sits right here: an EFI-capable pump installed "for later," feeding a carb through a dead-head regulator, followed by chasing a rich idle, a flooding bowl, or hot-soak. The pump is fine. The regulator is the wrong type for that much flow. And if a well-placed dead-head setup still heat-soaks, that's the point where moving fuel, meaning a bypass regulator and a return, is the real cure for heat source 2.</p>
 
-  <h2>Can pump speed control replace the regulator?</h2>
+  <h2>What pump speed control changes</h2>
 
-  <p>This is the newest version of the argument, and it's the one we have the most skin in, so here's the honest answer.</p>
+  <p>This is the newest version of the argument, and the one we have the most skin in, so here's the honest version.</p>
 
-  <p><strong>At EFI pressures, it can.</strong> That's what OEM electronic returnless systems do: a pressure sensor and a pump controller hold rail pressure by varying pump speed, usually with a relief valve kept in the system as a safety. At 40 to 60 psi, the pump always has real work to do, so there's plenty of room to slow it down and speed it up smoothly.</p>
+  <p><strong>It attacks heat source 1 in every layout.</strong> A pump that makes only what the engine needs has little surplus to bypass or push against. Less current, less heat into the fuel, less noise, longer pump life. That's true with a return, returnless, or dead-head regulator.</p>
 
-  <p><strong>At carburetor pressures, it's harder.</strong> An electric pump has a minimum speed it can run reliably. Below some duty cycle the motor won't turn smoothly or may stall outright. An EFI-sized pump feeding a carb at idle may make more than 7 psi even at its lowest stable speed. A controller in that position has two bad choices: let pressure climb, or switch the pump fully off and back on to hold the average. Cycling a pump like that means repeated inrush current on the motor and pressure ripple at the needle and seat, and neither is something you want.</p>
+  <p><strong>It does not fix heat source 2.</strong> Fuel sitting still in a hot engine bay is a layout problem, and slowing the pump doesn't make it move.</p>
 
-  <p>So for carburetors, our recommendation is <strong>keep a bypass regulator in the system as the backstop</strong>, and let pump control work underneath it. The regulator handles the fine control and guarantees the pressure ceiling. The controller slows the pump so far less fuel is being bypassed, which means less heat, less current, and less noise than a full-speed pump against the same regulator.</p>
+  <p><strong>Can it replace the regulator?</strong> At EFI pressures, yes. That's what OEM electronic returnless systems do, usually with a relief valve kept as a safety. At 40 to 60 psi the pump always has real work to do, so there's plenty of room to vary its speed smoothly.</p>
+
+  <p>At carburetor pressures it's harder. An electric pump has a minimum speed it can run reliably; below some duty cycle the motor won't turn smoothly or may stall. An EFI-sized pump feeding a carb at idle may make more than 7 psi even at its lowest stable speed. A controller in that spot has two bad choices: let pressure climb, or switch the pump fully off and on to hold the average. Cycling a pump that way means repeated inrush current on the motor and pressure ripple at the needle and seat. For carburetors, keep a regulator as the backstop and let pump control work underneath it.</p>
 
   <div class="callout">Honest status: we have not yet validated Grim on a carbureted engine fed by an EFI-sized pump. We'll publish bench data, including where the minimum stable duty sits for common pumps, once we have it.</div>
 
   <h2>The short version</h2>
 
   <ul>
-    <li><strong>NA EFI swap, stock-style pump:</strong> a bypass regulator at your engine's factory rail pressure. It's what the factories built.</li>
-    <li><strong>Boost, big pump, E85, or an ECU that can't compensate:</strong> return-style with a referenced regulator, and seriously consider pump speed control.</li>
+    <li><strong>NA EFI swap, stock-style pump:</strong> a bypass regulator at your engine's factory rail pressure, at the tank or the engine.</li>
+    <li><strong>Boost, big pump, E85, or an ECU that can't compensate:</strong> return-style, regulator at the engine, and seriously consider pump speed control.</li>
     <li><strong>Carb with a mechanical pump:</strong> usually no regulator needed.</li>
-    <li><strong>Carb with a carb-rated electric pump:</strong> a dead-head regulator is fine.</li>
-    <li><strong>Carb with a high-volume or EFI pump:</strong> a bypass regulator and a return line.</li>
-    <li><strong>Any of the above:</strong> a pump that runs only as hard as the engine needs makes every layout cooler, quieter, and easier on the pump.</li>
+    <li><strong>Carb with a carb-rated electric pump:</strong> a dead-head regulator near the carb, on a cool surface, with the line kept off the exhaust.</li>
+    <li><strong>Carb with a high-volume or EFI pump:</strong> a bypass regulator on the return side of the carb.</li>
+    <li><strong>Any of the above:</strong> a pump that runs only as hard as the engine needs cuts heat, current and noise. It won't fix fuel sitting still; only layout fixes that.</li>
   </ul>
 
   <h2>Where Grim fits</h2>
 
-  <p><a href="../products/grim.html">Grim</a> is our all-in-one closed-loop pump controller: it measures fuel pressure and adjusts pump speed to hold it, so a returnless or return system stops running a full-speed pump against the regulator all day. <a href="../products/grim-max.html">Grim Max</a> with <a href="../products/golem.html">Golem</a> covers the dual-pump, high-flow and boosted end, where surplus fuel and heat are the biggest problem.</p>
+  <p><a href="../products/grim.html">Grim</a> is our all-in-one closed-loop pump controller: it measures fuel pressure and adjusts pump speed to hold it, so the pump stops running flat out against the regulator all day. <a href="../products/grim-max.html">Grim Max</a> with <a href="../products/golem.html">Golem</a> covers the dual-pump, high-flow and boosted end, where surplus fuel and heat are the biggest problem.</p>
+
 
   <div class="waitlist">
     <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
