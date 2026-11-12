@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://reapercontrols.com/</loc></url>
-  <url><loc>https://reapercontrols.com/products.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/puca.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/hob.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/golem.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/grim.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/grim-max.html</loc></url>
-  <url><loc>https://reapercontrols.com/products/tengu.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/tach-pullup-resistor-gaps.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/tach-signal-types.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/pwm-frequency-fuel-pump.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/do-you-need-pwm.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/rpm-vs-pressure-fuel-control.html</loc></url>
-  <url><loc>https://reapercontrols.com/articles/return-vs-returnless-fuel.html</loc></url>
+  <url><loc>https://reapercontrols.com/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles.html</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/puca.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/hob.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/golem.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/grim.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/grim-max.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/products/tengu.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/tach-pullup-resistor-gaps.html</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/tach-signal-types.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/pwm-frequency-fuel-pump.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/do-you-need-pwm.html</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/rpm-vs-pressure-fuel-control.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://reapercontrols.com/articles/return-vs-returnless-fuel.html</loc><lastmod>2026-11-12</lastmod></url>
 </urlset>
