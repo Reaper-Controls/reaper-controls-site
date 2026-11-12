@@ -859,8 +859,17 @@ main.pdp-main{
 
 .home-lineup{ border-top: 1px solid var(--line); padding: 64px 24px 56px; background: radial-gradient(ellipse 900px 400px at 50% 0%, rgba(111,173,163,0.05), transparent 70%); }
 .home-lineup-inner{ max-width: 1400px; margin: 0 auto; }
-.home-section-head h2{ border: 0; margin: 0 0 28px; padding: 0; font-size: 30px; }
-.home-shelf{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+.home-section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom: 28px; }
+.home-section-head h2{ border: 0; margin: 0; padding: 0; font-size: 30px; }
+.home-shelf-nav{ display:flex; gap:10px; }
+.shelf-btn{ width:46px; height:46px; border:1px solid var(--line); background: var(--bg-raised); color: var(--ink); font-size: 20px; cursor:pointer; transition: border-color .2s, color .2s, opacity .2s; }
+.shelf-btn:hover:not(:disabled){ border-color: var(--rust); color: var(--rust); }
+.shelf-btn:disabled{ opacity:.3; cursor:default; }
+.shelf-btn:focus-visible{ outline:2px solid var(--scope); outline-offset:2px; }
+.home-shelf{ display:grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 60px) / 4.25); gap: 20px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 2px 14px; scrollbar-width: none; }
+.home-shelf::-webkit-scrollbar{ display:none; }
+.home-shelf-item{ scroll-snap-align: start; }
 .home-shelf-item{
   display:flex; flex-direction:column; align-items:center; text-align:center; text-decoration:none;
   color: var(--ink); padding: 22px 16px 20px; border: 1px solid var(--line);
@@ -887,12 +896,14 @@ main.home-main p{ max-width: 72ch; }
 
 @media (max-width: 920px){
   .home-hero-inner{ grid-template-columns: 1fr; gap: 36px; }
-  .home-shelf{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .home-shelf{ grid-auto-columns: calc((100% - 20px) / 2.3); }
 }
 @media (max-width: 520px){
   .home-band-text{ align-items:flex-start; }
   .home-hero{ padding: 40px 16px 48px; }
   .home-shelf-item img{ height: 120px; }
+  .home-shelf{ grid-auto-columns: 62%; }
+  .home-shelf-nav{ display:none; }
   .home-scope-readout b{ font-size: 17px; }
   .home-band{ min-height: 360px; }
   .home-band::after{ background: linear-gradient(0deg, rgba(27,28,29,.95) 0%, rgba(27,28,29,.6) 60%, rgba(27,28,29,.2) 100%); }

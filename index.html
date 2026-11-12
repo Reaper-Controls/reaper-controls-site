@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261111a">
+<link rel="stylesheet" href="css/style.css?v=20261112a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,17 +81,31 @@
 <section class="home-lineup">
   <div class="home-lineup-inner">
     <div class="home-section-head">
-      <p class="doc-id mono">ON THE BENCH</p>
-      <h2>The lineup</h2>
+      <div>
+        <p class="doc-id mono">ON THE BENCH</p>
+        <h2>The lineup</h2>
+      </div>
+      <div class="home-shelf-nav">
+        <button type="button" class="shelf-btn" data-dir="-1" aria-label="Previous products">&larr;</button>
+        <button type="button" class="shelf-btn" data-dir="1" aria-label="Next products">&rarr;</button>
+      </div>
     </div>
-    <div class="home-shelf">
+    <div class="home-shelf" id="shelf" tabindex="0" aria-label="Product lineup, scrolls sideways">
+      <a class="home-shelf-item" href="products/grim.html">
+        <img src="images/renders/grim-enclosure.webp?v=1" alt="Preliminary render of the Grim enclosure" loading="lazy">
+        <b>Grim</b><span>All-in-one fuel pump control</span>
+      </a>
       <a class="home-shelf-item" href="products/grim-max.html">
         <img src="images/renders/grim-max-enclosure.webp?v=1" alt="Grim Max prototype enclosure" loading="lazy">
-        <b>Grim Max</b><span>Closed-loop fuel pump control</span>
+        <b>Grim Max</b><span>Dual-pump fuel control</span>
       </a>
       <a class="home-shelf-item" href="products/golem.html">
         <img src="images/renders/golem-enclosure.webp?v=4" alt="Golem prototype enclosure" loading="lazy">
         <b>Golem</b><span>40A PWM solid-state relay</span>
+      </a>
+      <a class="home-shelf-item" href="products/tengu.html">
+        <img src="images/renders/tengu-enclosure.webp?v=1" alt="Tengu prototype enclosure" loading="lazy">
+        <b>Tengu</b><span>Closed-loop fan control</span>
       </a>
       <a class="home-shelf-item" href="products/hob.html">
         <img src="images/renders/hob-enclosure.webp?v=1" alt="Hob prototype enclosure with its signal LED lit" loading="lazy">
@@ -102,7 +116,7 @@
         <b>Púca</b><span>Universal tach translator</span>
       </a>
     </div>
-    <p class="home-shelf-more"><a href="products.html">See all six products, including Grim and Tengu &rarr;</a></p>
+    <p class="home-shelf-more"><a href="products.html">Compare all six products &rarr;</a></p>
   </div>
 </section>
 
@@ -176,6 +190,18 @@
   var last=0;
   function loop(ts){ if(ts-last>40){ step(); draw(); last=ts; } requestAnimationFrame(loop); }
   requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(function(){
+  var sh=document.getElementById('shelf'); if(!sh) return;
+  var btns=document.querySelectorAll('.shelf-btn');
+  function step(){var it=sh.querySelector('.home-shelf-item'); return it? it.getBoundingClientRect().width+20 : 300;}
+  function upd(){ var max=sh.scrollWidth-sh.clientWidth-2;
+    btns[0].disabled=sh.scrollLeft<=2; btns[1].disabled=sh.scrollLeft>=max;
+    document.querySelector('.home-shelf-nav').hidden = sh.scrollWidth<=sh.clientWidth+2; }
+  btns.forEach(function(b){ b.addEventListener('click',function(){ sh.scrollBy({left:step()*(+b.dataset.dir),behavior:'smooth'}); }); });
+  sh.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
 })();
 </script>
 
