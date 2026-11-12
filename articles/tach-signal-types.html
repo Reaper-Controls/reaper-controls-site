@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261028b">
+<link rel="stylesheet" href="../css/style.css?v=20261112c">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,6 +32,7 @@
       "headline": "Why Coil Negative, Coil Positive, and Square Wave Aren't Interchangeable",
       "description": "Coil-negative, coil-positive, and ECU square-wave tach signals differ in voltage, polarity, and shape, not just pulse count. Why a 'universal' adapter tuned for one family struggles with the other two.",
       "datePublished": "2026-09-30",
+      "dateModified": "2026-11-11",
       "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "about": ["tach signal types", "coil negative tach", "coil positive tach", "ECU square wave signal", "universal tach adapter"]
@@ -65,7 +66,7 @@
 }
 </script>
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -78,10 +79,15 @@
   </div>
 </header>
 
-<main>
+<main class="art-main">
+  <div class="art-layout">
+    <nav class="art-toc" aria-label="On this page"><p class="mono">ON THIS PAGE</p><ol id="toc"></ol></nav>
+    <article class="art-body">
+
   <p class="doc-id mono">FIG. REF: SIG-TYPE-01 &nbsp;·&nbsp; SUBJECT: SIGNAL TYPES &nbsp;·&nbsp; READ: 7 MIN</p>
 
   <h1>Why Coil Negative, Coil Positive, and Square Wave Aren't Interchangeable</h1>
+  <p class="art-dates mono">PUBLISHED SEP 30, 2026 · UPDATED NOV 11, 2026</p>
 
   <div class="scope">
     <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: a rounded, ringing coil-based tach pulse next to a clean, sharp-edged ECU square wave pulse">
@@ -114,23 +120,23 @@
 
   <p><strong>Coil negative.</strong> The classic tap point: the coil's primary negative terminal, the side that switches to ground. Every time the primary current collapses to fire a spark, that collapse shows up as a sharp negative-going voltage spike at the coil, with some ringing as the field decays. It's an analog byproduct of the ignition event, not a signal designed to be read by anything.</p>
 
-  <p><strong>Coil positive.</strong> The same primary winding, tapped from the battery-feed side instead. You're looking at the same event, but referenced differently: the spike now rides on top of system voltage and appears positive-going rather than negative-going. It carries the same timing information, but the polarity, baseline, and noise it picks up from the supply rail are all different from coil negative.</p>
+  <p><strong>Coil positive.</strong> This one isn't really a voltage signal at all. When a factory tach's trigger wire went to coil positive, the coil's power feed usually ran <em>through</em> the gauge, and a small transformer inside sensed the primary current collapsing each time the points opened. These are current-triggered tachs: early Ford and Shelby, early Datsun, and Smiths gauges in MGs, Triumphs and Volvos. MSD puts the test in one sentence: if the tach's trigger wire originally went to coil positive, it's a current-triggered tachometer. Feed one a voltage pulse and it reads zero.</p>
 
   <p><strong>ECU / ignition box square wave.</strong> A dedicated tach output from an ECU, MSD box, or similar, built specifically to drive a tach. It's already a clean digital pulse train, usually a fixed 0-5V or 0-12V swing with hard edges, generated in software or by a shaping circuit rather than tapped off a raw ignition event. There's no ringing to filter and no amplitude that drifts with RPM. It needs level matching, not noise rejection.</p>
 
-  <p>Three different voltage ranges, three different polarities, three different noise profiles, and two of them are analog while one is already digital. "Tach signal" is really a family name, not a spec.</p>
+  <p>A high-voltage spike, a current pulse, and a clean digital square wave. Different amplitudes, different noise, and one of them isn't even a voltage. "Tach signal" is really a family name, not a spec.</p>
 
   <h2>Why a fixed threshold can't serve all three</h2>
 
-  <p>Every circuit that reads a tach signal has to decide, at some single voltage, "that's a pulse" versus "that's noise." That decision point is a <strong>trigger threshold</strong>, and it has to be chosen relative to the signal it expects.</p>
+  <p>Every circuit that reads a tach signal has to decide, at some single voltage, "that's a pulse" versus "that's noise." That decision point is a <strong>trigger threshold</strong>. Applied straight to the raw signal, it has to be chosen relative to the signal it expects.</p>
 
   <ul>
     <li><strong>Set it high, to reject noise on a coil signal,</strong> and a clean but modest-amplitude ECU square wave sits below the threshold. Nothing triggers. The tach reads zero even though the ECU is outputting a textbook signal.</li>
     <li><strong>Set it low, to catch a weak square wave,</strong> and the ringing on a coil signal crosses it multiple times per actual pulse. The tach reads double, triple, or just jumps around.</li>
-    <li><strong>Get the polarity backwards</strong> by wiring a coil-negative circuit to a coil-positive tap, and the trigger edge the circuit is looking for may never cleanly happen at all, or only happens on noise riding the supply rail.</li>
+    <li><strong>Treat a current-triggered gauge like a voltage-triggered one,</strong> or swap in a relay where the coil feed used to run through it, and the gauge never sees the current pulse it counts. It reads zero.</li>
   </ul>
 
-  <p>This is the real reason a "universal" adapter marketed to work with "any ignition system" so often means, in practice, "works great on coil-negative, mostly works on coil-positive if you're lucky, and doesn't work at all on a square wave ECU output." One fixed threshold cannot simultaneously be tight enough to reject coil ringing and loose enough to catch a logic-level pulse.</p>
+  <p>This is the real reason a "universal" adapter marketed to work with "any ignition system" so often means, in practice, "works great on coil negative, struggles with a weak ECU output, and says right in the manual that it doesn't support current-triggered tachs." A threshold applied to the raw signal can't be tight enough to reject coil ringing and loose enough to catch a logic-level pulse at the same time.</p>
 
   <h2>Pulse count is a separate problem, stacked on top</h2>
 
@@ -146,25 +152,26 @@
 
   <h2>What a real translator does differently</h2>
 
-  <p>Solving this for one signal family is a known problem with known fixes. Solving it for <strong>all three, from a single box, without the installer having to know which family they have,</strong> means the device has to do more than apply one threshold:</p>
+  <p>Solving this for every signal family from a single box, without the installer having to know which family they have, comes down to handling the input and the output separately:</p>
 
   <ul>
-    <li><strong>Identify the input type.</strong> Distinguish a high-voltage ringing analog signal from a clean low-voltage digital one before deciding how to trigger on it.</li>
-    <li><strong>Adapt the trigger point to the signal present,</strong> rather than applying one fixed threshold to every input.</li>
-    <li><strong>Accept the actual polarity</strong> instead of assuming coil-negative is the only option.</li>
-    <li><strong>Scale pulse count independently</strong> of signal family, so a correct number of pulses per revolution comes out regardless of which input type came in.</li>
-    <li><strong>Drive a clean, fixed-amplitude output</strong> to the tach, shift light, or anything downstream, so whatever oddities existed on the input side never reach the gauge.</li>
+    <li><strong>Normalize the input before deciding anything.</strong> Series resistance and a clamp squeeze every source, from a 5V logic pin to a 400V coil spike, into the same small swing. Once they all look alike, one threshold really can serve them all.</li>
+    <li><strong>Pull up weak outputs.</strong> The factory LS PCM's tach output can barely drive a load, which is why the forum fix is a resistor. A built-in pull-up handles it, along with open-collector outputs from other controllers.</li>
+    <li><strong>Trigger with hysteresis</strong> against a stable reference, so noise and ringing near the threshold don't turn into extra pulses.</li>
+    <li><strong>Produce the output the gauge actually needs:</strong> a coil-style voltage spike for voltage-triggered gauges, a real current pulse for current-triggered ones, and a clean 12V square wave for modern gauges, shift lights and ECUs.</li>
   </ul>
 
-  <div class="callout">coil negative / coil positive / square wave in → input identification + adaptive threshold + pulse scaling → one clean 12V square wave out, to tach, shift light, or <a href="../products/grim-max.html">Grim Max</a></div>
+  <div class="callout">LS PCM / ECU square wave / points / coil negative in → clamp + pull-up + hysteresis trigger → coil-style spike, current pulse, or clean 12V square wave out</div>
 
-  <p>That's the job <a href="../products/puca.html">Puca</a> is built around: one input stage that reads whichever of the three families is actually present and translates it to whatever the destination device expects, instead of asking the installer to figure out which adapter matches their ignition system. If your swap doesn't fit neatly into the LS-specific case, Puca is the broader answer; <a href="../products/hob.html">Hob</a> is the narrower, lower-cost one built specifically around the LS mismatch.</p>
+  <p>Pulse count stays a separate job. A translator that reshapes the signal passes pulses one for one, so the gauge or the controller still has to be set for the engine's pulse rate. On an LS into a V8 gauge, that's the case for a dedicated pulse doubler.</p>
 
-  <p>Puca prototype hardware is arriving now. If you're staring at an ignition system and a tach that were never meant to talk to each other, get on the list below.</p>
+  <p>That's the job <a href="../products/puca.html">Púca</a> is built around: one input stage that reads nearly any tach source, and three outputs covering voltage-triggered, current-triggered and modern gauges, including the current-triggered tachs other adapters don't support. If your problem is specifically an LS controller into a V8 tach, <a href="../products/hob.html">Hob</a> is the narrower, lower-cost answer, and it doubles the pulse count too.</p>
+
+  <p>Púca prototype boards are in hand and waiting on bench testing. If you're staring at an ignition system and a tach that were never meant to talk to each other, get on the list below.</p>
 
   <div class="waitlist">
     <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
-    <h3>Get notified when Puca is available</h3>
+    <h3>Get notified when Púca is available</h3>
     <p>One email when it ships. No spam, no drip campaign.</p>
     <form id="waitlist-form" action="https://formspree.io/f/xeaoddjy" method="POST">
       <div class="field-row">
@@ -202,7 +209,44 @@
       <li>AutoMeter, <a href="https://www.autometer.com/blog/faq-post/tachometer-does-not-work-with-my-ls-engine-swap-application-why/">"Tachometer does not work with my LS Engine Swap Application. Why?"</a> — LS 2-pulse-per-revolution tach pattern vs. V8 gauge expectations.</li>
     </ul>
   </div>
+
+    </article>
+    <aside class="art-side">
+      <a class="art-prod" href="../products/puca.html">
+        <span class="mono art-prod-eyebrow">RELATED PRODUCT</span>
+        <img src="../images/renders/puca-enclosure.webp?v=1" alt="3D render of the Púca enclosure" loading="lazy">
+        <b>Púca</b>
+        <span class="art-prod-desc">Reads nearly any tach signal and drives nearly any tach, including current-triggered.</span>
+        <span class="art-prod-price"><span class="mono">EXPECTED</span> $89.95</span>
+        <span class="art-prod-go">View product &rarr;</span>
+      </a>
+    </aside>
+  </div>
+  <section class="art-more">
+    <h2>More tech notes</h2>
+    <div class="note-mini-grid">
+      <a class="note-mini" href="tach-pullup-resistor-gaps.html"><span class="mono">TACH-SIG-01 · 7 MIN</span><b>Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?</b></a>
+      <a class="note-mini" href="pwm-frequency-fuel-pump.html"><span class="mono">PWM-FREQ-01 · 6 MIN</span><b>What Frequency Should You Run for Holley PWM Fuel Pump Control?</b></a>
+      <a class="note-mini" href="do-you-need-pwm.html"><span class="mono">PWM-GEN-01 · 7 MIN</span><b>Do You Need PWM at All? Pumps, Fans, and Why It&#x27;s Worth the Trouble</b></a>
+      <a class="note-mini" href="rpm-vs-pressure-fuel-control.html"><span class="mono">PUMP-CTRL-01 · 8 MIN</span><b>RPM-Threshold vs. Pressure-Based Fuel Pump Control</b></a>
+    </div>
+  </section>
 </main>
+
+<script>
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  var hs=[].slice.call(document.querySelectorAll('.art-body h2')).filter(function(h){return !h.closest('.refs')&&!h.closest('.waitlist');});
+  if(hs.length<2){ toc.parentNode.style.display='none'; return; }
+  hs.forEach(function(h,i){ if(!h.id) h.id='s'+(i+1)+'-'+h.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+    var li=document.createElement('li'), a=document.createElement('a'); a.href='#'+h.id; a.textContent=h.textContent; li.appendChild(a); toc.appendChild(li); });
+  var links=toc.querySelectorAll('a');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id); }); } }); },{rootMargin:'0px 0px -70% 0px'});
+    hs.forEach(function(h){ io.observe(h); });
+  }
+})();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">

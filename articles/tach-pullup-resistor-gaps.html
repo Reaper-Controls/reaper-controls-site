@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261028b">
+<link rel="stylesheet" href="../css/style.css?v=20261112c">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -67,7 +67,7 @@
 }
 </script>
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -80,10 +80,15 @@
   </div>
 </header>
 
-<main>
+<main class="art-main">
+  <div class="art-layout">
+    <nav class="art-toc" aria-label="On this page"><p class="mono">ON THIS PAGE</p><ol id="toc"></ol></nav>
+    <article class="art-body">
+
   <p class="doc-id mono">FIG. REF: TACH-SIG-01 &nbsp;·&nbsp; SUBJECT: TACH SIGNAL &nbsp;·&nbsp; READ: 7 MIN</p>
 
   <h1>Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?<br>(Why It Can Put Your PCM at Risk)</h1>
+  <p class="art-dates mono">PUBLISHED SEP 20, 2026 · UPDATED OCT 13, 2026</p>
 
   <div class="scope">
     <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: a resistor-pulled tach signal with noise spikes and a missing pulse, next to a clean conditioned square wave">
@@ -234,7 +239,44 @@
       <li>Pro-Touring.com, <a href="https://www.pro-touring.com/threads/139028-Getting-Tach-to-work-with-LS-RPM-Feed">"Getting Tach to work with LS RPM Feed"</a> — tach dropping to zero under hard throttle with a pull-up installed.</li>
     </ul>
   </div>
+
+    </article>
+    <aside class="art-side">
+      <a class="art-prod" href="../products/hob.html">
+        <span class="mono art-prod-eyebrow">RELATED PRODUCT</span>
+        <img src="../images/renders/hob-enclosure.webp?v=1" alt="3D render of the Hob enclosure" loading="lazy">
+        <b>Hob</b>
+        <span class="art-prod-desc">LS swap tach fix. Doubles the pulse count, cleans the signal, protects the PCM.</span>
+        <span class="art-prod-price"><span class="mono">EXPECTED</span> $28.99</span>
+        <span class="art-prod-go">View product &rarr;</span>
+      </a>
+    </aside>
+  </div>
+  <section class="art-more">
+    <h2>More tech notes</h2>
+    <div class="note-mini-grid">
+      <a class="note-mini" href="tach-signal-types.html"><span class="mono">SIG-TYPE-01 · 7 MIN</span><b>Why Coil Negative, Coil Positive, and Square Wave Aren&#x27;t Interchangeable</b></a>
+      <a class="note-mini" href="pwm-frequency-fuel-pump.html"><span class="mono">PWM-FREQ-01 · 6 MIN</span><b>What Frequency Should You Run for Holley PWM Fuel Pump Control?</b></a>
+      <a class="note-mini" href="do-you-need-pwm.html"><span class="mono">PWM-GEN-01 · 7 MIN</span><b>Do You Need PWM at All? Pumps, Fans, and Why It&#x27;s Worth the Trouble</b></a>
+      <a class="note-mini" href="rpm-vs-pressure-fuel-control.html"><span class="mono">PUMP-CTRL-01 · 8 MIN</span><b>RPM-Threshold vs. Pressure-Based Fuel Pump Control</b></a>
+    </div>
+  </section>
 </main>
+
+<script>
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  var hs=[].slice.call(document.querySelectorAll('.art-body h2')).filter(function(h){return !h.closest('.refs')&&!h.closest('.waitlist');});
+  if(hs.length<2){ toc.parentNode.style.display='none'; return; }
+  hs.forEach(function(h,i){ if(!h.id) h.id='s'+(i+1)+'-'+h.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+    var li=document.createElement('li'), a=document.createElement('a'); a.href='#'+h.id; a.textContent=h.textContent; li.appendChild(a); toc.appendChild(li); });
+  var links=toc.querySelectorAll('a');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id); }); } }); },{rootMargin:'0px 0px -70% 0px'});
+    hs.forEach(function(h){ io.observe(h); });
+  }
+})();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
