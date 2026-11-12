@@ -22,9 +22,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261028b">
+<link rel="stylesheet" href="css/style.css?v=20261112b">
 </head>
-<body>
+<body class="pdp">
 
 <header class="masthead">
   <div class="masthead-inner">
@@ -37,57 +37,135 @@
   </div>
 </header>
 
-<main class="wide">
+<main class="prod-main">
   <p class="doc-id mono">PRODUCT LINEUP</p>
   <h1>What we're building.</h1>
-  <p class="lede">Everything here is in development. Nothing is available to buy yet — click through to a product for the current status and a waitlist if you want to know the moment it ships.</p>
+  <p class="lede">Everything here is in development and nothing is for sale yet. Each product page has full specs, an expected price where we have one, and a waitlist if you want to know the moment it ships.</p>
 
-  <div class="card-grid">
+  <section class="prod-picker" aria-label="Find the right product">
+    <p class="prod-picker-q">What do you need to do?</p>
+    <div class="prod-picker-btns" role="group">
+      <button type="button" data-need="fuel">Control my fuel pump</button>
+      <button type="button" data-need="fans">Run my cooling fans</button>
+      <button type="button" data-need="ls">Fix my LS swap tach</button>
+      <button type="button" data-need="vintage">Drive a vintage or odd tach</button>
+      <button type="button" data-need="power">Switch a big PWM load</button>
+      <button type="button" data-need="all" aria-pressed="true">Show everything</button>
+    </div>
+    <p class="prod-picker-a" id="pick-answer" aria-live="polite"></p>
+  </section>
 
-    <a class="card" href="products/hob.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/hob-enclosure.webp?v=1" alt="3D render of the Hob prototype enclosure with its red signal LED lit, the HOB and Reaper Controls logos, and a mounting tab" width="260" height="300"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">Prototype Hardware</span>
-      <h3>Hob</h3>
-      <p>Active RPM signal conditioner. Fixes weak, noisy, and mis-scaled tach signals — built for LS swaps.</p>
-    </a>
-
-    <a class="card" href="products/golem.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/golem-enclosure.webp?v=4" alt="3D render of the Golem prototype enclosure, mounted with its spade and stud terminals pointing down" width="286" height="300"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">Prototype Hardware</span>
-      <h3>Golem</h3>
-      <p>A 40A solid-state relay that regenerates your ECU's slow PWM at the frequency you choose, with built-in current sensing and phone setup. Works with Holley, Haltech and most ECUs.</p>
-    </a>
-
-    <a class="card" href="products/puca.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/puca-enclosure.webp?v=1" alt="3D render of the Puca prototype enclosure with the PÚCA and Reaper Controls logos and a mounting ear" width="374" height="300"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">Prototype Hardware</span>
-      <h3>Púca</h3>
-      <p>Universal tach signal translator. Reads nearly any tach signal and drives nearly any tach, including vintage current-triggered gauges.</p>
-    </a>
-
-    <a class="card" href="products/grim.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/grim-enclosure.webp?v=1" alt="Preliminary 3D render of the Grim enclosure" width="348" height="220"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">In Development</span>
-      <h3>Grim</h3>
-      <p>All-in-one closed-loop fuel pump controller for pumps up to 10A. Real pressure control, no extra modules.</p>
-    </a>
-
-    <a class="card" href="products/grim-max.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/grim-max-enclosure.webp?v=1" alt="3D render of the Grim Max prototype enclosure with the Reaper Controls logo, GRIM MAX lettering and a mounting ear" width="260" height="300"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">Prototype Hardware</span>
-      <h3>Grim Max</h3>
-      <p>Closed-loop PWM fuel pump controller. Real pressure feedback instead of guesswork threshold switching, with two pump outputs and phone setup.</p>
-    </a>
-
-    <a class="card" href="products/tengu.html">
-      <span class="card-teaser card-teaser--render"><img src="images/renders/tengu-enclosure.webp?v=1" alt="3D render of the Tengu prototype enclosure" width="260" height="300"><span class="card-teaser-banner">3D Render</span></span>
-      <span class="badge">In Development</span>
-      <h3>Tengu</h3>
-      <p>Closed-loop smart fan controller. Holds coolant temperature with two fan outputs, an A/C input and phone setup. Sealed to last.</p>
-    </a>
-
+  <div class="prod-groups">
+  <section class="prod-group">
+    <div class="prod-group-head"><h2>Fuel</h2><p>Closed-loop fuel pump control. Pick by pump size.</p></div>
+    <div class="prod-grid">
+        <a class="card prod-card" href="products/grim.html" data-needs="fuel">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/grim-enclosure.webp?v=1" alt="Preliminary 3D render of the Grim enclosure" width="348" height="220" loading="lazy"></span>
+          <span class="badge">In Development</span>
+          <h3>Grim</h3>
+          <p>All-in-one closed-loop fuel pump controller for one pump up to 10A. Real pressure control, no extra modules.</p>
+          <span class="prod-price tba">Price TBA</span>
+        </a>
+        <a class="card prod-card" href="products/grim-max.html" data-needs="fuel">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/grim-max-enclosure.webp?v=1" alt="3D render of the Grim Max prototype enclosure" width="260" height="300" loading="lazy"></span>
+          <span class="badge">Prototype Hardware</span>
+          <h3>Grim Max</h3>
+          <p>Closed-loop control for one or two pumps of any size, each driven by a Golem. Pressure sensor and harness included.</p>
+          <span class="prod-price"><span class="mono">EXPECTED</span> $299</span>
+        </a>
+    </div>
+  </section>
+  <section class="prod-group">
+    <div class="prod-group-head"><h2>Tach signal</h2><p>Make the tach on your dash read right.</p></div>
+    <div class="prod-grid">
+        <a class="card prod-card" href="products/hob.html" data-needs="ls">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/hob-enclosure.webp?v=1" alt="3D render of the Hob prototype enclosure with its signal LED lit" width="260" height="300" loading="lazy"></span>
+          <span class="badge">Prototype Hardware</span>
+          <h3>Hob</h3>
+          <p>Fixes the LS swap tach: doubles the pulse count for a V8 gauge, rejects noise and protects the PCM.</p>
+          <span class="prod-price"><span class="mono">EXPECTED</span> $28.99</span>
+        </a>
+        <a class="card prod-card" href="products/puca.html" data-needs="vintage">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/puca-enclosure.webp?v=1" alt="3D render of the Púca prototype enclosure" width="374" height="300" loading="lazy"></span>
+          <span class="badge">Prototype Hardware</span>
+          <h3>Púca</h3>
+          <p>Reads nearly any tach signal and drives nearly any tach, including vintage current-triggered gauges.</p>
+          <span class="prod-price"><span class="mono">EXPECTED</span> $89.95</span>
+        </a>
+    </div>
+  </section>  <section class="prod-group">
+    <div class="prod-group-head"><h2>Power</h2><p>The muscle behind Grim Max and Tengu, or on its own with your ECU.</p></div>
+    <div class="prod-grid">
+        <a class="card prod-card" href="products/golem.html" data-needs="fuel fans power">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/golem-enclosure.webp?v=4" alt="3D render of the Golem prototype enclosure" width="286" height="300" loading="lazy"></span>
+          <span class="badge">Prototype Hardware</span>
+          <h3>Golem</h3>
+          <p>40A solid-state relay that regenerates your ECU's slow PWM at 20 kHz+, with current sensing and phone setup.</p>
+          <span class="prod-price"><span class="mono">EXPECTED</span> $179</span>
+        </a>
+    </div>
+  </section>
+  <section class="prod-group">
+    <div class="prod-group-head"><h2>Cooling</h2><p>Fan control that holds a real coolant temperature.</p></div>
+    <div class="prod-grid">
+        <a class="card prod-card" href="products/tengu.html" data-needs="fans">
+          <span class="card-teaser card-teaser--render"><img src="images/renders/tengu-enclosure.webp?v=1" alt="3D render of the Tengu prototype enclosure" width="260" height="300" loading="lazy"></span>
+          <span class="badge">In Development</span>
+          <h3>Tengu</h3>
+          <p>Closed-loop fan controller. Holds coolant temperature with two fan outputs, an A/C input and phone setup.</p>
+          <span class="prod-price tba">Price TBA</span>
+        </a>
+    </div>
+  </section>
   </div>
+
+  <section class="prod-flow" aria-labelledby="flow-h">
+    <div class="prod-group-head"><h2 id="flow-h">How they work together</h2><p>Every product works on its own. Here's how they connect when you run more than one.</p></div>
+    <div class="flow-row">
+      <span class="flow-tag mono">FUEL</span>
+      <div class="flow-node ext">Fuel pressure sensor<small>included with Grim Max</small></div><i class="flow-wire"></i>
+      <a class="flow-node rc" href="products/grim-max.html">Grim Max<small>measures, decides</small></a><i class="flow-wire"></i>
+      <a class="flow-node rc" href="products/golem.html">Golem<small>one per pump</small></a><i class="flow-wire hot"></i>
+      <div class="flow-node ext">Fuel pump<small>up to 40A each</small></div>
+    </div>
+    <p class="flow-note">ECU tach signal feeds Grim Max too. Bundle: Grim Max + Golem, expected $459.</p>
+    <div class="flow-row">
+      <span class="flow-tag mono">COOLING</span>
+      <div class="flow-node ext">Coolant temp sensor<small>Holley 3/8" NPT</small></div><i class="flow-wire"></i>
+      <a class="flow-node rc" href="products/tengu.html">Tengu<small>holds your temp</small></a><i class="flow-wire"></i>
+      <a class="flow-node rc" href="products/golem.html">Golem<small>for brushed fans</small></a><i class="flow-wire hot"></i>
+      <div class="flow-node ext">Fans<small>brushless can skip Golem</small></div>
+    </div>
+    <p class="flow-note">A/C-on input brings the fans up when the compressor runs.</p>
+    <div class="flow-row">
+      <span class="flow-tag mono">TACH</span>
+      <div class="flow-node ext">LS PCM<small>2 pulses per rev</small></div><i class="flow-wire"></i>
+      <a class="flow-node rc" href="products/hob.html">Hob<small>doubles and cleans</small></a><i class="flow-wire"></i>
+      <div class="flow-node ext">V8 tach<small>reads right</small></div>
+    </div>
+    <p class="flow-note">Other signals or vintage gauges: <a href="products/puca.html">Púca</a> sits in the same spot.</p>
+  </section>
+
 </main>
+
+<script>
+(function(){
+  var A={fuel:'One pump up to 10A, like a Holley Blue or Red: <a href="products/grim.html">Grim</a> does it all in one box. Bigger pump, or two pumps: <a href="products/grim-max.html">Grim Max</a> plus one <a href="products/golem.html">Golem</a> per pump.',
+    fans:'<a href="products/tengu.html">Tengu</a> holds your coolant temperature. Brushless PWM fans run straight from it; brushed fans need a <a href="products/golem.html">Golem</a> per output.',
+    ls:'<a href="products/hob.html">Hob</a>. It doubles the LS controller\'s 2-pulse signal so a V8 tach reads right, and cleans it up on the way.',
+    vintage:'<a href="products/puca.html">Púca</a>. It drives voltage-triggered, current-triggered and modern tachs from nearly any signal.',
+    power:'<a href="products/golem.html">Golem</a>. 40A, 20 kHz+ PWM from your ECU\'s slow signal, with current sensing.',
+    all:''};
+  var btns=document.querySelectorAll('.prod-picker-btns button'), cards=document.querySelectorAll('.prod-card'), ans=document.getElementById('pick-answer');
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var n=b.dataset.need;
+    btns.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+    cards.forEach(function(c){ var on=n==='all'||c.dataset.needs.split(' ').indexOf(n)>-1; c.classList.toggle('is-dim',!on); c.classList.toggle('is-hit',on&&n!=='all'); });
+    ans.innerHTML=A[n]; ans.classList.toggle('show',!!A[n]);
+    if(n!=='all'){ var hit=document.querySelector('.prod-card.is-hit'); if(hit){ var r=hit.getBoundingClientRect(); if(r.top>window.innerHeight-120||r.bottom<0){ var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches; hit.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'}); } } }
+  }); });
+})();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
