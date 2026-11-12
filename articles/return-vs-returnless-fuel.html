@@ -34,15 +34,15 @@
       "datePublished": "2026-11-12",
       "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
-      "about": ["return fuel system", "returnless fuel system", "fuel pressure regulator", "LS swap fuel system", "carburetor fuel pressure", "fuel pump speed control"]
+      "about": ["return fuel system", "returnless fuel system", "fuel pressure regulator", "engine swap fuel system", "carburetor fuel pressure", "fuel pump speed control"]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is a returnless fuel system OK for an LS swap?",
-          "acceptedAnswer": { "@type": "Answer", "text": "For a naturally aspirated LS swap with a stock-style pump, yes. GM shipped returnless systems at a fixed 58 psi for years, and the C5 Corvette style filter-regulator does the same job in a swap. The regulator bypasses excess fuel back into the tank, so the pump is not dead-headed." }
+          "name": "Is a returnless fuel system OK for an engine swap?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For a naturally aspirated EFI swap with a stock-style pump, usually yes. Most modern engines left the factory returnless at a fixed rail pressure, and a bypass regulator set to that pressure does the same job in a swap. The regulator bypasses excess fuel instead of dead-heading the pump." }
         },
         {
           "@type": "Question",
@@ -88,7 +88,7 @@
     <nav class="art-toc" aria-label="On this page"><p class="mono">ON THIS PAGE</p><ol id="toc"></ol></nav>
     <article class="art-body">
 
-  <p class="doc-id mono">FIG. REF: FUEL-SYS-01 &nbsp;·&nbsp; SUBJECT: FUEL SYSTEM LAYOUT &nbsp;·&nbsp; READ: 9 MIN</p>
+  <p class="doc-id mono">FIG. REF: FUEL-SYS-01 &nbsp;·&nbsp; SUBJECT: FUEL SYSTEM LAYOUT &nbsp;·&nbsp; READ: 10 MIN</p>
 
   <h1>Return vs. Returnless Fuel Systems: What Your Swap Actually Needs</h1>
   <p class="art-dates mono">PUBLISHED NOV 12, 2026</p>
@@ -115,7 +115,7 @@
     </div>
   </div>
 
-  <p class="lede">Ask whether an LS swap needs a return line and you'll get two camps. One says returnless is how GM built it, so it's fine. The other says returnless dead-heads the pump, cooks the fuel, and you'll regret it. Both camps are partly right, and the reason comes down to one thing most of the argument skips.</p>
+  <p class="lede">Ask whether an EFI swap needs a return line and you'll get two camps. One says returnless is how the factory built it, so it's fine. The other says returnless dead-heads the pump, cooks the fuel, and you'll regret it. Both camps are partly right, and the reason comes down to one thing most of the argument skips.</p>
 
   <p><strong>The return line was never really about the engine. It was about the pump.</strong></p>
 
@@ -145,7 +145,7 @@
 
   <p>The short answer is emissions. In a return system, fuel that isn't used loops through a hot engine bay and comes back warm, and over a drive it heats the whole tank. A warmer tank makes more fuel vapor, and evaporative emissions rules made that vapor expensive. Moving the regulator to the tank means hot fuel never comes back.</p>
 
-  <p>Chrysler had returnless systems on some trucks by 1993. GM and Ford started switching around 1999, and by the mid-2000s returnless was the norm across most of the industry. The C5 Corvette's filter-regulator, the 58 psi part LS swappers still buy today, comes from that era.</p>
+  <p>Chrysler had returnless systems on some trucks by 1993. GM and Ford started switching around 1999, and by the mid-2000s returnless was the norm across most of the industry. Many of the fixed-pressure filter-regulators swappers buy today are based on factory parts from that era.</p>
 
   <p>Two other changes made it practical:</p>
 
@@ -158,17 +158,30 @@
 
   <h2>So what does an EFI swap actually need?</h2>
 
-  <p><strong>Naturally aspirated, stock-style pump: returnless is fine.</strong> GM shipped it for over a decade on the same engines you're swapping. Run the Corvette-style filter-regulator, or an equivalent 58 psi bypass regulator, close to the tank and a single feed line to the rail. The ECU already expects a fixed rail pressure, because that's what the factory calibration was built around.</p>
+  <p><strong>Naturally aspirated, stock-style pump: returnless is fine.</strong> Most modern engines left the factory that way. Run a bypass regulator set to your engine's factory rail pressure and a feed line to the rail. The factory calibration already expects that fixed pressure.</p>
+
+  <p>One catch: some later engines shipped with <em>electronic</em> returnless, where the factory pump controller sets rail pressure and there is no mechanical regulator at all. Out of the donor car, that controller is gone, so the swap needs either a regulator set to the pressure the calibration expects or a pump controller that does the same job.</p>
 
   <p><strong>Go return-style when one of these is true:</strong></p>
 
   <ul>
-    <li><strong>You run boost.</strong> With a fixed 58 psi rail, every psi of boost is a psi less pressure across the injector. At 15 psi of boost, the injector sees about 43 psi of push instead of 58. A boost-referenced regulator on a return system raises rail pressure one-for-one with boost, so the injector keeps its full flow. An ECU with fuel-pressure compensation can correct for this in a returnless setup, but only if the injectors and pump have the headroom.</li>
+    <li><strong>You run boost.</strong> With a fixed rail, say 58 psi, every psi of boost is a psi less pressure across the injector. At 15 psi of boost, the injector sees about 43 psi of push instead of 58. A boost-referenced regulator on a return system raises rail pressure one-for-one with boost, so the injector keeps its full flow. An ECU with fuel-pressure compensation can correct for this in a returnless setup, but only if the injectors and pump have the headroom.</li>
     <li><strong>You run a big pump or E85.</strong> A large pump that's sized for peak power moves a lot more fuel than the engine uses at cruise. In a returnless system, all that surplus gets churned in the tank. In a return system, it loops through the engine bay. Either way it's energy turned into heat, and the bigger the pump, the more it matters. This is where pump speed control earns its keep.</li>
     <li><strong>Your ECU can't compensate.</strong> Some older or simpler standalone ECUs expect a vacuum-referenced rail. If yours can't correct for manifold pressure, a referenced regulator on a return line keeps the fueling math honest.</li>
   </ul>
 
-  <p>On the "returnless kills pumps" claim: a pump running against a bypass regulator in the tank is doing the same work as a pump running against a bypass regulator on the rail. The problem people run into is a <em>true</em> dead-head, a regulator with no bypass at all paired with a high-volume pump, and that is a different setup from what GM built.</p>
+  <p>On the "returnless kills pumps" claim: a pump running against a bypass regulator in the tank is doing the same work as a pump running against a bypass regulator on the rail. The problem people run into is a <em>true</em> dead-head, a regulator with no bypass at all paired with a high-volume pump, and that is a different setup from what the factories built.</p>
+
+  <h2>Where should the regulator go?</h2>
+
+  <p>Plenty of hot rodders put a bypass regulator in the engine bay with a return line back to the tank, and that's a perfectly good setup. It's simply the "return" layout from the top of this article. Tank-side and engine-side each do something the other can't:</p>
+
+  <ul>
+    <li><strong>At the engine</strong> the regulator holds pressure where it's actually used. Any pressure lost through the feed line, the filter, and fittings at high flow happens <em>before</em> the regulator, so the rail or carb still sees the setpoint. It's easy to reach, easy to gauge, and it's the only place a regulator can be vacuum or boost referenced. The cost is a second line the full length of the car and warm fuel going back to the tank.</li>
+    <li><strong>At the tank</strong> the surplus never leaves the tank, so the fuel stays cooler and there's only one line to run. The cost is that the engine sees the setpoint minus whatever the feed line and filter lose at full flow, and the regulator can't follow manifold pressure.</li>
+  </ul>
+
+  <p>Rule of thumb: <strong>boosted engines and carburetors want the regulator at the engine</strong>, boost for the referencing and carbs because pressure at the bowl is what matters. Holley's own advice for carbureted street and strip cars is to run the feed line straight to the carb and put the bypass regulator on the return side. A naturally aspirated EFI engine on a fixed-pressure calibration works either way; tank-side runs cooler and simpler, engine-side gives you a gauge and adjustment right where you're tuning. With the feed line sized properly, the pressure difference between the two is small.</p>
 
   <h2>Carburetors play by different rules</h2>
 
@@ -199,7 +212,7 @@
   <h2>The short version</h2>
 
   <ul>
-    <li><strong>NA EFI swap, stock-style pump:</strong> returnless with a 58 psi bypass regulator. It's what GM built.</li>
+    <li><strong>NA EFI swap, stock-style pump:</strong> a bypass regulator at your engine's factory rail pressure. It's what the factories built.</li>
     <li><strong>Boost, big pump, E85, or an ECU that can't compensate:</strong> return-style with a referenced regulator, and seriously consider pump speed control.</li>
     <li><strong>Carb with a mechanical pump:</strong> usually no regulator needed.</li>
     <li><strong>Carb with a carb-rated electric pump:</strong> a dead-head regulator is fine.</li>
