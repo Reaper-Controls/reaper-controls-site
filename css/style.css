@@ -1037,3 +1037,8 @@ main.art-main{ max-width: 1448px; padding-top: 40px; }
 .flow-wire, .flow-wire.hot{ animation: none; background-image: none; }
 .flow-wire{ background-color: var(--scope); }
 .flow-wire.hot{ background-color: #d6642c; }
+/* Slow pulse on power (orange) wires only */
+.flow-wire.hot{ animation: hotpulse 2.8s ease-in-out infinite; }
+.flow-wire.hot::after{ animation: hotpulse 2.8s ease-in-out infinite; }
+@keyframes hotpulse{ 0%,100%{ filter: brightness(.85); box-shadow: none; } 50%{ filter: brightness(1.25); box-shadow: 0 0 8px 1px rgba(214,100,44,.55); } }
+@media (prefers-reduced-motion: reduce){ .flow-wire.hot, .flow-wire.hot::after{ animation: none; } }
