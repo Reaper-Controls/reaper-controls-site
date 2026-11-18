@@ -1195,3 +1195,13 @@ nav.primary-nav{ align-items: baseline; }
 .home-hero .home-hero-title{ max-width: none; font-size: clamp(28px, 2.7vw, 40px); margin-bottom: 20px; }
 .home-hero .home-hero-text .lede{ max-width: 36em; font-size: 19px; line-height: 1.7; }
 @media (min-width: 901px){ .home-hero .home-hero-title{ white-space: nowrap; } }
+/* "Smart. Connected." section: more breathing room */
+.home-hero{ padding: 120px 40px 128px; }
+.home-hero-inner{ max-width: 1240px; gap: 96px; grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+.home-hero .home-hero-title{ margin-bottom: 24px; }
+@media (max-width: 900px){
+  .home-hero{ padding: 72px 24px 80px; }
+  .home-hero-inner{ gap: 48px; }
+}
+@media (max-width: 520px){ .home-hero{ padding: 56px 16px 64px; } }
+.home-hero .home-hero-title{ font-size: clamp(26px, 2.4vw, 34px); }
