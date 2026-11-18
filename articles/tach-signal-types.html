@@ -32,7 +32,7 @@
       "headline": "Why Coil Negative, Coil Positive, and Square Wave Aren't Interchangeable",
       "description": "Coil-negative, coil-positive, and ECU square-wave tach signals differ in voltage, polarity, and shape, not just pulse count. Why a 'universal' adapter tuned for one family struggles with the other two.",
       "datePublished": "2026-09-30",
-      "dateModified": "2026-11-11",
+      "dateModified": "2026-11-17",
       "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "about": ["tach signal types", "coil negative tach", "coil positive tach", "ECU square wave signal", "universal tach adapter"]
@@ -87,7 +87,7 @@
   <p class="doc-id mono">FIG. REF: SIG-TYPE-01 &nbsp;·&nbsp; SUBJECT: SIGNAL TYPES &nbsp;·&nbsp; READ: 7 MIN</p>
 
   <h1>Why Coil Negative, Coil Positive, and Square Wave Aren't Interchangeable</h1>
-  <p class="art-dates mono">PUBLISHED SEP 30, 2026 · UPDATED NOV 11, 2026</p>
+  <p class="art-dates mono">PUBLISHED SEP 30, 2026 · UPDATED NOV 17, 2026</p>
 
   <div class="scope">
     <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: a rounded, ringing coil-based tach pulse next to a clean, sharp-edged ECU square wave pulse">
@@ -163,7 +163,7 @@
 
   <div class="callout">LS PCM / ECU square wave / points / coil negative in → clamp + pull-up + hysteresis trigger → coil-style spike, current pulse, or clean 12V square wave out</div>
 
-  <p>Pulse count stays a separate job. A translator that reshapes the signal passes pulses one for one, so the gauge or the controller still has to be set for the engine's pulse rate. On an LS into a V8 gauge, that's the case for a dedicated pulse doubler.</p>
+  <p>Pulse count stays a separate job. A translator that reshapes the signal passes pulses one for one, so the gauge or the controller still has to be set for the engine's pulse rate. On an LS into a V8 gauge, that means setting the gauge to 4-cylinder or changing the PCM's tach output in the tune.</p>
 
   <p>That's the job <a href="../products/puca.html">Púca</a> is built around: one input stage that reads nearly any tach source, and three outputs covering voltage-triggered, current-triggered and modern gauges, including the current-triggered tachs other adapters don't support. If your problem is specifically an LS controller into a V8 tach, <a href="../products/hob.html">Hob</a> is the narrower, lower-cost answer, and it doubles the pulse count too.</p>
 

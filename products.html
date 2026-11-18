@@ -136,8 +136,8 @@
           <span class="card-teaser card-teaser--render"><img src="images/renders/hob-enclosure.webp?v=1" alt="3D render of the Hob prototype enclosure with its signal LED lit" width="260" height="300" loading="lazy"></span>
           <span class="badge">Prototype Hardware</span>
           <h3>Hob</h3>
-          <p>Fixes the LS swap tach: doubles the pulse count for a V8 gauge, rejects noise and protects the PCM.</p>
-          <span class="prod-price"><span class="mono">EXPECTED</span> $28.99</span>
+          <p>Fixes the weak LS tach signal: clean 12V square wave, protects the PCM.</p>
+          <span class="prod-price"><span class="mono">EXPECTED</span> $24.99</span>
         </a>
         <a class="card prod-card" href="products/puca.html" data-needs="vintage">
           <span class="card-teaser card-teaser--render"><img src="images/renders/puca-enclosure.webp?v=1" alt="3D render of the Púca prototype enclosure" width="374" height="300" loading="lazy"></span>
@@ -194,8 +194,8 @@
     <div class="flow-row">
       <span class="flow-tag mono">TACH</span>
       <div class="flow-node ext">LS PCM<small>2 pulses per rev</small></div><i class="flow-wire"></i>
-      <a class="flow-node rc" href="products/hob.html">Hob<small>doubles and cleans</small></a><i class="flow-wire"></i>
-      <div class="flow-node ext">V8 tach<small>reads right</small></div>
+      <a class="flow-node rc" href="products/hob.html">Hob<small>cleans and boosts</small></a><i class="flow-wire"></i>
+      <div class="flow-node ext">Tach<small>set to 4-cyl, reads right</small></div>
     </div>
     <p class="flow-note">Other signals or vintage gauges: <a href="products/puca.html">Púca</a> sits in the same spot.</p>
   </section>
@@ -206,7 +206,7 @@
 (function(){
   var A={fuel:'One pump up to 10A, like a Holley Blue or Red: <a href="products/grim.html">Grim</a> does it all in one box. Bigger pump, or two pumps: <a href="products/grim-max.html">Grim Max</a>, which comes with one <a href="products/golem.html">Golem</a>; add a second Golem for a second pump.',
     fans:'<a href="products/tengu.html">Tengu</a> holds your coolant temperature. Brushless PWM fans run straight from it; brushed fans need a <a href="products/golem.html">Golem</a> per output.',
-    ls:'<a href="products/hob.html">Hob</a>. It doubles the LS controller\'s 2-pulse signal so a V8 tach reads right, and cleans it up on the way.',
+    ls:'<a href="products/hob.html">Hob</a>. It turns the LS controller\'s weak tach signal into a clean 12V square wave and protects the PCM. Set the tach to 4-cylinder.',
     vintage:'<a href="products/puca.html">Púca</a>. It drives voltage-triggered, current-triggered and modern tachs from nearly any signal.',
     power:'<a href="products/golem.html">Golem</a>. 40A, 20 kHz+ PWM from your ECU\'s slow signal, with current sensing.',
     all:''};

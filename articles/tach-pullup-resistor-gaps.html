@@ -32,7 +32,7 @@
       "headline": "Is a Pull-Up Resistor Enough for an LS Swap Tach Signal? (Why It Can Put Your PCM at Risk)",
       "description": "A tach pull-up resistor makes an LS swap tach work, but it wires the PCM's tach output directly to the dash harness, invites noise, and leaves a V8 tach reading half RPM.",
       "datePublished": "2026-09-20",
-      "dateModified": "2026-10-13",
+      "dateModified": "2026-11-17",
       "author": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "publisher": { "@type": "Organization", "name": "Reaper Controls LLC" },
       "mentions": { "@type": "Product", "name": "Hob", "brand": { "@type": "Organization", "name": "Reaper Controls LLC" }, "url": "https://reapercontrols.com/products/hob.html" },
@@ -88,7 +88,7 @@
   <p class="doc-id mono">FIG. REF: TACH-SIG-01 &nbsp;·&nbsp; SUBJECT: TACH SIGNAL &nbsp;·&nbsp; READ: 7 MIN</p>
 
   <h1>Is a Pull-Up Resistor Enough for an LS Swap Tach Signal?<br>(Why It Can Put Your PCM at Risk)</h1>
-  <p class="art-dates mono">PUBLISHED SEP 20, 2026 · UPDATED OCT 13, 2026</p>
+  <p class="art-dates mono">PUBLISHED SEP 20, 2026 · UPDATED NOV 17, 2026</p>
 
   <div class="scope">
     <svg viewBox="0 0 640 180" role="img" aria-label="Oscilloscope comparison: a resistor-pulled tach signal with noise spikes and a missing pulse, next to a clean conditioned square wave">
@@ -109,7 +109,7 @@
     </svg>
     <div class="scope-caption mono">
       <span><span style="color:#c1531b">■</span> resistor pull-up — noise, missed pulse</span>
-      <span><span style="color:#6fada3">■</span> conditioned — hysteresis, hard edges</span>
+      <span><span style="color:#6fada3">■</span> conditioned — clean switching, hard edges</span>
     </div>
   </div>
 
@@ -117,7 +117,7 @@
 
   <p>It usually works. That's why everyone recommends it. But <strong>"the needle moves" isn't the same as "the signal is right,"</strong> and a bare resistor leaves four gaps that nobody in those threads talks about. One of them puts your PCM's output driver directly on the end of fifteen feet of harness.</p>
 
-  <div class="short-answer"><strong>Short answer:</strong> A pull-up resistor gets the needle moving, but it doesn't fix the most common LS swap tach problems. The PCM puts out 2 pulses per revolution, so a V8 tach still reads half. The resistor-pulled wire picks up enough noise to make the needle jump or drop to zero at wide-open throttle. And it connects the PCM's tach pin directly to the dash wiring with nothing in between. With a short run, a tach set to 4-cylinder mode, and nothing else reading the signal, a resistor is fine. Otherwise, use a signal conditioner.</div>
+  <div class="short-answer"><strong>Short answer:</strong> A pull-up resistor gets the needle moving, but it leaves two problems in place. The resistor-pulled wire picks up enough noise to make the needle jump or drop to zero at wide-open throttle. And it connects the PCM's tach pin directly to the dash wiring with nothing in between. Pulse count is a separate fix either way: the PCM puts out 2 pulses per revolution, so a V8 tach needs a 4-cylinder setting or a tune change. With a short run and nothing else reading the signal, a resistor is fine. Otherwise, use a signal conditioner.</div>
 
   <h2>What the resistor actually does</h2>
 
@@ -178,7 +178,7 @@
 
   <h2>When a resistor is fine</h2>
 
-  <p>To be fair to the forum advice: plenty of swaps run a pull-up resistor for years without a problem. If the run to the gauge is short and well routed, the tach can be set to 4-cylinder mode, nothing else depends on the signal, and the needle is steady at wide-open throttle, a resistor is a reasonable, cheap fix. Use a moderate value, around 10k, rather than going as stiff as possible.</p>
+  <p>To be fair to the forum advice: plenty of swaps run a pull-up resistor for years without a problem. If the run to the gauge is short and well routed, nothing else depends on the signal, and the needle is steady at wide-open throttle, a resistor is a reasonable, cheap fix. Use a moderate value, around 10k, rather than going as stiff as possible.</p>
 
   <p>The gaps show up when one of those conditions isn't true.</p>
 
@@ -187,19 +187,17 @@
   <p>The fix isn't a better resistor value. It's putting something between the PCM and the harness that does the jobs a resistor can't. Here's how we designed <a href="../products/hob.html">Hob</a> to do it:</p>
 
   <ul>
-    <li><strong>A gentle pull-up.</strong> The pull-up only has to drive one input, not a whole harness, so it can be light: 18k&Omega; to a regulated rail, with 2k&Omega; in series. The PCM sinks about 0.6 mA per pulse, less than half of what even a 10k resistor asks and roughly a twentieth of a 1k.</li>
-    <li><strong>Hysteresis.</strong> A Schmitt-trigger input has a dead band between its on and off thresholds, so small noise spikes don't count as pulses.</li>
-    <li><strong>Separate output drivers.</strong> Each output gets a 12V square wave from its own transistor. The PCM pin isn't electrically connected to either output, so a short on a dash wire hits Hob's output, not your PCM.</li>
-    <li><strong>Input protection.</strong> The 2k&Omega; series resistance and a Schottky clamp on the PCM side are there to stop transients and miswiring at the module.</li>
-    <li><strong>Pulse doubling.</strong> A 2-pulse source becomes a 4-pulse signal, so a V8 tach reads correctly without retuning the PCM or reconfiguring the gauge.</li>
-    <li><strong>Two independent outputs.</strong> Run the tach on one and a shift light or other RPM-based device on the other. Each output has its own driver, so wire one device per output.</li>
-    <li><strong>A signal light.</strong> An LED glows dim when Hob has power and brighter when pulses are arriving. Checking for signal becomes a glance with the hood up instead of an hour with a multimeter.</li>
-    <li><strong>Mounted near the PCM.</strong> We recommend mounting Hob close to the PCM so the fragile, unconditioned part of the signal travels inches, not feet. Once it's conditioned, the 12V outputs can run to the dash.</li>
+    <li><strong>A light pull-up.</strong> The pull-up only has to drive one input, not a whole harness, so it can be light: 10k&Omega;. The PCM sinks about 1.2&ndash;1.5 mA per pulse, roughly a tenth of what a 1k resistor asks.</li>
+    <li><strong>A defined switching point.</strong> A transistor input switches at about 2V, so the signal only has to cross one clear threshold close to the PCM, before the long run picks up noise.</li>
+    <li><strong>A protected output driver.</strong> A high-side driver puts out a full 12V square wave and survives a shorted output. The PCM pin isn't electrically connected to the output, so a short on a dash wire hits Hob's output, not your PCM.</li>
+    <li><strong>Input and power protection.</strong> Series resistance on the PCM side limits current from transients and miswiring, and a reverse-polarity diode and surge suppressor protect the power input.</li>
+    <li><strong>Mounted near the PCM.</strong> We recommend mounting Hob close to the PCM so the fragile, unconditioned part of the signal travels inches, not feet. Once it's conditioned, the 12V output can run to the dash.</li>
+    <li><strong>Pulse count stays at the gauge.</strong> Hob passes pulses one for one, so set the tach to 4-cylinder, or change the tach output in the PCM tune.</li>
   </ul>
 
-  <div class="callout">PCM tach output → short lead → Hob (protection, hysteresis, doubling) → two independent 12V outputs → tach and shift light</div>
+  <div class="callout">PCM tach output → short lead → Hob (protection, clean switching) → 12V square-wave output → tach set to 4-cylinder</div>
 
-  <p>That's <a href="../products/hob.html">Hob</a>: a small potted signal conditioner built from two fixed-function logic chips, with no microcontroller, no software and no setup. First prototype boards are in hand and waiting on bench testing. Until that's done, everything above describes what it's designed to do, and we'll publish the measurements when we have them. It's not shipping yet. If you're fighting an LS swap tach right now, get on the list below and we'll let you know when it's available, along with scope captures of a resistor-pulled signal next to a conditioned one on a running engine.</p>
+  <p>That's <a href="../products/hob.html">Hob</a>: a small potted signal conditioner built from discrete transistors, with no microcontroller, no software and no setup. Rev B pilot boards are ordered, with bench and in-car testing next. Until that's done, everything above describes what it's designed to do, and we'll publish the measurements when we have them. It's not shipping yet. If you're fighting an LS swap tach right now, get on the list below and we'll let you know when it's available, along with scope captures of a resistor-pulled signal next to a conditioned one on a running engine.</p>
 
   <div class="waitlist">
     <div class="waitlist-eyebrow mono">NOT YET SHIPPING</div>
@@ -246,8 +244,8 @@
         <span class="mono art-prod-eyebrow">RELATED PRODUCT</span>
         <img src="../images/renders/hob-enclosure.webp?v=1" alt="3D render of the Hob enclosure" loading="lazy">
         <b>Hob</b>
-        <span class="art-prod-desc">LS swap tach fix. Doubles the pulse count, cleans the signal, protects the PCM.</span>
-        <span class="art-prod-price"><span class="mono">EXPECTED</span> $28.99</span>
+        <span class="art-prod-desc">LS swap tach fix. Clean 12V square wave, protects the PCM.</span>
+        <span class="art-prod-price"><span class="mono">EXPECTED</span> $24.99</span>
         <span class="art-prod-go">View product &rarr;</span>
       </a>
     </aside>
