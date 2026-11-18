@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261118b">
+<link rel="stylesheet" href="../css/style.css?v=20261118e">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,16 +41,25 @@
 <header class="masthead">
   <div class="masthead-inner">
     <a class="wordmark" href="../index.html">REAPER<span>·</span>CONTROLS</a>
-    <nav class="primary-nav">
-      <a href="../index.html">Home</a>
-      <a href="../products.html" aria-current="page">Products</a>
+    <nav class="primary-nav" aria-label="Main">
+      <a class="nav-home" href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../in-development.html" aria-current="page">In Development</a>
       <a href="../articles.html">Tech Notes</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="nav-about">About</button>
+        <div class="nav-drop-menu" id="nav-about"><div class="nav-drop-list">
+          <a href="../about.html">About Reaper Controls</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../events.html">Events</a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
 
 <main class="pdp-main">
-  <p class="crumbs mono"><a href="../products.html">Products</a><span>/</span>Fan Control<span>/</span>Tengu</p>
+  <p class="crumbs mono"><a href="../in-development.html">In Development</a><span>/</span>Fan Control<span>/</span>Tengu</p>
 
   <div class="pdp-top">
     <div class="pdp-media">
@@ -200,5 +209,6 @@
 </footer>
 
 <script src="../js/waitlist.js" defer></script>
+<script src="../js/nav.js" defer></script>
 </body>
 </html>

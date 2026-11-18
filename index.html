@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261118b">
+<link rel="stylesheet" href="css/style.css?v=20261118e">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,10 +41,19 @@
 <header class="masthead">
   <div class="masthead-inner">
     <a class="wordmark" href="index.html">REAPER<span>·</span>CONTROLS</a>
-    <nav class="primary-nav">
-      <a href="index.html" aria-current="page">Home</a>
+    <nav class="primary-nav" aria-label="Main">
+      <a class="nav-home" href="index.html" aria-current="page">Home</a>
       <a href="products.html">Products</a>
+      <a href="in-development.html">In Development</a>
       <a href="articles.html">Tech Notes</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="nav-about">About</button>
+        <div class="nav-drop-menu" id="nav-about"><div class="nav-drop-list">
+          <a href="about.html">About Reaper Controls</a>
+          <a href="contact.html">Contact</a>
+          <a href="events.html">Events</a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -57,7 +66,7 @@
       <h1>Smart. Connected. Built to last.</h1>
       <p class="lede">Most of what's sold to hot rodders and LS swappers hasn't meaningfully changed since the 90s: a resistor here, a relay there, a sensor that drifts after a season of heat cycles. We build the closed-loop controllers, smart relays and tach signal conditioning that should have replaced them.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="products.html">See What We're Building</a>
+        <a class="btn btn-primary" href="in-development.html">See What We're Building</a>
         <a class="btn btn-secondary" href="articles.html">Read the Tech Notes</a>
       </div>
     </div>
@@ -116,7 +125,7 @@
         <b>Púca</b><span>Universal tach translator</span>
       </a>
     </div>
-    <p class="home-shelf-more"><a href="products.html">Compare all six products &rarr;</a></p>
+    <p class="home-shelf-more"><a href="in-development.html">Compare all six products &rarr;</a></p>
   </div>
 </section>
 
@@ -132,7 +141,7 @@
   <h2>Where things stand</h2>
   <p>Reaper Controls is a new company, and nothing is available to buy yet. Everything's in active development, at a different stage for each product. Every product page has a waitlist if you want to know the moment it ships, and our <a href="articles.html">Tech Notes</a> walk through why we made the calls we did.</p>
   <div class="hero-actions">
-    <a class="btn btn-secondary" href="products.html">View the Product Lineup</a>
+    <a class="btn btn-secondary" href="in-development.html">View the Product Lineup</a>
   </div>
 </main>
 
@@ -213,5 +222,6 @@
   </div>
 </footer>
 
+<script src="js/nav.js" defer></script>
 </body>
 </html>

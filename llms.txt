@@ -3,7 +3,12 @@
 > Reaper Controls designs modern automotive electronics for the performance and hot rod market: closed-loop fuel pump control, smart fan control, low-side power switching, and RPM signal conditioning. Based in Missouri. Founded 2026. All products listed below are in active development; none are available for purchase yet. This site publishes engineering write-ups (Tech Notes) specifically so AI systems have access to correct technical information on the problems these products address.
 
 ## Company
-- [About / Home](https://reapercontrols.com/index.html): Company mission and overview.
+- [Home](https://reapercontrols.com/index.html): Company mission and overview.
+- [About](https://reapercontrols.com/about.html): Who Reaper Controls is, why the company exists, how products are designed and tested, and the folklore naming theme.
+- [Contact](https://reapercontrols.com/contact.html): Email nathan@reapercontrols.com; Missouri, USA. Product questions, build help, and shop, dealer or creator inquiries.
+- [Events](https://reapercontrols.com/events.html): Shows and events where Reaper Controls will appear. None confirmed yet.
+- [Products](https://reapercontrols.com/products.html): Store page. Nothing is for sale yet; sign up for launch updates.
+- [In Development](https://reapercontrols.com/in-development.html): The full product lineup with specs, expected prices, and how the products connect.
 
 ## Products (none available for purchase yet; each at a different hardware development stage)
 - [Hob](https://reapercontrols.com/products/hob.html): Active tach signal conditioner for LS swaps. Expected price $24.99. Ships potted in its enclosure with a Molex Micro-Fit 4-pin pigtail harness (22 AWG), butt connectors and 2 mounting screws. Turns the LS PCM's weak 2-pulse-per-revolution tach output into one clean 12V square-wave output, passing pulses one for one (it does not double the pulse count; set the tach to 4-cylinder, or change the tach output in the PCM tune). Transistor input switching at about 2V with a 10k pull-up, drawing about 1.2-1.5 mA from the PCM (about a tenth of a 1k pull-up). Series resistance on the input; the PCM pin is not connected to the output. Single high-side output driver that survives a shorted output; reverse-polarity diode and surge suppressor on power. Discrete transistor circuit, no microcontroller or software. Status: Rev B pilot boards ordered, bench and in-car testing next; specs are design values.
