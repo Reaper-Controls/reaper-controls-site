@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261112e">
+<link rel="stylesheet" href="css/style.css?v=20261118a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -166,21 +166,21 @@
   function lbl(txt,yy,col){x.fillStyle=col;x.font='11px IBM Plex Mono, monospace';x.fillText(txt,8,yy);}
   function draw(){
     x.clearRect(0,0,W,H);
-    x.strokeStyle='rgba(111,173,163,0.12)'; x.lineWidth=1;
+    x.strokeStyle='rgba(164,184,200,0.12)'; x.lineWidth=1;
     for(var i=1;i<10;i++){x.beginPath();x.moveTo(i*W/10,0);x.lineTo(i*W/10,H);x.stroke();}
     for(var j=1;j<6;j++){x.beginPath();x.moveTo(0,j*H/6);x.lineTo(W,j*H/6);x.stroke();}
     var dx=W/(N-1);
     // target line
-    x.setLineDash([6,6]); x.strokeStyle='rgba(233,229,220,0.35)'; x.beginPath();
+    x.setLineDash([6,6]); x.strokeStyle='rgba(233,234,234,0.35)'; x.beginPath();
     var ys=yp(SET); x.moveTo(0,ys); x.lineTo(W,ys); x.stroke(); x.setLineDash([]);
     // rpm
-    x.strokeStyle='#6fada3'; x.lineWidth=2; x.beginPath();
+    x.strokeStyle='#a4b8c8'; x.lineWidth=2; x.beginPath();
     rpm.forEach(function(v,i){var yy=yr(v); i?x.lineTo(i*dx,yy):x.moveTo(0,yy);}); x.stroke();
     // pressure
-    x.strokeStyle='#d6642c'; x.lineWidth=2.6; x.shadowColor='rgba(214,100,44,0.6)'; x.shadowBlur=8; x.beginPath();
+    x.strokeStyle='#d5393a'; x.lineWidth=2.6; x.shadowColor='rgba(213,57,58,0.6)'; x.shadowBlur=8; x.beginPath();
     psi.forEach(function(v,i){var yy=yp(v); i?x.lineTo(i*dx,yy):x.moveTo(0,yy);}); x.stroke(); x.shadowBlur=0;
-    lbl('FUEL PRESSURE',16,'rgba(214,100,44,.8)'); lbl('RPM',H*0.44,'rgba(111,173,163,.8)');
-    x.strokeStyle='rgba(111,173,163,0.25)'; x.beginPath(); x.moveTo(0,H*0.4); x.lineTo(W,H*0.4); x.stroke();
+    lbl('FUEL PRESSURE',16,'rgba(213,57,58,.8)'); lbl('RPM',H*0.44,'rgba(164,184,200,.8)');
+    x.strokeStyle='rgba(164,184,200,0.25)'; x.beginPath(); x.moveTo(0,H*0.4); x.lineTo(W,H*0.4); x.stroke();
     var r=rpm[rpm.length-1]||0;
     eR.textContent=Math.round(r/10)*10; eD.textContent=Math.round(duty)+'%'; eP.textContent=(psi[psi.length-1]||SET).toFixed(1);
   }
