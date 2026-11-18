@@ -1256,3 +1256,21 @@ nav.primary-nav{ align-items: baseline; }
   .flow-row .flow-node + .flow-wire, .flow-row .flow-wire + .flow-node{ margin-left: 0; }
   .flow-legend{ margin-left: 0; }
 }
+/* flow diagram: even fixed-width boxes, short arrows, no stretching */
+.flow-node{ flex: 0 0 236px; }
+.flow-row{ justify-content: flex-start; }
+.flow-row .flow-node + .flow-wire{ margin-left: 14px; }
+.flow-row .flow-wire + .flow-node{ margin-left: 14px; }
+@media (max-width: 1240px){ .flow-node{ flex-basis: 200px; } .flow-tag{ flex-basis: 96px; } .flow-note, .flow-legend{ margin-left: 96px; } }
+@media (max-width: 820px){ .flow-node{ flex: none; } .flow-note, .flow-legend{ margin-left: 0; } }
+.flow-node{ flex: 0 1 236px; min-width: 0; }
+.flow-wire{ flex: 0 1 56px; min-width: 28px; }
+@media (max-width: 1240px){ .flow-node{ flex-basis: 236px; } }
+@media (max-width: 820px){ .flow-node, .flow-wire{ flex: none; } }
+@media (max-width: 820px){
+  .flow-tag{ flex: none; margin-bottom: 10px; }
+  .flow-node{ flex: none; width: auto; }
+  .flow-wire{ flex: none; width: 3px; min-width: 0; height: 22px; }
+  .flow-row .flow-node + .flow-wire{ margin-left: 24px; }
+  .flow-row .flow-wire + .flow-node{ margin-left: 0; }
+}
