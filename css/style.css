@@ -1140,3 +1140,32 @@ nav.primary-nav{ align-items: baseline; }
 .contact-form textarea{ width: 100%; resize: vertical; min-height: 140px; font: inherit; }
 .contact-alt{ font-size: 15px; color: var(--ink-dim); margin-top: 14px; }
 .contact-form .field-row + .field-row{ margin-top: 14px; }
+
+/* ---------- mobile: hamburger menu ---------- */
+.nav-toggle{ display: none; }
+@media (max-width: 720px){
+  .masthead{ position: relative; }
+  .masthead-inner{ flex-wrap: nowrap; align-items: center; }
+  .nav-toggle{ display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 40px; padding: 0 10px;
+    background: transparent; border: 1px solid var(--line); cursor: pointer; }
+  .nav-toggle span{ display: block; height: 2px; width: 100%; background: var(--ink); transition: transform .2s, opacity .2s; }
+  .nav-open .nav-toggle{ border-color: var(--rust); }
+  .nav-open .nav-toggle span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .nav-open .nav-toggle span:nth-child(2){ opacity: 0; }
+  .nav-open .nav-toggle span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  .nav-toggle:focus-visible{ outline: 2px solid var(--scope); outline-offset: 2px; }
+
+  nav.primary-nav{ display: none; }
+  .nav-open nav.primary-nav{ display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    position: absolute; left: 0; right: 0; top: 100%; z-index: 70;
+    background: var(--bg-raised); border-bottom: 2px solid var(--rust); box-shadow: 0 18px 36px rgba(0,0,0,.5); padding: 6px 0; }
+  .nav-open nav.primary-nav > a, .nav-open .nav-drop-btn{ display: block; width: 100%; text-align: left; font-size: 14px; letter-spacing: .05em;
+    padding: 14px 24px; border-bottom: 0; border-left: 3px solid transparent; }
+  .nav-open nav.primary-nav .nav-home{ display: block; }
+  .nav-open nav.primary-nav > a[aria-current="page"], .nav-open .nav-drop.is-current .nav-drop-btn{ border-left-color: var(--rust); border-bottom: 0; }
+  .nav-open .nav-drop-btn::after{ float: right; margin-top: 8px; }
+  .nav-drop-menu{ position: static; padding: 0; }
+  .nav-drop-list{ min-width: 0; background: var(--bg); border: 0; box-shadow: none; padding: 4px 0; }
+  nav.primary-nav .nav-drop-list a{ padding: 12px 24px 12px 40px; font-size: 13px; }
+  nav.primary-nav .nav-drop-list a[aria-current="page"]{ box-shadow: inset 3px 0 0 var(--rust); }
+}
