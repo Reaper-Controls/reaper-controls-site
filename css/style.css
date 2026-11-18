@@ -1241,3 +1241,18 @@ nav.primary-nav{ align-items: baseline; }
   .flow-node{ padding: 14px 16px; }
   .flow-note{ margin-left: 0; }
 }
+/* flow diagram: short fixed arrows, boxes take the space; legend */
+.flow-node{ flex: 1 1 0; }
+.flow-wire{ flex: 0 0 56px; min-width: 56px; }
+.flow-row .flow-node + .flow-wire{ margin-left: 10px; }
+.flow-row .flow-wire + .flow-node{ margin-left: 10px; }
+.flow-legend{ display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-dim); margin: 18px 0 0 120px; letter-spacing: .04em; }
+.flow-legend span{ display: inline-block; width: 28px; height: 3px; }
+.flow-legend .lg-sig{ background: var(--scope); }
+.flow-legend .lg-pwr{ background: #d5393a; margin-left: 14px; }
+@media (max-width: 820px){
+  .flow-node{ flex: none; }
+  .flow-wire{ flex: none; min-width: 0; }
+  .flow-row .flow-node + .flow-wire, .flow-row .flow-wire + .flow-node{ margin-left: 0; }
+  .flow-legend{ margin-left: 0; }
+}
