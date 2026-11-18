@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20261118y">
+<link rel="stylesheet" href="../css/style.css?v=20261118z">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -287,14 +287,43 @@
 </script>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <a class="footer-logo" href="../index.html"><img src="../images/logo/reaper-controls-logo-480.webp" alt="Reaper Controls" width="150" height="91" loading="lazy"></a>
-    <span>Reaper Controls LLC — Missouri</span>
-    <span><a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a></span>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="../index.html"><img src="../images/logo/reaper-controls-logo-480.webp" alt="Reaper Controls" width="150" height="91" loading="lazy"></a>
+      <p>Precision control for the components that keep you moving.</p>
+    </div>
+    <nav class="footer-col" aria-label="Site">
+      <h4 class="mono">EXPLORE</h4>
+      <a href="../index.html">Home</a>
+      <a href="../products.html">Products</a>
+      <a href="../in-development.html">In Development</a>
+      <a href="../articles.html">Tech Notes</a>
+    </nav>
+    <nav class="footer-col" aria-label="Company">
+      <h4 class="mono">COMPANY</h4>
+      <a href="../about.html">About Reaper Controls</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../events.html">Events</a>
+    </nav>
+    <div class="footer-signup">
+      <h4 class="mono">LAUNCH UPDATES</h4>
+      <p>One email when products ship. No spam.</p>
+      <form class="js-waitlist footer-form" action="https://formspree.io/f/xgavqqee" method="POST"
+            data-success-badge="On the list" data-success-title="You're in." data-success-text="We'll email you when products ship.">
+        <label class="sr-only" for="ft-email">Email</label>
+        <input type="email" id="ft-email" name="email" required placeholder="you@example.com">
+        <input type="hidden" name="product" value="Footer updates">
+        <button type="submit" class="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Reaper Controls LLC &middot; Missouri, USA</span>
+    <a href="mailto:nathan@reapercontrols.com">nathan@reapercontrols.com</a>
   </div>
 </footer>
 
-<script src="../js/waitlist.js" defer></script>
+<script src="../js/waitlist.js?v=3" defer></script>
 <script src="../js/nav.js?v=2" defer></script>
 </body>
 </html>
