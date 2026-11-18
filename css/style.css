@@ -1321,3 +1321,7 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
 .footer-bottom a:hover{ color: var(--ink); }
 @media (max-width: 960px){ .footer-grid{ grid-template-columns: 1fr 1fr; gap: 40px 32px; } .footer-signup{ grid-column: 1 / -1; } .footer-brand{ grid-column: 1 / -1; } }
 @media (max-width: 520px){ footer.site-footer{ padding: 48px 16px 0; } .footer-form{ flex-direction: column; } .footer-form .submit{ align-self: flex-start; } }
+.footer-brand{ text-align: center; justify-self: start; width: max-content; max-width: 100%; }
+.footer-brand .footer-logo{ display: inline-block; }
+.footer-brand p{ margin: 0 auto; max-width: 26ch; }
+@media (max-width: 960px){ .footer-brand{ justify-self: center; } }
