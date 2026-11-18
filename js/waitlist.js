@@ -58,7 +58,7 @@
   }
 
   function showSuccess(form) {
-    var container = form.closest(".waitlist") || form.closest(".footer-signup");
+    var container = form.closest(".waitlist") || form.closest(".dev-signup") || form.closest(".footer-signup");
     if (!container) return;
 
     // Pages can override the confirmation text with data-success-* attributes

@@ -1325,3 +1325,17 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
 .footer-brand .footer-logo{ display: inline-block; }
 .footer-brand p{ margin: 0 auto; max-width: 26ch; }
 @media (max-width: 960px){ .footer-brand{ justify-self: center; } }
+
+/* ---------- In Development: launch updates bar ---------- */
+.dev-signup{ display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap;
+  max-width: 980px; margin: 28px 0 8px; padding: 22px 26px; background: var(--bg-raised);
+  border: 1px solid var(--line); border-left: 3px solid var(--rust); }
+.dev-signup-text h2{ font-size: 12px; letter-spacing: .14em; color: var(--ink); font-weight: 500; margin: 0 0 6px; border: 0; padding: 0; }
+.dev-signup-text p{ margin: 0; color: var(--ink-dim); font-size: 16px; }
+.dev-signup-form{ display: flex; gap: 8px; flex: 1 1 380px; max-width: 480px; }
+.dev-signup-form input[type=email]{ flex: 1 1 auto; min-width: 0; }
+.dev-signup-form .submit{ margin-top: 0; flex: none; padding: 11px 20px; }
+.dev-signup .waitlist-success h3{ font-size: 18px; margin: 6px 0 2px; }
+.dev-signup .waitlist-success p{ margin: 0; }
+@media (max-width: 520px){ .dev-signup{ padding: 18px; } .dev-signup-form{ flex-direction: column; } .dev-signup-form .submit{ align-self: flex-start; } }
+.dev-signup{ max-width: none; margin: 32px 0 36px; } .dev-signup-form{ max-width: 520px; }
