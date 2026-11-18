@@ -1396,3 +1396,18 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
   .home-band-text h2{ font-size: 26px; }
 }
 @media (max-width: 720px){ .home-band-text{ padding: 110px 18px 110px; } .home-band img{ object-position: 22% 70%; } }
+
+/* ---------- footer on phones: centered stack ---------- */
+.fl-links{ display: contents; }
+@media (max-width: 720px){
+  .footer-grid{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: 36px; padding-bottom: 40px; }
+  .footer-brand{ width: auto; justify-self: center; }
+  .footer-signup{ order: 2; width: 100%; max-width: 380px; }
+  .site-footer h4{ justify-content: center; }
+  .footer-form{ flex-direction: row; }
+  .footer-form .submit{ align-self: auto; }
+  .fl-links{ order: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 380px; }
+  .footer-col{ align-items: center; }
+  .footer-bottom{ flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+  .footer-signup .waitlist-success{ text-align: center; }
+}
