@@ -1274,3 +1274,16 @@ nav.primary-nav{ align-items: baseline; }
   .flow-row .flow-node + .flow-wire{ margin-left: 24px; }
   .flow-row .flow-wire + .flow-node{ margin-left: 0; }
 }
+/* 3-box rows sit centered in the 4-column grid (middle box under the middle arrow) */
+@media (min-width: 821px){
+  .flow-wire{ flex: 0 0 56px; }
+  .flow-row-3 .flow-tag + .flow-node{ margin-left: min(160px, calc(12.5% - 4.5px)); }
+}
+/* lock every box to the same computed width so all rows share one grid */
+@media (min-width: 821px){
+  .flow-row{ --tag: 120px; --nw: min(236px, calc((100% - var(--tag) - 252px) / 4)); }
+  .flow-tag{ flex: 0 0 var(--tag); }
+  .flow-node{ flex: 0 0 var(--nw); }
+  .flow-row-3 .flow-tag + .flow-node{ margin-left: calc((var(--nw) + 84px) / 2); }
+}
+@media (min-width: 821px) and (max-width: 1240px){ .flow-row{ --tag: 96px; } }
