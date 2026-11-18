@@ -1132,3 +1132,11 @@ nav.primary-nav{ align-items: baseline; }
   .shop-item{ width: calc(33.333% - 10px); font-size: 12px; }
   .shop-item img{ height: 90px; max-width: 100%; }
 }
+
+/* ---------- contact form ---------- */
+.contact-form-wrap{ margin: 8px 0 12px; }
+.contact-form .field-row{ margin-bottom: 4px; }
+.contact-form .field-full{ margin-top: 14px; display: flex; flex-direction: column; }
+.contact-form textarea{ width: 100%; resize: vertical; min-height: 140px; font: inherit; }
+.contact-alt{ font-size: 15px; color: var(--ink-dim); margin-top: 14px; }
+.contact-form .field-row + .field-row{ margin-top: 14px; }

@@ -61,17 +61,19 @@
     var container = form.closest(".waitlist");
     if (!container) return;
 
+    // Pages can override the confirmation text with data-success-* attributes
+    var d = form.dataset || {};
     var success = document.createElement("div");
     success.className = "waitlist-success";
     success.innerHTML =
-      '<span class="badge">On the list</span>' +
-      "<h3>You're in.</h3>" +
-      "<p>One email when it ships — nothing before that.</p>";
+      '<span class="badge">' + (d.successBadge || "On the list") + "</span>" +
+      "<h3>" + (d.successTitle || "You're in.") + "</h3>" +
+      "<p>" + (d.successText || "One email when it ships — nothing before that.") + "</p>";
 
     form.replaceWith(success);
 
     var eyebrow = container.querySelector(".waitlist-eyebrow");
-    if (eyebrow) eyebrow.textContent = "THANKS FOR SIGNING UP";
+    if (eyebrow) eyebrow.textContent = d.successEyebrow || "THANKS FOR SIGNING UP";
   }
 
   function showError(form, message) {
