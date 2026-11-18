@@ -1347,3 +1347,12 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
 .dev-signup > p{ margin: 0 0 16px; color: var(--ink-dim); font-size: 16px; }
 .dev-signup-form{ max-width: none; }
 @media (max-width: 1000px){ .dev-intro{ grid-template-columns: 1fr; gap: 28px; } .dev-signup{ max-width: 520px; } }
+
+/* ---------- header wordmark: two-weight lockup ---------- */
+.masthead-inner{ align-items: center; }
+.wordmark{ display: inline-flex; align-items: center; gap: 12px; letter-spacing: .06em; line-height: 1; }
+.wordmark b{ font-weight: 700; font-size: 25px; color: var(--ink); }
+.wordmark i{ width: 2px; height: 22px; background: var(--rust); flex: none; }
+.wordmark em{ font-style: normal; font-weight: 300; font-size: 16px; letter-spacing: .32em; color: #c9cdd1; }
+.wordmark:hover em{ color: var(--ink); }
+@media (max-width: 380px){ .wordmark{ gap: 9px; } .wordmark b{ font-size: 22px; } .wordmark em{ font-size: 14px; letter-spacing: .26em; } }
