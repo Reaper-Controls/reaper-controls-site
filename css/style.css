@@ -1339,3 +1339,11 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
 .dev-signup .waitlist-success p{ margin: 0; }
 @media (max-width: 520px){ .dev-signup{ padding: 18px; } .dev-signup-form{ flex-direction: column; } .dev-signup-form .submit{ align-self: flex-start; } }
 .dev-signup{ max-width: none; margin: 32px 0 36px; } .dev-signup-form{ max-width: 520px; }
+/* In Development intro: text left, sign-up box right */
+.dev-intro{ display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 56px; align-items: end; margin-bottom: 40px; }
+.dev-intro-text .lede{ margin-bottom: 0; }
+.dev-signup{ display: block; margin: 0; max-width: none; padding: 24px 26px 26px; }
+.dev-signup h2{ font-size: 12px; letter-spacing: .14em; color: var(--ink); font-weight: 500; margin: 0 0 6px; border: 0; padding: 0; }
+.dev-signup > p{ margin: 0 0 16px; color: var(--ink-dim); font-size: 16px; }
+.dev-signup-form{ max-width: none; }
+@media (max-width: 1000px){ .dev-intro{ grid-template-columns: 1fr; gap: 28px; } .dev-signup{ max-width: 520px; } }
