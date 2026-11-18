@@ -1287,3 +1287,11 @@ nav.primary-nav{ align-items: baseline; }
   .flow-row-3 .flow-tag + .flow-node{ margin-left: calc((var(--nw) + 84px) / 2); }
 }
 @media (min-width: 821px) and (max-width: 1240px){ .flow-row{ --tag: 96px; } }
+/* tach note lines up with its centered row; easier-to-read row labels */
+@media (min-width: 821px){
+  .prod-flow{ --tag: 120px; --nw: min(236px, calc((100% - var(--tag) - 252px) / 4)); }
+  .flow-row-3 + .flow-note{ margin-left: calc(var(--tag) + (var(--nw) + 84px) / 2); }
+}
+@media (min-width: 821px) and (max-width: 1240px){ .prod-flow{ --tag: 96px; } }
+.flow-tag{ color: var(--ink); font-size: 12.5px; font-weight: 500; letter-spacing: .12em; display: flex; align-items: center; gap: 10px; }
+.flow-tag::before{ content: ""; width: 3px; height: 16px; background: var(--rust); flex: none; }
