@@ -1356,3 +1356,5 @@ footer.site-footer{ padding: 64px 24px 0; background: #17191c; }
 .wordmark em{ font-style: normal; font-weight: 300; font-size: 16px; letter-spacing: .32em; color: #c9cdd1; }
 .wordmark:hover em{ color: var(--ink); }
 @media (max-width: 380px){ .wordmark{ gap: 9px; } .wordmark b{ font-size: 22px; } .wordmark em{ font-size: 14px; letter-spacing: .26em; } }
+.home-band-copy p{ text-align: center; }
+.home-band-copy h2{ text-align: center; }
