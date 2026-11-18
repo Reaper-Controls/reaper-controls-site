@@ -1191,3 +1191,7 @@ nav.primary-nav{ align-items: baseline; }
   .hero-line{ white-space: normal; display: inline; }
   .home-open .lede{ font-size: 18px; }
 }
+/* "Smart. Connected." section: one-line heading, matched text width */
+.home-hero .home-hero-title{ max-width: none; font-size: clamp(28px, 2.7vw, 40px); margin-bottom: 20px; }
+.home-hero .home-hero-text .lede{ max-width: 36em; font-size: 19px; line-height: 1.7; }
+@media (min-width: 901px){ .home-hero .home-hero-title{ white-space: nowrap; } }
