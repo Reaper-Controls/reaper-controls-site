@@ -1043,3 +1043,12 @@ main.art-main{ max-width: 1448px; padding-top: 40px; }
 .flow-wire.hot::after{ animation: hotpulse 2.8s ease-in-out infinite; }
 @keyframes hotpulse{ 0%,100%{ filter: brightness(.85); box-shadow: none; } 50%{ filter: brightness(1.25); box-shadow: 0 0 8px 1px rgba(213,57,58,.55); } }
 @media (prefers-reduced-motion: reduce){ .flow-wire.hot, .flow-wire.hot::after{ animation: none; } }
+
+/* Secondary buttons: red outline so they stand out on dark */
+.btn-secondary{ border-color: var(--rust); }
+.btn-secondary:hover{ border-color: var(--rust-hover); background: rgba(187,40,43,.14); color: var(--ink); }
+
+/* Nav: light text, red underline for the current page */
+nav.primary-nav a{ color: #c9cdd1; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+nav.primary-nav a:hover{ color: var(--ink); border-bottom-color: var(--line); }
+nav.primary-nav a[aria-current="page"]{ color: var(--ink); border-bottom-color: var(--rust); }
