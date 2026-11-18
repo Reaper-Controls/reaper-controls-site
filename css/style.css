@@ -1216,3 +1216,9 @@ nav.primary-nav{ align-items: baseline; }
 .home-band-copy p + p{ margin-top: 14px; }
 @media (max-width: 520px){ .home-cta{ padding: 72px 16px 80px; } }
 @media (max-width: 900px){ .home-hero-inner{ grid-template-columns: 1fr; } }
+/* homepage opening: translucent panel behind the text */
+.home-open-text{ padding: 96px 24px; }
+.home-open-panel{ background: rgba(18,20,22,.58); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.07); border-top: 2px solid var(--rust); padding: 48px 64px 52px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+@media (max-width: 520px){ .home-open-text{ padding: 56px 14px; } .home-open-panel{ padding: 32px 20px 36px; } }
